@@ -11,6 +11,19 @@ function debounce(func, wait) {
   };
 }
 
+// Target keywords and emojis that trigger explosions
+const TARGET_KEYWORDS = [
+  "changed the game",
+  "changed the ai game", 
+  "that changed everything",
+  "💸",
+  "🛑", 
+  "🚀"
+];
+
+// Special hashtag detection - any hashtag with # symbol
+const HASHTAG_TRIGGER = true; // Set to true to explode posts with hashtags
+
 // Function to create shooting effect
 function createShootingEffect(startX, startY, endX, endY) {
   const bullet = document.createElement('div');
@@ -35,7 +48,7 @@ function createShootingEffect(startX, startY, endX, endY) {
 }
 
 // Function to create explosion effect
-function createExplosion(element, centerX, centerY) {
+function createExplosion(element, centerX, centerY, matchedKeyword = '') {
   if (!element || element.classList.contains('exploded')) return;
   
   // Mark as exploded to prevent multiple explosions
@@ -51,9 +64,24 @@ function createExplosion(element, centerX, centerY) {
   explosionContainer.style.left = centerX + 'px';
   explosionContainer.style.top = centerY + 'px';
   
-  // Create more particles with varied colors
-  const particleCount = 50;
-  const colors = ['#ff4444', '#ffaa00', '#ff8800', '#ffcc00', '#ff0000', '#ffff00'];
+  // Create more particles with varied colors based on keyword type
+  let particleCount = 50;
+  let colors = ['#ff4444', '#ffaa00', '#ff8800', '#ffcc00', '#ff0000', '#ffff00'];
+  
+  // Special effects for different keywords
+  if (matchedKeyword.includes('💸')) {
+    colors = ['#00ff00', '#ffff00', '#00cc00', '#ccff00', '#66ff66']; // Green money colors
+    particleCount = 60;
+  } else if (matchedKeyword.includes('🛑')) {
+    colors = ['#ff0000', '#cc0000', '#ff3333', '#990000', '#ff6666']; // Red stop colors
+    particleCount = 40;
+  } else if (matchedKeyword.includes('🚀')) {
+    colors = ['#0066ff', '#00ccff', '#3399ff', '#66b3ff', '#99ccff']; // Blue rocket colors
+    particleCount = 70;
+  } else if (matchedKeyword.includes('#')) {
+    colors = ['#9966ff', '#cc99ff', '#6633cc', '#9933ff', '#b366ff']; // Purple hashtag colors
+    particleCount = 45;
+  }
   
   for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('div');
@@ -97,49 +125,36 @@ function createExplosion(element, centerX, centerY) {
   }, 1000); // Increased duration for longer effect
 }
 
-// Function to search for posts containing "changed the game"
-function searchAndExplodePosts() {
-  const targetKeyword = "changed the game";
-  const posts = document.querySelectorAll([
-    '.feed-shared-update-v2',
-    '.occludable-update',
-    '.relative',
-    '.artdeco-card',
-    '[data-id^="urn:li:activity"]',
-    '[data-urn^="urn:li:activity"]'
-  ].join(', '));
+// Function to check if post contains any target keywords or emojis
+function checkForTargetKeywords(postText) {
+  const textLower = postText.toLowerCase();
   
-  posts.forEach(post => {
-    // Skip if already exploded
-    if (post.classList.contains('exploded') || post.classList.contains('fade-explode')) {
-      return;
+  // Check for text keywords
+  for (const keyword of TARGET_KEYWORDS) {
+    if (keyword.length > 1 && textLower.includes(keyword.toLowerCase())) {
+      return keyword;
     }
-    
-    // Get all text content from the post
-    const postText = post.textContent.toLowerCase();
-    
-    // Check if the post contains our target keyword
-    if (postText.includes(targetKeyword.toLowerCase())) {
-      console.log('Found post containing "changed the game":', post);
-      
-      // Get post dimensions for explosion center
-      const rect = post.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      
-      // Create shooting effect from bottom right corner to post center
-      createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
-      
-      // Add a small delay before explosion
-      setTimeout(() => {
-        createExplosion(post, centerX, centerY);
-      }, 250);
+    // Check for emojis (they don't need toLowerCase)
+    if (keyword.length === 1 && postText.includes(keyword)) {
+      return keyword;
     }
-  });
+  }
+  
+  // Check for hashtags if enabled
+  if (HASHTAG_TRIGGER && postText.includes('#')) {
+    return '#hashtag';
+  }
+  
+  return null;
 }
 
 // Function to highlight the keyword in posts before exploding them
 function highlightKeywordInPost(post, keyword) {
+  // Skip highlighting for emojis and hashtags (they're already visually distinct)
+  if (keyword.length === 1 || keyword === '#hashtag') {
+    return;
+  }
+  
   const walker = document.createTreeWalker(
     post,
     NodeFilter.SHOW_TEXT,
@@ -173,9 +188,8 @@ function highlightKeywordInPost(post, keyword) {
   });
 }
 
-// Enhanced search function with keyword highlighting
+// Enhanced search function with multiple keyword support
 function searchHighlightAndExplode() {
-  const targetKeyword = "changed the game";
   const posts = document.querySelectorAll([
     '.feed-shared-update-v2',
     '.occludable-update',
@@ -194,17 +208,30 @@ function searchHighlightAndExplode() {
     }
     
     // Get all text content from the post
-    const postText = post.textContent.toLowerCase();
+    const postText = post.textContent;
     
-    // Check if the post contains our target keyword
-    if (postText.includes(targetKeyword.toLowerCase())) {
-      console.log('Found post containing "changed the game":', post);
+    // Check if the post contains any target keywords
+    const matchedKeyword = checkForTargetKeywords(postText);
+    
+    if (matchedKeyword) {
+      console.log(`LinkExploder: Found post containing "${matchedKeyword}":`, post);
       
       // Mark as processed
       post.classList.add('keyword-processed');
       
-      // Highlight the keyword first
-      highlightKeywordInPost(post, targetKeyword);
+      // Add special class for keyword type
+      if (matchedKeyword.includes('💸')) {
+        post.classList.add('money-target');
+      } else if (matchedKeyword.includes('🛑')) {
+        post.classList.add('stop-target');
+      } else if (matchedKeyword.includes('🚀')) {
+        post.classList.add('rocket-target');
+      } else if (matchedKeyword === '#hashtag') {
+        post.classList.add('hashtag-target');
+      }
+      
+      // Highlight the keyword first (if it's text, not emoji)
+      highlightKeywordInPost(post, matchedKeyword);
       
       // Get post dimensions for explosion center
       const rect = post.getBoundingClientRect();
@@ -218,7 +245,7 @@ function searchHighlightAndExplode() {
       
       // Add explosion after highlighting and shooting
       setTimeout(() => {
-        createExplosion(post, centerX, centerY);
+        createExplosion(post, centerX, centerY, matchedKeyword);
       }, 750);
     }
   });
@@ -231,7 +258,9 @@ const monitorPosts = debounce(() => {
 
 // Initial search when page loads
 setTimeout(() => {
-  console.log('LinkExploder: Starting keyword search for "changed the game"');
+  console.log('LinkExploder: Starting multi-keyword search...');
+  console.log('Target keywords:', TARGET_KEYWORDS);
+  console.log('Hashtag trigger enabled:', HASHTAG_TRIGGER);
   searchHighlightAndExplode();
 }, 2000);
 
@@ -259,4 +288,5 @@ setInterval(() => {
   monitorPosts();
 }, 3000);
 
-console.log('LinkExploder: Extension loaded - searching for "changed the game" posts!');
+console.log('LinkExploder: Extension loaded with multi-keyword support!');
+console.log('Watching for:', TARGET_KEYWORDS, '+ hashtags');

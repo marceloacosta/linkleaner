@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "LinkExploder - Game Changer Hunter",
-  "version": "2.0",
-  "description": "Automatically finds and explodes LinkedIn posts containing 'changed the game' with spectacular visual effects",
+  "name": "LinkExploder - Multi-Target Hunter",
+  "version": "2.1",
+  "description": "Automatically detects and explodes LinkedIn posts containing trigger keywords like 'changed the game', emojis (💸🛑🚀), and hashtags with spectacular visual effects",
   "permissions": [
     "storage",
     "activeTab"
