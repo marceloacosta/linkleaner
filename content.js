@@ -397,17 +397,51 @@ function searchHighlightAndExplode() {
     return;
   }
   
-  // More flexible post selectors - let's cast a wider net
+  // Safety check - don't run during LinkedIn search or navigation
+  if (isLinkedInBusy()) {
+    console.log('LinkExploder: LinkedIn is busy (search/navigation), skipping scan');
+    return;
+  }
+  
+  // Much more comprehensive post selectors
   const allPossiblePosts = document.querySelectorAll([
     '.feed-shared-update-v2',  // Main feed posts
     '.occludable-update',      // Occludable posts
     '[data-urn*="activity"]',  // Any element with activity URN
     '[data-id*="activity"]',   // Any element with activity ID
     '.update-components-text', // Text content containers
-    '.feed-shared-text'        // Shared text elements
+    '.feed-shared-text',       // Shared text elements
+    '[role="article"]',        // Articles
+    '.feed-shared-update',     // Alternative feed updates
+    '.share-update-card',      // Share cards
+    '.feed-shared-mini-update-v2', // Mini updates
+    '.feed-shared-article',    // Shared articles
+    '.feed-shared-video',      // Shared videos
+    'div[data-urn]',          // Any div with data-urn
+    '.feed-shared-actor',     // Actor elements that might contain posts
+    '.update-components-actor' // Update actor components
   ].join(', '));
   
   console.log(`LinkExploder: Found ${allPossiblePosts.length} potential elements`);
+  
+  // If we still find nothing, let's try a more general approach
+  if (allPossiblePosts.length === 0) {
+    console.log('LinkExploder: No elements found with specific selectors, trying broader search...');
+    const broadSearch = document.querySelectorAll('div, article, section, main');
+    console.log(`LinkExploder: Found ${broadSearch.length} general elements to filter`);
+    
+    // Filter these for post-like content
+    const filteredPosts = Array.from(broadSearch).filter(element => {
+      return isPostLikeContent(element);
+    });
+    
+    console.log(`LinkExploder: After broad filtering: ${filteredPosts.length} post-like elements`);
+    
+    if (filteredPosts.length > 0) {
+      processFoundPosts(filteredPosts);
+    }
+    return;
+  }
   
   // Filter to only actual posts
   const posts = Array.from(allPossiblePosts).filter(element => {
@@ -424,6 +458,60 @@ function searchHighlightAndExplode() {
   
   console.log(`LinkExploder: After filtering: ${posts.length} actual posts to check`);
   
+  if (posts.length > 0) {
+    processFoundPosts(posts);
+  }
+}
+
+// Function to check if LinkedIn is busy with search or navigation
+function isLinkedInBusy() {
+  // Check if search is active
+  const searchInput = document.querySelector('input[placeholder*="Search"], .search-global-typeahead__input');
+  if (searchInput && (document.activeElement === searchInput || searchInput.value.trim() !== '')) {
+    return true;
+  }
+  
+  // Check if navigation is happening
+  const loadingIndicators = document.querySelectorAll('.loader, .loading, [aria-label*="Loading"], .artdeco-loader');
+  if (loadingIndicators.length > 0) {
+    return true;
+  }
+  
+  // Check if any modals or overlays are open
+  const modals = document.querySelectorAll('.artdeco-modal, .modal, [role="dialog"]');
+  if (modals.length > 0) {
+    return true;
+  }
+  
+  return false;
+}
+
+// Function to detect post-like content more broadly
+function isPostLikeContent(element) {
+  const text = element.textContent?.trim() || '';
+  
+  // Must have substantial text content
+  if (text.length < 50) return false;
+  
+  // Must contain some of our target keywords or common post indicators
+  const hasTargetKeyword = TARGET_KEYWORDS.some(keyword => 
+    text.toLowerCase().includes(keyword.toLowerCase())
+  );
+  
+  // Look for post-like indicators
+  const hasPostIndicators = text.includes('like') || text.includes('comment') || text.includes('share') ||
+                           text.includes('ago') || text.includes('hour') || text.includes('day') ||
+                           text.includes('week') || text.includes('month');
+  
+  // Must have reasonable dimensions
+  const rect = element.getBoundingClientRect();
+  const hasReasonableSize = rect.width > 200 && rect.height > 50;
+  
+  return (hasTargetKeyword || hasPostIndicators) && hasReasonableSize;
+}
+
+// Function to process found posts
+function processFoundPosts(posts) {
   // Debug: Log some examples of what we found
   if (CONFIG.debugMode && posts.length > 0) {
     console.log('LinkExploder: Sample posts found:', posts.slice(0, 3));
@@ -434,6 +522,7 @@ function searchHighlightAndExplode() {
         'data-id': post.getAttribute('data-id'),
         id: post.id
       });
+      console.log(`Post ${i + 1} text sample:`, post.textContent.slice(0, 100));
     });
   }
   
@@ -452,11 +541,6 @@ function searchHighlightAndExplode() {
     if (post.classList.contains('exploded') || 
         post.classList.contains('fade-explode') || 
         post.classList.contains('keyword-processed')) {
-      return;
-    }
-    
-    // Additional validation - make sure this is actually a post
-    if (!isValidPost(post)) {
       return;
     }
     
@@ -485,7 +569,11 @@ function searchHighlightAndExplode() {
       }
       
       // Highlight the keyword first (if it's text, not emoji)
-      highlightKeywordInPost(post, matchedKeyword);
+      try {
+        highlightKeywordInPost(post, matchedKeyword);
+      } catch (error) {
+        console.warn('LinkExploder: Highlighting failed:', error);
+      }
       
       // Get post dimensions for explosion center
       const rect = post.getBoundingClientRect();
@@ -553,12 +641,12 @@ function isPostContainer(element) {
   return hasText && hasEngagementButtons;
 }
 
-// Function to continuously monitor for new posts
+// Function to continuously monitor for new posts (with rate limiting)
 const monitorPosts = debounce(() => {
-  if (extensionContextValid) {
+  if (extensionContextValid && !isLinkedInBusy()) {
     searchHighlightAndExplode();
   }
-}, 200);
+}, 500); // Increased debounce time to reduce interference
 
 // Initial search when page loads
 setTimeout(() => {
@@ -599,15 +687,19 @@ if (extensionContextValid && checkExtensionContext()) {
     subtree: true
   });
 
-  // Also run periodic checks every few seconds for dynamic content
+  // Also run periodic checks every few seconds for dynamic content (reduced frequency)
   const periodicCheck = setInterval(() => {
     if (!extensionContextValid || !checkExtensionContext()) {
       console.warn('LinkExploder: Stopping periodic checks - extension context invalidated');
       clearInterval(periodicCheck);
       return;
     }
-    monitorPosts();
-  }, 3000);
+    
+    // Only run if LinkedIn isn't busy
+    if (!isLinkedInBusy()) {
+      monitorPosts();
+    }
+  }, 5000); // Increased from 3000ms to 5000ms to reduce interference
 }
 
 console.log('LinkExploder: Extension loaded with multi-keyword support!');
