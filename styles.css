@@ -1,0 +1,171 @@
+.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.explosion-container {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  will-change: transform;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--particle-color, radial-gradient(circle at 30% 30%, #ff6b6b, #ff3333));
+  box-shadow: 0 0 8px currentColor;
+  animation: explode 0.8s ease-out forwards;
+  will-change: transform;
+}
+
+.bullet {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle at 30% 30%, #fff, #ffd700);
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ffd700;
+  z-index: 1000;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Bullet trail effect */
+.bullet::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: linear-gradient(to left, transparent, #ffd700);
+  transform: translateY(-50%);
+  transform-origin: right center;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translate(var(--startX), var(--startY));
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--endX), var(--endY));
+  }
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+    transform: translate(calc(var(--tx) * 0.2), calc(var(--ty) * 0.2)) scale(var(--scale)) rotate(calc(var(--rotate) * 0.2));
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(var(--scale)) rotate(var(--rotate));
+    opacity: 0;
+  }
+}
+
+.explosion-flash {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,200,0,0.4) 40%, transparent 70%);
+  border-radius: 50%;
+  left: -30px;
+  top: -30px;
+  animation: flash 0.4s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes flash {
+  0% {
+    transform: scale(0.1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.fade-explode {
+  animation: fadeExplode 0.4s ease-out forwards;
+}
+
+@keyframes fadeExplode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  20% {
+    transform: scale(1.2);
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* Different colored particles */
+.particle:nth-child(3n) {
+  background: radial-gradient(circle at 30% 30%, #ffb366, #ff8533);
+  box-shadow: 0 0 10px #ff8533, 0 0 20px #ffb366;
+}
+
+.particle:nth-child(3n+1) {
+  background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff3333);
+  box-shadow: 0 0 10px #ff3333, 0 0 20px #ff6b6b;
+}
+
+.particle:nth-child(3n+2) {
+  background: radial-gradient(circle at 30% 30%, #ffd966, #ffc61a);
+  box-shadow: 0 0 10px #ffc61a, 0 0 20px #ffd966;
+}
+
+/* Shockwave effect */
+.shockwave {
+  position: absolute;
+  border-radius: 50%;
+  animation: shockwaveEffect 0.6s ease-out forwards;
+  border: 2px solid rgba(255, 102, 102, 0.5);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes shockwaveEffect {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
