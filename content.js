@@ -15,6 +15,7 @@ function debounce(func, wait) {
 let explosionAudio = null;
 let audioReady = false;
 let extensionContextValid = true;
+let audioInitializationAttempted = false; // Prevent repeated initialization attempts
 
 // Check if extension context is still valid
 function checkExtensionContext() {
@@ -91,13 +92,25 @@ function showContextInvalidatedNotification() {
 }
 
 function initializeAudio() {
+  // Prevent repeated initialization attempts
+  if (audioInitializationAttempted || !extensionContextValid) {
+    console.warn('LinkExploder: Audio initialization skipped - already attempted or context invalid');
+    return;
+  }
+  
+  audioInitializationAttempted = true;
+  
   if (!checkExtensionContext()) {
     console.warn('LinkExploder: Cannot initialize audio - extension context invalidated');
     return;
   }
   
   try {
-    explosionAudio = new Audio(chrome.runtime.getURL('explosion.mp3'));
+    // Double-check context before creating audio
+    const audioUrl = chrome.runtime.getURL('explosion.mp3');
+    console.log('LinkExploder: Initializing audio with URL:', audioUrl);
+    
+    explosionAudio = new Audio(audioUrl);
     explosionAudio.volume = 0.4;
     explosionAudio.preload = 'auto';
     
@@ -109,14 +122,21 @@ function initializeAudio() {
     explosionAudio.addEventListener('error', (e) => {
       console.warn('LinkExploder: Audio preload failed:', e);
       audioReady = false;
+      // Don't retry if context is invalid
+      if (!extensionContextValid) {
+        console.warn('LinkExploder: Audio failed due to invalid extension context');
+        return;
+      }
     });
     
     // Try to load the audio
     explosionAudio.load();
   } catch (error) {
-    if (error.message.includes('Extension context invalidated')) {
+    if (error.message.includes('Extension context invalidated') || 
+        error.message.includes('Invalid extension id')) {
       console.warn('LinkExploder: Extension was reloaded, please refresh the page');
       extensionContextValid = false;
+      showContextInvalidatedNotification();
       return;
     }
     console.error('LinkExploder: Audio initialization failed:', error);
@@ -197,7 +217,7 @@ function createExplosion(element, centerX, centerY, matchedKeyword = '') {
   
   // Play preloaded explosion sound
   console.log('LinkExploder: Attempting to play audio...', { audioReady, explosionAudio });
-  if (audioReady && explosionAudio) {
+  if (audioReady && explosionAudio && extensionContextValid) {
     try {
       // Reset audio to beginning in case it's already played
       explosionAudio.currentTime = 0;
@@ -208,12 +228,20 @@ function createExplosion(element, centerX, centerY, matchedKeyword = '') {
         playPromise.then(() => {
           console.log('LinkExploder: Audio played successfully');
         }).catch((error) => {
+          // Check if this is a context invalidation error
+          if (error.message.includes('context invalidated') || 
+              error.message.includes('Invalid extension id')) {
+            console.warn('LinkExploder: Audio failed - extension context invalidated');
+            extensionContextValid = false;
+            return;
+          }
+          
           console.warn('LinkExploder: Audio autoplay blocked:', error);
           console.log('LinkExploder: Audio will play on next user interaction');
           
           // Set up one-time click listener for audio
           const enableAudio = () => {
-            if (explosionAudio && extensionContextValid) {
+            if (explosionAudio && extensionContextValid && checkExtensionContext()) {
               explosionAudio.play().then(() => {
                 console.log('LinkExploder: Audio enabled after user interaction');
               }).catch(e => console.warn('LinkExploder: Audio still failed:', e));
@@ -225,16 +253,18 @@ function createExplosion(element, centerX, centerY, matchedKeyword = '') {
         });
       }
     } catch (audioError) {
-      if (audioError.message.includes('Extension context invalidated')) {
+      if (audioError.message.includes('Extension context invalidated') ||
+          audioError.message.includes('Invalid extension id')) {
         console.warn('LinkExploder: Audio failed - extension reloaded. Please refresh the page.');
         extensionContextValid = false;
+        showContextInvalidatedNotification();
         return;
       }
       console.error('LinkExploder: Audio playback failed:', audioError);
     }
-  } else if (extensionContextValid) {
+  } else if (extensionContextValid && !audioInitializationAttempted) {
     console.warn('LinkExploder: Audio not ready yet, retrying initialization...');
-    initializeAudio(); // Retry audio initialization
+    initializeAudio(); // Retry audio initialization only if not attempted before
   }
   
   console.log('LinkExploder: Creating explosion container...');
@@ -732,15 +762,22 @@ window.configureLinkExploder = function(options = {}) {
 
 // Manual audio test function for debugging
 window.testLinkExploderAudio = function() {
-  if (!checkExtensionContext()) {
+  console.log('LinkExploder Audio Test:');
+  
+  // First check extension context
+  const contextValid = checkExtensionContext();
+  console.log('- Extension Context Valid:', contextValid);
+  
+  if (!contextValid) {
     console.log('❌ Extension context invalidated. Please refresh the page and reload the extension.');
+    console.log('- To fix: Close this tab, reload the extension in chrome://extensions, then reopen LinkedIn');
     return;
   }
   
-  console.log('LinkExploder Audio Test:');
   console.log('- Extension Context Valid:', extensionContextValid);
   console.log('- Audio Ready:', audioReady);
   console.log('- Audio Object:', explosionAudio);
+  console.log('- Audio Initialization Attempted:', audioInitializationAttempted);
   
   if (explosionAudio) {
     console.log('- Audio Source:', explosionAudio.src);
@@ -748,25 +785,41 @@ window.testLinkExploderAudio = function() {
     console.log('- Audio Ready State:', explosionAudio.readyState);
   }
   
-  if (audioReady && explosionAudio) {
+  if (audioReady && explosionAudio && extensionContextValid) {
     explosionAudio.currentTime = 0;
     explosionAudio.play().then(() => {
       console.log('✅ Audio test successful!');
     }).catch(error => {
       console.log('❌ Audio test failed:', error);
+      if (error.message.includes('context invalidated') || 
+          error.message.includes('Invalid extension id')) {
+        console.log('💡 This error means the extension was reloaded. Please refresh the page.');
+      }
     });
-  } else {
-    console.log('❌ Audio not ready. Attempting to reinitialize...');
+  } else if (!audioInitializationAttempted && extensionContextValid) {
+    console.log('❌ Audio not ready. Attempting to initialize...');
     initializeAudio();
     setTimeout(() => {
-      if (audioReady && explosionAudio) {
+      if (audioReady && explosionAudio && extensionContextValid) {
         explosionAudio.play().then(() => {
-          console.log('✅ Audio test successful after reinit!');
+          console.log('✅ Audio test successful after initialization!');
         }).catch(error => {
           console.log('❌ Audio test still failed:', error);
         });
+      } else {
+        console.log('❌ Audio initialization failed or context became invalid');
       }
     }, 1000);
+  } else {
+    console.log('❌ Audio cannot be tested:');
+    console.log('  - Audio ready:', audioReady);
+    console.log('  - Audio object exists:', !!explosionAudio);
+    console.log('  - Extension context valid:', extensionContextValid);
+    console.log('  - Initialization attempted:', audioInitializationAttempted);
+    
+    if (!extensionContextValid) {
+      console.log('💡 Extension context is invalid. Please refresh the page.');
+    }
   }
 };
 
