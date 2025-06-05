@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "LinkExploder - Multi-Target Hunter",
-  "version": "2.1",
+  "version": "2.2",
   "description": "Automatically detects and explodes LinkedIn posts containing trigger keywords like 'changed the game', emojis (💸🛑🚀), and hashtags with spectacular visual effects",
   "permissions": [
     "storage",

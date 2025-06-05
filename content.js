@@ -14,8 +14,88 @@ function debounce(func, wait) {
 // Audio preloading and management
 let explosionAudio = null;
 let audioReady = false;
+let extensionContextValid = true;
+
+// Check if extension context is still valid
+function checkExtensionContext() {
+  try {
+    // Try to access chrome.runtime - this will throw if context is invalidated
+    if (chrome && chrome.runtime && chrome.runtime.id) {
+      return true;
+    }
+  } catch (error) {
+    console.warn('LinkExploder: Extension context invalidated, stopping script execution');
+    extensionContextValid = false;
+    showContextInvalidatedNotification();
+    return false;
+  }
+  return false;
+}
+
+// Show a user-friendly notification when extension context is invalidated
+function showContextInvalidatedNotification() {
+  // Only show notification once
+  if (document.getElementById('linkexploder-context-notification')) {
+    return;
+  }
+  
+  const notification = document.createElement('div');
+  notification.id = 'linkexploder-context-notification';
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #ff4444, #ff8800);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    max-width: 300px;
+    cursor: pointer;
+    animation: slideIn 0.5s ease-out;
+  `;
+  
+  notification.innerHTML = `
+    🎯 LinkExploder: Extension Reloaded<br>
+    <small style="font-weight: normal; opacity: 0.9;">Please refresh this page to resume explosions!</small>
+  `;
+  
+  // Add slide-in animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Remove notification on click or after 10 seconds
+  notification.addEventListener('click', () => {
+    notification.remove();
+    style.remove();
+  });
+  
+  setTimeout(() => {
+    if (notification.parentNode) {
+      notification.remove();
+      style.remove();
+    }
+  }, 10000);
+  
+  document.body.appendChild(notification);
+}
 
 function initializeAudio() {
+  if (!checkExtensionContext()) {
+    console.warn('LinkExploder: Cannot initialize audio - extension context invalidated');
+    return;
+  }
+  
   try {
     explosionAudio = new Audio(chrome.runtime.getURL('explosion.mp3'));
     explosionAudio.volume = 0.4;
@@ -34,13 +114,20 @@ function initializeAudio() {
     // Try to load the audio
     explosionAudio.load();
   } catch (error) {
+    if (error.message.includes('Extension context invalidated')) {
+      console.warn('LinkExploder: Extension was reloaded, please refresh the page');
+      extensionContextValid = false;
+      return;
+    }
     console.error('LinkExploder: Audio initialization failed:', error);
     audioReady = false;
   }
 }
 
-// Initialize audio when extension loads
-initializeAudio();
+// Initialize audio when extension loads (with context check)
+if (checkExtensionContext()) {
+  initializeAudio();
+}
 
 // Target keywords and emojis that trigger explosions
 const TARGET_KEYWORDS = [
@@ -52,8 +139,17 @@ const TARGET_KEYWORDS = [
   "🚀"
 ];
 
-// Special hashtag detection - any hashtag with # symbol
-const HASHTAG_TRIGGER = true; // Set to true to explode posts with hashtags
+// Special hashtag detection - now more selective and DISABLED by default
+const HASHTAG_TRIGGER = false; // Set to true to explode posts with hashtags (DISABLED by default)
+const HASHTAG_THRESHOLD = 5; // Minimum number of hashtags to trigger explosion (increased threshold)
+
+// Configuration
+const CONFIG = {
+  maxExplosionsPerScan: 2,  // Limit explosions per scan to be safe
+  enableHashtagDetection: true,  // Enable hashtag detection for spammy posts
+  hashtagThreshold: 5,  // Target posts with MORE than 4 hashtags (5+)
+  debugMode: true  // Set to false to reduce console spam
+};
 
 // Function to create shooting effect
 function createShootingEffect(startX, startY, endX, endY) {
@@ -82,6 +178,12 @@ function createShootingEffect(startX, startY, endX, endY) {
 function createExplosion(element, centerX, centerY, matchedKeyword = '') {
   if (!element || element.classList.contains('exploded')) return;
   
+  // Check if extension context is still valid
+  if (!extensionContextValid || !checkExtensionContext()) {
+    console.warn('LinkExploder: Skipping explosion - extension context invalidated. Please refresh the page.');
+    return;
+  }
+  
   // Mark as exploded to prevent multiple explosions
   element.classList.add('exploded');
   
@@ -102,9 +204,11 @@ function createExplosion(element, centerX, centerY, matchedKeyword = '') {
           
           // Set up one-time click listener for audio
           const enableAudio = () => {
-            explosionAudio.play().then(() => {
-              console.log('LinkExploder: Audio enabled after user interaction');
-            }).catch(e => console.warn('LinkExploder: Audio still failed:', e));
+            if (explosionAudio && extensionContextValid) {
+              explosionAudio.play().then(() => {
+                console.log('LinkExploder: Audio enabled after user interaction');
+              }).catch(e => console.warn('LinkExploder: Audio still failed:', e));
+            }
             document.removeEventListener('click', enableAudio);
           };
           
@@ -112,9 +216,14 @@ function createExplosion(element, centerX, centerY, matchedKeyword = '') {
         });
       }
     } catch (audioError) {
+      if (audioError.message.includes('Extension context invalidated')) {
+        console.warn('LinkExploder: Audio failed - extension reloaded. Please refresh the page.');
+        extensionContextValid = false;
+        return;
+      }
       console.error('LinkExploder: Audio playback failed:', audioError);
     }
-  } else {
+  } else if (extensionContextValid) {
     console.warn('LinkExploder: Audio not ready yet, retrying initialization...');
     initializeAudio(); // Retry audio initialization
   }
@@ -200,9 +309,31 @@ function checkForTargetKeywords(postText) {
     }
   }
   
-  // Check for hashtags if enabled
-  if (HASHTAG_TRIGGER && postText.includes('#')) {
-    return '#hashtag';
+  // Check for hashtags if enabled - now much more selective and DISABLED by default
+  if (CONFIG.enableHashtagDetection && postText.includes('#')) {
+    const hashtags = postText.match(/#\w+/g);
+    if (hashtags && hashtags.length >= CONFIG.hashtagThreshold) {
+      if (CONFIG.debugMode) {
+        console.log(`LinkExploder: Found ${hashtags.length} hashtags (threshold: ${CONFIG.hashtagThreshold}):`, hashtags);
+      }
+      return '#hashtag';
+    }
+    
+    // Also check for specific problematic hashtag patterns
+    const problematicHashtags = [
+      '#entrepreneur', '#hustle', '#mindset', '#success', '#motivation',
+      '#linkedininfluencer', '#thoughtleader', '#gamechange', '#disrupt',
+      '#thoughtleadership', '#networking', '#leadership', '#inspiration'
+    ];
+    
+    for (const problematicTag of problematicHashtags) {
+      if (textLower.includes(problematicTag)) {
+        if (CONFIG.debugMode) {
+          console.log(`LinkExploder: Found problematic hashtag: ${problematicTag}`);
+        }
+        return '#hashtag';
+      }
+    }
   }
   
   return null;
@@ -250,20 +381,42 @@ function highlightKeywordInPost(post, keyword) {
 
 // Enhanced search function with multiple keyword support
 function searchHighlightAndExplode() {
+  // Check if extension context is still valid
+  if (!extensionContextValid || !checkExtensionContext()) {
+    console.warn('LinkExploder: Stopping search - extension context invalidated. Please refresh the page.');
+    return;
+  }
+  
+  // Much more specific post selectors to avoid catching non-post elements
   const posts = document.querySelectorAll([
-    '.feed-shared-update-v2',
-    '.occludable-update',
-    '.relative',
-    '.artdeco-card',
-    '[data-id^="urn:li:activity"]',
-    '[data-urn^="urn:li:activity"]'
+    '.feed-shared-update-v2[data-urn*="activity"]',  // Only feed updates with activity URNs
+    '.occludable-update[data-urn*="activity"]',      // Only occludable updates with activity URNs
+    '[data-id^="urn:li:activity"]:not(.keyword-processed)',  // Activity URNs only, not already processed
+    '.feed-shared-update-v2:not(.keyword-processed)'  // Feed updates not already processed
   ].join(', '));
   
-  posts.forEach(post => {
+  console.log(`LinkExploder: Found ${posts.length} potential posts to check`);
+  
+  // Safety mechanism - limit explosions per scan
+  const MAX_EXPLOSIONS_PER_SCAN = CONFIG.maxExplosionsPerScan;
+  let explosionCount = 0;
+  
+  posts.forEach((post, index) => {
+    // Stop if we've reached the explosion limit
+    if (explosionCount >= MAX_EXPLOSIONS_PER_SCAN) {
+      console.log(`LinkExploder: Reached explosion limit (${MAX_EXPLOSIONS_PER_SCAN}) for this scan`);
+      return;
+    }
+    
     // Skip if already processed
     if (post.classList.contains('exploded') || 
         post.classList.contains('fade-explode') || 
         post.classList.contains('keyword-processed')) {
+      return;
+    }
+    
+    // Additional validation - make sure this is actually a post
+    if (!isValidPost(post)) {
       return;
     }
     
@@ -274,9 +427,10 @@ function searchHighlightAndExplode() {
     const matchedKeyword = checkForTargetKeywords(postText);
     
     if (matchedKeyword) {
-      console.log(`LinkExploder: Found post containing "${matchedKeyword}":`, post);
+      explosionCount++; // Increment explosion counter
+      console.log(`LinkExploder: Found post ${index + 1} containing "${matchedKeyword}" (explosion ${explosionCount}/${MAX_EXPLOSIONS_PER_SCAN}):`, post);
       
-      // Mark as processed
+      // Mark as processed immediately to prevent reprocessing
       post.classList.add('keyword-processed');
       
       // Add special class for keyword type
@@ -298,26 +452,47 @@ function searchHighlightAndExplode() {
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      // Create shooting effect from bottom right corner to post center
-      setTimeout(() => {
-        createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
-      }, 500); // Small delay to show highlight first
-      
-      // Add explosion after highlighting and shooting
-      setTimeout(() => {
-        createExplosion(post, centerX, centerY, matchedKeyword);
-      }, 750);
+      // Only explode if the post is visible on screen
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        // Create shooting effect from bottom right corner to post center
+        setTimeout(() => {
+          createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
+        }, 500 + (index * 100)); // Stagger explosions to avoid overwhelming
+        
+        // Add explosion after highlighting and shooting
+        setTimeout(() => {
+          createExplosion(post, centerX, centerY, matchedKeyword);
+        }, 750 + (index * 100)); // Stagger explosions
+      }
     }
   });
 }
 
+// Function to validate if an element is actually a post
+function isValidPost(element) {
+  // Check if it has post-like characteristics
+  const hasPostContent = element.querySelector('.update-components-text, .feed-shared-text, .attributed-text-segment-list__content');
+  const hasAuthor = element.querySelector('.update-components-actor, .feed-shared-actor');
+  const hasMinimumHeight = element.offsetHeight > 50;
+  const hasActivity = element.hasAttribute('data-urn') && element.getAttribute('data-urn').includes('activity');
+  
+  return (hasPostContent || hasAuthor) && hasMinimumHeight && hasActivity;
+}
+
 // Function to continuously monitor for new posts
 const monitorPosts = debounce(() => {
-  searchHighlightAndExplode();
+  if (extensionContextValid) {
+    searchHighlightAndExplode();
+  }
 }, 200);
 
 // Initial search when page loads
 setTimeout(() => {
+  if (!checkExtensionContext()) {
+    console.warn('LinkExploder: Extension context invalidated during startup');
+    return;
+  }
+  
   console.log('LinkExploder: Starting multi-keyword search...');
   console.log('Target keywords:', TARGET_KEYWORDS);
   console.log('Hashtag trigger enabled:', HASHTAG_TRIGGER);
@@ -326,6 +501,12 @@ setTimeout(() => {
 
 // Monitor for new content with debounce
 const observer = new MutationObserver(debounce((mutations) => {
+  if (!extensionContextValid) {
+    console.warn('LinkExploder: Stopping mutation observer - extension context invalidated');
+    observer.disconnect();
+    return;
+  }
+  
   let hasNewNodes = false;
   for (const mutation of mutations) {
     if (mutation.addedNodes.length) {
@@ -338,22 +519,60 @@ const observer = new MutationObserver(debounce((mutations) => {
   }
 }, 300));
 
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
+if (extensionContextValid && checkExtensionContext()) {
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 
-// Also run periodic checks every few seconds for dynamic content
-setInterval(() => {
-  monitorPosts();
-}, 3000);
+  // Also run periodic checks every few seconds for dynamic content
+  const periodicCheck = setInterval(() => {
+    if (!extensionContextValid || !checkExtensionContext()) {
+      console.warn('LinkExploder: Stopping periodic checks - extension context invalidated');
+      clearInterval(periodicCheck);
+      return;
+    }
+    monitorPosts();
+  }, 3000);
+}
 
 console.log('LinkExploder: Extension loaded with multi-keyword support!');
-console.log('Watching for:', TARGET_KEYWORDS, '+ hashtags');
+console.log('Watching for:', TARGET_KEYWORDS, '+ hashtags (5+ threshold)');
+
+// Configuration functions for users
+window.configureLinkExploder = function(options = {}) {
+  if (options.hashtagThreshold !== undefined) {
+    CONFIG.hashtagThreshold = options.hashtagThreshold;
+    console.log(`LinkExploder: Hashtag threshold set to ${CONFIG.hashtagThreshold}`);
+  }
+  
+  if (options.enableHashtags !== undefined) {
+    CONFIG.enableHashtagDetection = options.enableHashtags;
+    console.log(`LinkExploder: Hashtag detection ${CONFIG.enableHashtagDetection ? 'enabled' : 'disabled'}`);
+  }
+  
+  if (options.maxExplosions !== undefined) {
+    CONFIG.maxExplosionsPerScan = options.maxExplosions;
+    console.log(`LinkExploder: Max explosions per scan set to ${CONFIG.maxExplosionsPerScan}`);
+  }
+  
+  if (options.debugMode !== undefined) {
+    CONFIG.debugMode = options.debugMode;
+    console.log(`LinkExploder: Debug mode ${CONFIG.debugMode ? 'enabled' : 'disabled'}`);
+  }
+  
+  console.log('Current configuration:', CONFIG);
+};
 
 // Manual audio test function for debugging
 window.testLinkExploderAudio = function() {
+  if (!checkExtensionContext()) {
+    console.log('❌ Extension context invalidated. Please refresh the page and reload the extension.');
+    return;
+  }
+  
   console.log('LinkExploder Audio Test:');
+  console.log('- Extension Context Valid:', extensionContextValid);
   console.log('- Audio Ready:', audioReady);
   console.log('- Audio Object:', explosionAudio);
   
@@ -385,4 +604,5 @@ window.testLinkExploderAudio = function() {
   }
 };
 
-console.log('LinkExploder: Type testLinkExploderAudio() in console to test audio manually');
+console.log('LinkExploder: Type configureLinkExploder({hashtagThreshold: 3}) to change settings');
+console.log('LinkExploder: Type testLinkExploderAudio() to test audio manually');
