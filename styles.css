@@ -169,3 +169,79 @@
     opacity: 0;
   }
 }
+
+/* Keyword highlighting styles */
+.keyword-highlight {
+  background: linear-gradient(45deg, #ff4444, #ffd700, #ff4444);
+  background-size: 200% 200%;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  padding: 2px 4px;
+  border-radius: 4px;
+  text-shadow: 
+    0 0 10px rgba(255, 68, 68, 0.8),
+    0 0 20px rgba(255, 215, 0, 0.6),
+    0 0 30px rgba(255, 68, 68, 0.4);
+  animation: keywordPulse 1s ease-in-out infinite, keywordGlow 2s linear infinite;
+  box-shadow: 
+    inset 0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 15px rgba(255, 68, 68, 0.6),
+    0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+@keyframes keywordPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes keywordGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Enhanced explosion effect for keyword posts */
+.keyword-processed {
+  position: relative;
+  overflow: visible !important;
+}
+
+.keyword-processed::before {
+  content: '🎯';
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: radial-gradient(circle, #ff4444, #ff8800);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 10;
+  animation: targetBlink 0.5s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
+}
+
+@keyframes targetBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}

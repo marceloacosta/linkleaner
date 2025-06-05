@@ -35,8 +35,11 @@ function createShootingEffect(startX, startY, endX, endY) {
 }
 
 // Function to create explosion effect
-function createExplosion(element, mouseX, mouseY) {
-  if (!element) return;
+function createExplosion(element, centerX, centerY) {
+  if (!element || element.classList.contains('exploded')) return;
+  
+  // Mark as exploded to prevent multiple explosions
+  element.classList.add('exploded');
   
   // Play explosion sound
   const explosionSound = new Audio(chrome.runtime.getURL('explosion.mp3'));
@@ -45,12 +48,12 @@ function createExplosion(element, mouseX, mouseY) {
   
   const explosionContainer = document.createElement('div');
   explosionContainer.className = 'explosion-container';
-  explosionContainer.style.left = mouseX + 'px';
-  explosionContainer.style.top = mouseY + 'px';
+  explosionContainer.style.left = centerX + 'px';
+  explosionContainer.style.top = centerY + 'px';
   
   // Create more particles with varied colors
-  const particleCount = 40;
-  const colors = ['#ff4444', '#ffaa00', '#ff8800', '#ffcc00', '#ff0000'];
+  const particleCount = 50;
+  const colors = ['#ff4444', '#ffaa00', '#ff8800', '#ffcc00', '#ff0000', '#ffff00'];
   
   for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('div');
@@ -63,7 +66,7 @@ function createExplosion(element, mouseX, mouseY) {
     
     // Create more dynamic movement
     const angle = (Math.random() * 360) * (Math.PI / 180);
-    const velocity = 150 + Math.random() * 250; // Increased velocity range
+    const velocity = 150 + Math.random() * 300; // Increased velocity range
     const tx = Math.cos(angle) * velocity;
     const ty = Math.sin(angle) * velocity;
     const rotate = Math.random() * 720; // More rotation
@@ -91,178 +94,146 @@ function createExplosion(element, mouseX, mouseY) {
   setTimeout(() => {
     explosionContainer.remove();
     element.remove();
-  }, 800); // Increased duration for longer effect
+  }, 1000); // Increased duration for longer effect
 }
 
-// Function to handle profile blocking
-async function blockProfile(event) {
-  const mouseX = event.clientX;
-  const mouseY = event.clientY;
-  
-  event.preventDefault();
-  event.stopPropagation();
-  
-  let profileLink = event.target;
-  if (!profileLink.href) {
-    profileLink = event.target.closest('a[href*="/in/"]');
-  }
-  
-  if (!profileLink || !profileLink.href) {
-    console.log('No profile link found');
-    return;
-  }
-
-  const postElement = findPostContainer(profileLink);
-  if (!postElement) {
-    console.log('No post container found');
-    return;
-  }
-  
-  const profileUrl = profileLink.href;
-  const profileId = profileUrl.split('/in/')[1]?.split(/[/?#]/)[0];
-  
-  if (!profileId) {
-    console.log('Could not extract profile ID from URL:', profileUrl);
-    return;
-  }
-  
-  console.log('Attempting to block profile:', profileId);
-  
-  createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, mouseX, mouseY);
-  
-  setTimeout(() => {
-    createExplosion(postElement, mouseX, mouseY);
-  }, 200);
-  
-  const blocked = await blockProfileOnLinkedIn(profileId);
-  
-  if (blocked) {
-    chrome.storage.local.get(['blockedProfiles'], function(result) {
-      const blockedProfiles = result.blockedProfiles || [];
-      if (!blockedProfiles.includes(profileId)) {
-        blockedProfiles.push(profileId);
-        chrome.storage.local.set({ blockedProfiles: blockedProfiles }, () => {
-          console.log('Profile stored in extension storage:', profileId);
-          hideBlockedProfilePosts();
-        });
-      }
-    });
-  }
-}
-
-// Function to hide posts from blocked profiles
-const hideBlockedProfilePosts = debounce(() => {
-  chrome.storage.local.get(['blockedProfiles'], function(result) {
-    const blockedProfiles = result.blockedProfiles || [];
-    if (blockedProfiles.length === 0) return;
-
-    const profileLinks = document.querySelectorAll('a[href*="/in/"]');
-    profileLinks.forEach(link => {
-      const profileId = link.href.split('/in/')[1]?.split(/[/?#]/)[0];
-      if (profileId && blockedProfiles.includes(profileId)) {
-        const postElement = findPostContainer(link);
-        if (postElement && !postElement.classList.contains('fade-explode')) {
-          const rect = postElement.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-          
-          createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
-          setTimeout(() => {
-            createExplosion(postElement, centerX, centerY);
-          }, 200);
-        }
-      }
-    });
-  });
-}, 100);
-
-// Function to find the closest post container
-function findPostContainer(element) {
-  const postSelectors = [
+// Function to search for posts containing "changed the game"
+function searchAndExplodePosts() {
+  const targetKeyword = "changed the game";
+  const posts = document.querySelectorAll([
     '.feed-shared-update-v2',
     '.occludable-update',
     '.relative',
     '.artdeco-card',
     '[data-id^="urn:li:activity"]',
     '[data-urn^="urn:li:activity"]'
-  ];
+  ].join(', '));
   
-  for (const selector of postSelectors) {
-    const container = element.closest(selector);
-    if (container) return container;
-  }
-  
-  return null;
-}
-
-// Function to block profile on LinkedIn
-async function blockProfileOnLinkedIn(profileId) {
-  try {
-    // Get the member ID from the profile URL
-    const response = await fetch(`https://www.linkedin.com/in/${profileId}`, {
-      method: 'GET',
-      credentials: 'include'
-    });
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch profile: ${response.status}`);
+  posts.forEach(post => {
+    // Skip if already exploded
+    if (post.classList.contains('exploded') || post.classList.contains('fade-explode')) {
+      return;
     }
     
-    const html = await response.text();
-    const entityUrn = html.match(/"entityUrn":"([^"]+)"/)?.[1];
+    // Get all text content from the post
+    const postText = post.textContent.toLowerCase();
     
-    if (!entityUrn) {
-      throw new Error('Could not find entity URN');
+    // Check if the post contains our target keyword
+    if (postText.includes(targetKeyword.toLowerCase())) {
+      console.log('Found post containing "changed the game":', post);
+      
+      // Get post dimensions for explosion center
+      const rect = post.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // Create shooting effect from bottom right corner to post center
+      createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
+      
+      // Add a small delay before explosion
+      setTimeout(() => {
+        createExplosion(post, centerX, centerY);
+      }, 250);
     }
-    
-    // Extract member ID from entityUrn
-    const memberId = entityUrn.split(':').pop();
-    console.log('Found member ID:', memberId);
-
-    // Get the API version and CSRF token from the page
-    const apiVersion = document.body.getAttribute('data-api-version') || '1.0.0';
-    const csrfToken = document.body.getAttribute('data-csrf-token') || '';
-    
-    // Make the block request
-    const blockResponse = await fetch('https://www.linkedin.com/litms/api/social/block-members', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-csrf-token': csrfToken,
-        'x-li-api-version': apiVersion,
-        'x-restli-protocol-version': '2.0.0'
-      },
-      body: JSON.stringify({
-        memberIdUrn: `urn:li:member:${memberId}`,
-        action: 'BLOCK'
-      }),
-      credentials: 'include'
-    });
-
-    if (!blockResponse.ok) {
-      throw new Error(`Block request failed: ${blockResponse.status}`);
-    }
-
-    console.log('Successfully blocked profile:', profileId);
-    return true;
-  } catch (error) {
-    console.error('Error blocking profile:', error);
-    return false;
-  }
-}
-
-// Add click listeners to profile links
-function addProfileListeners() {
-  document.querySelectorAll('a[href*="/in/"]').forEach(link => {
-    const clone = link.cloneNode(true);
-    link.parentNode.replaceChild(clone, link);
-    clone.addEventListener('click', blockProfile, { capture: true, once: true });
   });
 }
 
-// Initial setup
-addProfileListeners();
-hideBlockedProfilePosts();
+// Function to highlight the keyword in posts before exploding them
+function highlightKeywordInPost(post, keyword) {
+  const walker = document.createTreeWalker(
+    post,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  );
+  
+  const textNodes = [];
+  let node;
+  
+  while (node = walker.nextNode()) {
+    textNodes.push(node);
+  }
+  
+  textNodes.forEach(textNode => {
+    const text = textNode.textContent;
+    const regex = new RegExp(`(${keyword})`, 'gi');
+    
+    if (regex.test(text)) {
+      const highlightedText = text.replace(regex, '<span class="keyword-highlight">$1</span>');
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = highlightedText;
+      
+      // Replace the text node with highlighted content
+      const parent = textNode.parentNode;
+      while (wrapper.firstChild) {
+        parent.insertBefore(wrapper.firstChild, textNode);
+      }
+      parent.removeChild(textNode);
+    }
+  });
+}
+
+// Enhanced search function with keyword highlighting
+function searchHighlightAndExplode() {
+  const targetKeyword = "changed the game";
+  const posts = document.querySelectorAll([
+    '.feed-shared-update-v2',
+    '.occludable-update',
+    '.relative',
+    '.artdeco-card',
+    '[data-id^="urn:li:activity"]',
+    '[data-urn^="urn:li:activity"]'
+  ].join(', '));
+  
+  posts.forEach(post => {
+    // Skip if already processed
+    if (post.classList.contains('exploded') || 
+        post.classList.contains('fade-explode') || 
+        post.classList.contains('keyword-processed')) {
+      return;
+    }
+    
+    // Get all text content from the post
+    const postText = post.textContent.toLowerCase();
+    
+    // Check if the post contains our target keyword
+    if (postText.includes(targetKeyword.toLowerCase())) {
+      console.log('Found post containing "changed the game":', post);
+      
+      // Mark as processed
+      post.classList.add('keyword-processed');
+      
+      // Highlight the keyword first
+      highlightKeywordInPost(post, targetKeyword);
+      
+      // Get post dimensions for explosion center
+      const rect = post.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // Create shooting effect from bottom right corner to post center
+      setTimeout(() => {
+        createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
+      }, 500); // Small delay to show highlight first
+      
+      // Add explosion after highlighting and shooting
+      setTimeout(() => {
+        createExplosion(post, centerX, centerY);
+      }, 750);
+    }
+  });
+}
+
+// Function to continuously monitor for new posts
+const monitorPosts = debounce(() => {
+  searchHighlightAndExplode();
+}, 200);
+
+// Initial search when page loads
+setTimeout(() => {
+  console.log('LinkExploder: Starting keyword search for "changed the game"');
+  searchHighlightAndExplode();
+}, 2000);
 
 // Monitor for new content with debounce
 const observer = new MutationObserver(debounce((mutations) => {
@@ -274,11 +245,18 @@ const observer = new MutationObserver(debounce((mutations) => {
     }
   }
   if (hasNewNodes) {
-    addProfileListeners();
+    monitorPosts();
   }
-}, 100));
+}, 300));
 
 observer.observe(document.body, {
   childList: true,
   subtree: true
 });
+
+// Also run periodic checks every few seconds for dynamic content
+setInterval(() => {
+  monitorPosts();
+}, 3000);
+
+console.log('LinkExploder: Extension loaded - searching for "changed the game" posts!');

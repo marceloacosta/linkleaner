@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "LinkedIn Profile Blocker",
-  "version": "1.0",
-  "description": "Block and fade out LinkedIn profiles from your feed",
+  "name": "LinkExploder - Game Changer Hunter",
+  "version": "2.0",
+  "description": "Automatically finds and explodes LinkedIn posts containing 'changed the game' with spectacular visual effects",
   "permissions": [
     "storage",
     "activeTab"
