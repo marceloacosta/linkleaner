@@ -11,6 +11,37 @@ function debounce(func, wait) {
   };
 }
 
+// Audio preloading and management
+let explosionAudio = null;
+let audioReady = false;
+
+function initializeAudio() {
+  try {
+    explosionAudio = new Audio(chrome.runtime.getURL('explosion.mp3'));
+    explosionAudio.volume = 0.4;
+    explosionAudio.preload = 'auto';
+    
+    explosionAudio.addEventListener('canplaythrough', () => {
+      audioReady = true;
+      console.log('LinkExploder: Explosion audio preloaded and ready');
+    });
+    
+    explosionAudio.addEventListener('error', (e) => {
+      console.warn('LinkExploder: Audio preload failed:', e);
+      audioReady = false;
+    });
+    
+    // Try to load the audio
+    explosionAudio.load();
+  } catch (error) {
+    console.error('LinkExploder: Audio initialization failed:', error);
+    audioReady = false;
+  }
+}
+
+// Initialize audio when extension loads
+initializeAudio();
+
 // Target keywords and emojis that trigger explosions
 const TARGET_KEYWORDS = [
   "changed the game",
@@ -54,10 +85,39 @@ function createExplosion(element, centerX, centerY, matchedKeyword = '') {
   // Mark as exploded to prevent multiple explosions
   element.classList.add('exploded');
   
-  // Play explosion sound
-  const explosionSound = new Audio(chrome.runtime.getURL('explosion.mp3'));
-  explosionSound.volume = 0.4; // Set volume to 40%
-  explosionSound.play();
+  // Play preloaded explosion sound
+  if (audioReady && explosionAudio) {
+    try {
+      // Reset audio to beginning in case it's already played
+      explosionAudio.currentTime = 0;
+      
+      const playPromise = explosionAudio.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log('LinkExploder: Audio played successfully');
+        }).catch((error) => {
+          console.warn('LinkExploder: Audio autoplay blocked:', error);
+          console.log('LinkExploder: Audio will play on next user interaction');
+          
+          // Set up one-time click listener for audio
+          const enableAudio = () => {
+            explosionAudio.play().then(() => {
+              console.log('LinkExploder: Audio enabled after user interaction');
+            }).catch(e => console.warn('LinkExploder: Audio still failed:', e));
+            document.removeEventListener('click', enableAudio);
+          };
+          
+          document.addEventListener('click', enableAudio, { once: true });
+        });
+      }
+    } catch (audioError) {
+      console.error('LinkExploder: Audio playback failed:', audioError);
+    }
+  } else {
+    console.warn('LinkExploder: Audio not ready yet, retrying initialization...');
+    initializeAudio(); // Retry audio initialization
+  }
   
   const explosionContainer = document.createElement('div');
   explosionContainer.className = 'explosion-container';
@@ -290,3 +350,39 @@ setInterval(() => {
 
 console.log('LinkExploder: Extension loaded with multi-keyword support!');
 console.log('Watching for:', TARGET_KEYWORDS, '+ hashtags');
+
+// Manual audio test function for debugging
+window.testLinkExploderAudio = function() {
+  console.log('LinkExploder Audio Test:');
+  console.log('- Audio Ready:', audioReady);
+  console.log('- Audio Object:', explosionAudio);
+  
+  if (explosionAudio) {
+    console.log('- Audio Source:', explosionAudio.src);
+    console.log('- Audio Volume:', explosionAudio.volume);
+    console.log('- Audio Ready State:', explosionAudio.readyState);
+  }
+  
+  if (audioReady && explosionAudio) {
+    explosionAudio.currentTime = 0;
+    explosionAudio.play().then(() => {
+      console.log('✅ Audio test successful!');
+    }).catch(error => {
+      console.log('❌ Audio test failed:', error);
+    });
+  } else {
+    console.log('❌ Audio not ready. Attempting to reinitialize...');
+    initializeAudio();
+    setTimeout(() => {
+      if (audioReady && explosionAudio) {
+        explosionAudio.play().then(() => {
+          console.log('✅ Audio test successful after reinit!');
+        }).catch(error => {
+          console.log('❌ Audio test still failed:', error);
+        });
+      }
+    }, 1000);
+  }
+};
+
+console.log('LinkExploder: Type testLinkExploderAudio() in console to test audio manually');
