@@ -168,7 +168,9 @@ const CONFIG = {
   maxExplosionsPerScan: 2,  // Limit explosions per scan to be safe
   enableHashtagDetection: true,  // Enable hashtag detection for spammy posts
   hashtagThreshold: 5,  // Target posts with MORE than 4 hashtags (5+)
-  debugMode: true  // Set to false to reduce console spam
+  debugMode: true,  // Set to false to reduce console spam
+  bypassBusyDetection: false,  // Set to true to ignore LinkedIn busy state
+  reducedMode: false  // Set to true to reduce interference with LinkedIn
 };
 
 // Function to create shooting effect
@@ -427,10 +429,19 @@ function searchHighlightAndExplode() {
     return;
   }
   
-  // Safety check - don't run during LinkedIn search or navigation
-  if (isLinkedInBusy()) {
-    console.log('LinkExploder: LinkedIn is busy (search/navigation), skipping scan');
+  // Safety check - don't run during LinkedIn search or navigation (unless bypassed)
+  if (!CONFIG.bypassBusyDetection && isLinkedInBusy()) {
+    if (CONFIG.debugMode) {
+      console.log('LinkExploder: LinkedIn is busy (search/navigation), skipping scan');
+    }
     return;
+  }
+  
+  if (CONFIG.debugMode) {
+    console.log('LinkExploder: Starting scan...', {
+      bypassBusy: CONFIG.bypassBusyDetection,
+      reducedMode: CONFIG.reducedMode
+    });
   }
   
   // Much more comprehensive post selectors
@@ -498,21 +509,33 @@ function isLinkedInBusy() {
   // Check if search is active
   const searchInput = document.querySelector('input[placeholder*="Search"], .search-global-typeahead__input');
   if (searchInput && (document.activeElement === searchInput || searchInput.value.trim() !== '')) {
+    if (CONFIG.debugMode) {
+      console.log('LinkExploder: LinkedIn busy - search input active:', searchInput);
+    }
     return true;
   }
   
   // Check if navigation is happening
   const loadingIndicators = document.querySelectorAll('.loader, .loading, [aria-label*="Loading"], .artdeco-loader');
   if (loadingIndicators.length > 0) {
+    if (CONFIG.debugMode) {
+      console.log('LinkExploder: LinkedIn busy - loading indicators found:', loadingIndicators.length, loadingIndicators);
+    }
     return true;
   }
   
   // Check if any modals or overlays are open
   const modals = document.querySelectorAll('.artdeco-modal, .modal, [role="dialog"]');
   if (modals.length > 0) {
+    if (CONFIG.debugMode) {
+      console.log('LinkExploder: LinkedIn busy - modals found:', modals.length, modals);
+    }
     return true;
   }
   
+  if (CONFIG.debugMode) {
+    console.log('LinkExploder: LinkedIn not busy - proceeding with scan');
+  }
   return false;
 }
 
@@ -699,6 +722,34 @@ const observer = new MutationObserver(debounce((mutations) => {
     return;
   }
   
+  // In reduced mode, be much more selective about when to scan
+  if (CONFIG.reducedMode) {
+    // Only scan if we detect new feed content specifically
+    let hasFeedChanges = false;
+    for (const mutation of mutations) {
+      if (mutation.addedNodes.length) {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE && 
+              (node.classList?.contains('feed-shared-update-v2') || 
+               node.querySelector?.('.feed-shared-update-v2'))) {
+            hasFeedChanges = true;
+            break;
+          }
+        }
+      }
+      if (hasFeedChanges) break;
+    }
+    
+    if (hasFeedChanges) {
+      if (CONFIG.debugMode) {
+        console.log('LinkExploder: Feed changes detected in reduced mode, scanning...');
+      }
+      monitorPosts();
+    }
+    return;
+  }
+  
+  // Normal mode - scan on any new nodes
   let hasNewNodes = false;
   for (const mutation of mutations) {
     if (mutation.addedNodes.length) {
@@ -709,7 +760,7 @@ const observer = new MutationObserver(debounce((mutations) => {
   if (hasNewNodes) {
     monitorPosts();
   }
-}, 300));
+}, CONFIG.reducedMode ? 1000 : 300)); // Slower debounce in reduced mode
 
 if (extensionContextValid && checkExtensionContext()) {
   observer.observe(document.body, {
@@ -725,15 +776,24 @@ if (extensionContextValid && checkExtensionContext()) {
       return;
     }
     
-    // Only run if LinkedIn isn't busy
-    if (!isLinkedInBusy()) {
+    // Only run if LinkedIn isn't busy (unless bypassed)
+    if (CONFIG.bypassBusyDetection || !isLinkedInBusy()) {
       monitorPosts();
     }
-  }, 5000); // Increased from 3000ms to 5000ms to reduce interference
+  }, CONFIG.reducedMode ? 10000 : 5000); // Less frequent in reduced mode (10s vs 5s)
 }
 
 console.log('LinkExploder: Extension loaded with multi-keyword support!');
 console.log('Watching for:', TARGET_KEYWORDS, '+ hashtags (5+ threshold)');
+
+console.log('LinkExploder: Type configureLinkExploder({hashtagThreshold: 3}) to change settings');
+console.log('LinkExploder: Type testLinkExploderAudio() to test audio manually');
+console.log('LinkExploder: Type explodeThrobbingPost() to manually explode detected posts');
+console.log('LinkExploder: Type debugLinkedInPosts() to inspect page structure');
+console.log('LinkExploder: Type debugLinkedInBusy() to debug LinkedIn busy state');
+console.log('LinkExploder: Type stopLinkExploder() for EMERGENCY STOP');
+console.log('LinkExploder: Type configureLinkExploder({bypassBusyDetection: true}) to bypass busy detection');
+console.log('LinkExploder: Type configureLinkExploder({reducedMode: true}) to enable reduced interference mode');
 
 // Configuration functions for users
 window.configureLinkExploder = function(options = {}) {
@@ -755,6 +815,16 @@ window.configureLinkExploder = function(options = {}) {
   if (options.debugMode !== undefined) {
     CONFIG.debugMode = options.debugMode;
     console.log(`LinkExploder: Debug mode ${CONFIG.debugMode ? 'enabled' : 'disabled'}`);
+  }
+  
+  if (options.bypassBusyDetection !== undefined) {
+    CONFIG.bypassBusyDetection = options.bypassBusyDetection;
+    console.log(`LinkExploder: Bypass busy detection ${CONFIG.bypassBusyDetection ? 'enabled' : 'disabled'}`);
+  }
+  
+  if (options.reducedMode !== undefined) {
+    CONFIG.reducedMode = options.reducedMode;
+    console.log(`LinkExploder: Reduced mode ${CONFIG.reducedMode ? 'enabled' : 'disabled'}`);
   }
   
   console.log('Current configuration:', CONFIG);
@@ -898,7 +968,75 @@ window.debugLinkedInPosts = function() {
   });
 };
 
-console.log('LinkExploder: Type configureLinkExploder({hashtagThreshold: 3}) to change settings');
-console.log('LinkExploder: Type testLinkExploderAudio() to test audio manually');
-console.log('LinkExploder: Type explodeThrobbingPost() to manually explode detected posts');
-console.log('LinkExploder: Type debugLinkedInPosts() to inspect page structure');
+// Debug function to check what's making LinkedIn appear busy
+window.debugLinkedInBusy = function() {
+  console.log('LinkExploder: Debugging LinkedIn busy state...');
+  
+  // Check search inputs
+  const searchInputs = document.querySelectorAll('input[placeholder*="Search"], .search-global-typeahead__input');
+  console.log(`Found ${searchInputs.length} search inputs:`, searchInputs);
+  
+  searchInputs.forEach((input, i) => {
+    console.log(`Search input ${i + 1}:`, {
+      element: input,
+      isActive: document.activeElement === input,
+      value: input.value,
+      placeholder: input.placeholder
+    });
+  });
+  
+  // Check loading indicators
+  const loadingSelectors = ['.loader', '.loading', '[aria-label*="Loading"]', '.artdeco-loader'];
+  loadingSelectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    if (elements.length > 0) {
+      console.log(`Loading selector "${selector}": ${elements.length} elements found`, elements);
+    }
+  });
+  
+  // Check modals
+  const modalSelectors = ['.artdeco-modal', '.modal', '[role="dialog"]'];
+  modalSelectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    if (elements.length > 0) {
+      console.log(`Modal selector "${selector}": ${elements.length} elements found`, elements);
+    }
+  });
+  
+  // Overall busy state
+  const isBusy = isLinkedInBusy();
+  console.log('Overall LinkedIn busy state:', isBusy);
+  
+  // Force a scan regardless of busy state
+  console.log('Forcing a scan to test post detection...');
+  searchHighlightAndExplode();
+};
+
+// Emergency stop function to disable extension completely
+window.stopLinkExploder = function() {
+  console.log('🛑 LinkExploder: EMERGENCY STOP - Disabling all functionality');
+  
+  // Mark context as invalid to stop all operations
+  extensionContextValid = false;
+  
+  // Disconnect observer
+  if (observer) {
+    observer.disconnect();
+    console.log('LinkExploder: Mutation observer disconnected');
+  }
+  
+  // Clear any running intervals
+  if (periodicCheck) {
+    clearInterval(periodicCheck);
+    console.log('LinkExploder: Periodic checks stopped');
+  }
+  
+  // Stop audio
+  if (explosionAudio) {
+    explosionAudio.pause();
+    explosionAudio = null;
+    console.log('LinkExploder: Audio stopped');
+  }
+  
+  console.log('✅ LinkExploder: Extension completely disabled. Refresh page to re-enable.');
+};
