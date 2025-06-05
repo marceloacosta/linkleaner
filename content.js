@@ -176,7 +176,12 @@ function createShootingEffect(startX, startY, endX, endY) {
 
 // Function to create explosion effect
 function createExplosion(element, centerX, centerY, matchedKeyword = '') {
-  if (!element || element.classList.contains('exploded')) return;
+  console.log('LinkExploder: createExplosion called with:', { element, centerX, centerY, matchedKeyword });
+  
+  if (!element || element.classList.contains('exploded')) {
+    console.log('LinkExploder: Explosion cancelled - element missing or already exploded');
+    return;
+  }
   
   // Check if extension context is still valid
   if (!extensionContextValid || !checkExtensionContext()) {
@@ -184,10 +189,14 @@ function createExplosion(element, centerX, centerY, matchedKeyword = '') {
     return;
   }
   
+  console.log('LinkExploder: Starting explosion sequence...');
+  
   // Mark as exploded to prevent multiple explosions
   element.classList.add('exploded');
+  console.log('LinkExploder: Element marked as exploded');
   
   // Play preloaded explosion sound
+  console.log('LinkExploder: Attempting to play audio...', { audioReady, explosionAudio });
   if (audioReady && explosionAudio) {
     try {
       // Reset audio to beginning in case it's already played
@@ -228,6 +237,7 @@ function createExplosion(element, centerX, centerY, matchedKeyword = '') {
     initializeAudio(); // Retry audio initialization
   }
   
+  console.log('LinkExploder: Creating explosion container...');
   const explosionContainer = document.createElement('div');
   explosionContainer.className = 'explosion-container';
   explosionContainer.style.left = centerX + 'px';
@@ -454,15 +464,33 @@ function searchHighlightAndExplode() {
       
       // Only explode if the post is visible on screen
       if (rect.top < window.innerHeight && rect.bottom > 0) {
+        console.log(`LinkExploder: Post ${explosionCount} is visible, scheduling explosion...`);
+        console.log(`- Post rect:`, rect);
+        console.log(`- Center coordinates: (${centerX}, ${centerY})`);
+        
         // Create shooting effect from bottom right corner to post center
         setTimeout(() => {
-          createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
+          console.log(`LinkExploder: Firing bullet for post ${explosionCount}`);
+          try {
+            createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
+          } catch (error) {
+            console.error('LinkExploder: Shooting effect failed:', error);
+          }
         }, 500 + (index * 100)); // Stagger explosions to avoid overwhelming
         
         // Add explosion after highlighting and shooting
         setTimeout(() => {
-          createExplosion(post, centerX, centerY, matchedKeyword);
+          console.log(`LinkExploder: Triggering explosion for post ${explosionCount}`);
+          try {
+            createExplosion(post, centerX, centerY, matchedKeyword);
+          } catch (error) {
+            console.error('LinkExploder: Explosion failed:', error);
+          }
         }, 750 + (index * 100)); // Stagger explosions
+      } else {
+        console.log(`LinkExploder: Post ${explosionCount} not visible, skipping explosion`);
+        console.log(`- Post rect:`, rect);
+        console.log(`- Window height:`, window.innerHeight);
       }
     }
   });
@@ -604,5 +632,41 @@ window.testLinkExploderAudio = function() {
   }
 };
 
+// Manual explosion test function for debugging throbbing posts
+window.explodeThrobbingPost = function() {
+  console.log('LinkExploder: Looking for throbbing posts to explode...');
+  
+  const throbbingPosts = document.querySelectorAll('.keyword-processed:not(.exploded)');
+  console.log(`Found ${throbbingPosts.length} throbbing posts`);
+  
+  if (throbbingPosts.length === 0) {
+    console.log('No throbbing posts found. Posts must have been processed already or none detected.');
+    return;
+  }
+  
+  throbbingPosts.forEach((post, index) => {
+    console.log(`Manually exploding throbbing post ${index + 1}:`, post);
+    
+    const rect = post.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    // Determine keyword type from classes
+    let matchedKeyword = 'manual';
+    if (post.classList.contains('money-target')) matchedKeyword = '💸';
+    else if (post.classList.contains('stop-target')) matchedKeyword = '🛑';
+    else if (post.classList.contains('rocket-target')) matchedKeyword = '🚀';
+    else if (post.classList.contains('hashtag-target')) matchedKeyword = '#hashtag';
+    
+    // Fire immediately
+    createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
+    
+    setTimeout(() => {
+      createExplosion(post, centerX, centerY, matchedKeyword);
+    }, 200);
+  });
+};
+
 console.log('LinkExploder: Type configureLinkExploder({hashtagThreshold: 3}) to change settings');
 console.log('LinkExploder: Type testLinkExploderAudio() to test audio manually');
+console.log('LinkExploder: Type explodeThrobbingPost() to manually explode detected posts');
