@@ -397,15 +397,45 @@ function searchHighlightAndExplode() {
     return;
   }
   
-  // Much more specific post selectors to avoid catching non-post elements
-  const posts = document.querySelectorAll([
-    '.feed-shared-update-v2[data-urn*="activity"]',  // Only feed updates with activity URNs
-    '.occludable-update[data-urn*="activity"]',      // Only occludable updates with activity URNs
-    '[data-id^="urn:li:activity"]:not(.keyword-processed)',  // Activity URNs only, not already processed
-    '.feed-shared-update-v2:not(.keyword-processed)'  // Feed updates not already processed
+  // More flexible post selectors - let's cast a wider net
+  const allPossiblePosts = document.querySelectorAll([
+    '.feed-shared-update-v2',  // Main feed posts
+    '.occludable-update',      // Occludable posts
+    '[data-urn*="activity"]',  // Any element with activity URN
+    '[data-id*="activity"]',   // Any element with activity ID
+    '.update-components-text', // Text content containers
+    '.feed-shared-text'        // Shared text elements
   ].join(', '));
   
-  console.log(`LinkExploder: Found ${posts.length} potential posts to check`);
+  console.log(`LinkExploder: Found ${allPossiblePosts.length} potential elements`);
+  
+  // Filter to only actual posts
+  const posts = Array.from(allPossiblePosts).filter(element => {
+    // Skip if already processed
+    if (element.classList.contains('keyword-processed') || 
+        element.classList.contains('exploded') || 
+        element.classList.contains('fade-explode')) {
+      return false;
+    }
+    
+    // More lenient post validation
+    return isValidPost(element) || isPostContainer(element);
+  });
+  
+  console.log(`LinkExploder: After filtering: ${posts.length} actual posts to check`);
+  
+  // Debug: Log some examples of what we found
+  if (CONFIG.debugMode && posts.length > 0) {
+    console.log('LinkExploder: Sample posts found:', posts.slice(0, 3));
+    posts.slice(0, 3).forEach((post, i) => {
+      console.log(`Post ${i + 1} classes:`, post.className);
+      console.log(`Post ${i + 1} attributes:`, {
+        'data-urn': post.getAttribute('data-urn'),
+        'data-id': post.getAttribute('data-id'),
+        id: post.id
+      });
+    });
+  }
   
   // Safety mechanism - limit explosions per scan
   const MAX_EXPLOSIONS_PER_SCAN = CONFIG.maxExplosionsPerScan;
@@ -498,13 +528,29 @@ function searchHighlightAndExplode() {
 
 // Function to validate if an element is actually a post
 function isValidPost(element) {
-  // Check if it has post-like characteristics
-  const hasPostContent = element.querySelector('.update-components-text, .feed-shared-text, .attributed-text-segment-list__content');
-  const hasAuthor = element.querySelector('.update-components-actor, .feed-shared-actor');
-  const hasMinimumHeight = element.offsetHeight > 50;
-  const hasActivity = element.hasAttribute('data-urn') && element.getAttribute('data-urn').includes('activity');
+  // More lenient check - look for post-like characteristics
+  const hasPostContent = element.querySelector('.update-components-text, .feed-shared-text, .attributed-text-segment-list__content, .feed-shared-inline-show-more-text');
+  const hasAuthor = element.querySelector('.update-components-actor, .feed-shared-actor, .feed-shared-actor__name');
+  const hasMinimumHeight = element.offsetHeight > 30; // Reduced height requirement
+  const hasActivityData = element.hasAttribute('data-urn') || element.hasAttribute('data-id') || element.closest('[data-urn]');
   
-  return (hasPostContent || hasAuthor) && hasMinimumHeight && hasActivity;
+  // More flexible validation
+  return (hasPostContent && hasMinimumHeight) || 
+         (hasAuthor && hasMinimumHeight) || 
+         (hasActivityData && hasMinimumHeight);
+}
+
+// Additional function to check if element is a post container
+function isPostContainer(element) {
+  // Check if this element contains post-like content
+  const hasText = element.textContent && element.textContent.trim().length > 20;
+  const hasLikeButton = element.querySelector('[aria-label*="like"], [aria-label*="Like"], .react-button, .like-button');
+  const hasShareButton = element.querySelector('[aria-label*="share"], [aria-label*="Share"], .share-button');
+  const hasCommentButton = element.querySelector('[aria-label*="comment"], [aria-label*="Comment"], .comment-button');
+  const hasEngagementButtons = hasLikeButton || hasShareButton || hasCommentButton;
+  
+  // If it has text and engagement buttons, it's likely a post
+  return hasText && hasEngagementButtons;
 }
 
 // Function to continuously monitor for new posts
@@ -667,6 +713,47 @@ window.explodeThrobbingPost = function() {
   });
 };
 
+// Debug function to inspect what's actually on the page
+window.debugLinkedInPosts = function() {
+  console.log('LinkExploder: Debugging LinkedIn page structure...');
+  
+  // Check various post selectors
+  const selectors = [
+    '.feed-shared-update-v2',
+    '.occludable-update', 
+    '[data-urn*="activity"]',
+    '[data-id*="activity"]',
+    '.update-components-text',
+    '.feed-shared-text',
+    '[role="article"]',
+    '.feed-shared-update',
+    '.share-update-card'
+  ];
+  
+  selectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    console.log(`Selector "${selector}": ${elements.length} elements found`);
+    if (elements.length > 0) {
+      console.log('Sample element:', elements[0]);
+      console.log('Sample classes:', elements[0].className);
+      console.log('Sample text (first 100 chars):', elements[0].textContent.slice(0, 100));
+    }
+  });
+  
+  // Check for posts containing our keywords
+  console.log('\nSearching for posts with target keywords...');
+  TARGET_KEYWORDS.forEach(keyword => {
+    const matching = Array.from(document.querySelectorAll('*')).filter(el => 
+      el.textContent && el.textContent.toLowerCase().includes(keyword.toLowerCase())
+    );
+    if (matching.length > 0) {
+      console.log(`Found ${matching.length} elements containing "${keyword}"`);
+      console.log('Sample:', matching[0]);
+    }
+  });
+};
+
 console.log('LinkExploder: Type configureLinkExploder({hashtagThreshold: 3}) to change settings');
 console.log('LinkExploder: Type testLinkExploderAudio() to test audio manually');
 console.log('LinkExploder: Type explodeThrobbingPost() to manually explode detected posts');
+console.log('LinkExploder: Type debugLinkedInPosts() to inspect page structure');
