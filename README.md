@@ -32,6 +32,56 @@ A Chrome extension that automatically analyzes LinkedIn posts using artificial i
 - Health monitoring with periodic context checks
 - Graceful fallbacks when AI analysis fails
 
+## Installation Guide for Non-Technical Users
+
+### Step 1: Download the Extension
+1. Click the green "Code" button on this GitHub page
+2. Select "Download ZIP" from the dropdown menu
+3. Save the ZIP file to your computer (remember where you saved it)
+4. Extract/unzip the downloaded file to create a folder
+
+### Step 2: Open Chrome Extensions Page
+1. Open Google Chrome browser
+2. Type `chrome://extensions/` in the address bar and press Enter
+3. Alternatively, you can:
+   - Click the three dots menu in the top-right corner of Chrome
+   - Go to "More tools" → "Extensions"
+
+### Step 3: Enable Developer Mode
+1. On the Extensions page, look for "Developer mode" in the top-right corner
+2. Click the toggle switch to turn on "Developer mode"
+3. You should now see additional buttons appear
+
+### Step 4: Load the Extension
+1. Click the "Load unpacked" button (it appears after enabling Developer mode)
+2. Navigate to the folder you extracted in Step 1
+3. Select the folder and click "Select Folder" or "Open"
+4. The extension should now appear in your extensions list
+
+### Step 5: Get Your OpenAI API Key
+1. Go to [OpenAI's website](https://platform.openai.com/api-keys)
+2. Sign up for an account if you don't have one
+3. Create a new API key
+4. Copy the API key (you'll need it in the next step)
+
+### Step 6: Configure the Extension
+1. Click on the extension icon in your Chrome toolbar (it may be in the puzzle piece menu)
+2. Click "Options" or go to the extension settings
+3. Paste your OpenAI API key in the provided field
+4. Save the settings
+
+### Step 7: Start Using the Extension
+1. Go to LinkedIn.com
+2. Browse your feed normally
+3. The extension will automatically start analyzing and summarizing posts
+4. Click on summaries to expand and see the original post content
+
+### Troubleshooting
+- If you don't see the extension icon, check if it's hidden in the extensions menu (puzzle piece icon)
+- If posts aren't being summarized, check your API key configuration
+- Make sure you have an active internet connection
+- Refresh the LinkedIn page if the extension isn't working
+
 ## How It Works
 
 ### Architecture Overview
