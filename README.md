@@ -1,4 +1,4 @@
-# LinkExploder - AI-Powered LinkedIn Post Analyzer
+# Likleaner - AI-Powered LinkedIn Post Analyzer
 
 A Chrome extension that automatically analyzes LinkedIn posts using artificial intelligence and replaces them with concise summaries, helping users quickly understand post content without reading through lengthy text.
 
@@ -260,9 +260,9 @@ const CONFIG = {
 
 The extension includes several debug functions accessible from the browser console:
 
-- `window.debugLinkExploderContext()` - Display extension context information
-- `window.enableLinkExploderDebug()` - Enable debug logging
-- `window.testLinkExploderClassification()` - Test AI summarization with sample text
+- `window.debugLikleanerContext()` - Display extension context information
+- `window.enableLikleanerDebug()` - Enable debug logging
+- `window.testLikleanerClassification()` - Test AI summarization with sample text
 
 ## Privacy and Security
 

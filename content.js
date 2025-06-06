@@ -1,14 +1,14 @@
-console.log('🔥 LinkExploder content script loading...');
+console.log('🔥 Likleaner content script loading...');
 
-// LinkExploder – AI-Powered LinkedIn Post Hunter v3.3
+// Likleaner – AI-Powered LinkedIn Post Hunter v3.3
 // Enhanced context validation to prevent chrome-extension://invalid errors
 // Uses OpenAI GPT-3.5-turbo for classification (handled in background.js)
 
 /*
  * Debug functions available in console - defined early
  */
-window.debugLinkExploderContext = function() {
-  console.log('=== LinkExploder Context Debug ===');
+window.debugLikleanerContext = function() {
+  console.log('=== Likleaner Context Debug ===');
   console.log('Extension context valid:', inExtensionContext());
   console.log('Can make runtime calls:', canMakeRuntimeCalls());
   console.log('Extension invalidated flag:', extensionInvalidated);
@@ -30,12 +30,12 @@ window.debugLinkExploderContext = function() {
   console.log('Posts found:', document.querySelectorAll(CONFIG.postSelectors.join(',')).length);
 };
 
-window.enableLinkExploderDebug = function() {
+window.enableLikleanerDebug = function() {
   CONFIG.debugMode = true;
-  console.log('LinkExploder debug mode enabled');
+  console.log('Likleaner debug mode enabled');
 };
 
-window.testLinkExploderClassification = function() {
+window.testLikleanerClassification = function() {
   if (!inExtensionContext()) {
     console.error('Extension context is invalid. Cannot test summary generation.');
     return;
@@ -79,12 +79,12 @@ const CONFIG = {
   ]
 };
 
-console.log('🔧 LinkExploder CONFIG loaded:', CONFIG);
+console.log('🔧 Likleaner CONFIG loaded:', CONFIG);
 
 /* ----------------------------------------
  * 2 · Internal helpers
  * ------------------------------------- */
-const _d = (...args) => CONFIG.debugMode && console.debug('[LinkExploder]', ...args);
+const _d = (...args) => CONFIG.debugMode && console.debug('[Likleaner]', ...args);
 
 function hash(str) {              // Tiny, quick hash so we can cache classifications in-tab
   let h = 0;
@@ -140,17 +140,17 @@ async function classifyAndReplace(post) {
   if (extensionInvalidated || !inExtensionContext()) {
     if (!extensionInvalidated) {
       extensionInvalidated = true;
-      console.warn('[LinkExploder] Extension context invalidated. Attempting automatic recovery...');
+      console.warn('[Likleaner] Extension context invalidated. Attempting automatic recovery...');
       
       // Try to recover after a short delay
       setTimeout(() => {
         if (inExtensionContext()) {
-          console.log('[LinkExploder] Extension context recovered! Resuming operation.');
+          console.log('[Likleaner] Extension context recovered! Resuming operation.');
           extensionInvalidated = false;
           // Reinitialize observers
           initializeObservers();
         } else {
-          console.warn('[LinkExploder] Could not recover extension context. Please refresh the page to continue using the extension.');
+          console.warn('[Likleaner] Could not recover extension context. Please refresh the page to continue using the extension.');
         }
       }, 2000);
     }
@@ -193,7 +193,7 @@ async function classifyAndReplace(post) {
         _d('Runtime error:', chrome.runtime.lastError.message);
         if (chrome.runtime.lastError.message.includes('Extension context invalidated')) {
           extensionInvalidated = true;
-          console.warn('[LinkExploder] Extension context invalidated during API call. Will attempt recovery.');
+          console.warn('[Likleaner] Extension context invalidated during API call. Will attempt recovery.');
         }
         return;
       }
@@ -231,7 +231,7 @@ async function classifyAndReplace(post) {
     // Check if this is a context invalidation error
     if (e.message && e.message.includes('Extension context invalidated')) {
       extensionInvalidated = true;
-      console.warn('[LinkExploder] Extension context invalidated during message send. Will attempt recovery.');
+      console.warn('[Likleaner] Extension context invalidated during message send. Will attempt recovery.');
     }
   }
 }
@@ -880,11 +880,11 @@ function scanNode(node) {
  * 5 · Bootstrap once DOM is ready
  * ------------------------------------- */
 function start() {
-  console.log('🚀 LinkExploder start() function called');
+  console.log('🚀 Likleaner start() function called');
   
   try {
     if (!inExtensionContext()) { 
-      console.warn('LinkExploder: not running inside extension context'); 
+      console.warn('Likleaner: not running inside extension context'); 
       return; 
     }
     console.log('✅ Extension context valid');
@@ -914,9 +914,9 @@ function start() {
     });
     console.log('✅ Existing posts observed');
 
-    console.log('🎯 LinkExploder v3.3 initialized successfully with enhanced context validation');
+    console.log('🎯 Likleaner v3.3 initialized successfully with enhanced context validation');
   } catch (error) {
-    console.error('❌ LinkExploder initialization failed:', error);
+    console.error('❌ Likleaner initialization failed:', error);
     console.error('Stack trace:', error.stack);
   }
 }
@@ -927,7 +927,7 @@ document.addEventListener('visibilitychange', () => {
     // Re-check extension context when page becomes visible
     if (!inExtensionContext()) {
       extensionInvalidated = true;
-      console.warn('[LinkExploder] Extension context invalidated. Please refresh the page to continue using the extension.');
+      console.warn('[Likleaner] Extension context invalidated. Please refresh the page to continue using the extension.');
     }
   }
 });
@@ -942,7 +942,7 @@ window.addEventListener('beforeunload', () => {
  * 6 · DOM Ready Check
  * ------------------------------------- */
 try {
-  console.log('🔧 LinkExploder checking DOM readiness...');
+  console.log('🔧 Likleaner checking DOM readiness...');
   
   if (document.readyState === 'loading') {
     console.log('📄 Document still loading, waiting for DOMContentLoaded...');
@@ -961,9 +961,9 @@ try {
     start();
   });
   
-  console.log('✅ LinkExploder DOM ready check complete');
+  console.log('✅ Likleaner DOM ready check complete');
 } catch (error) {
-  console.error('❌ LinkExploder DOM initialization failed:', error);
+  console.error('❌ Likleaner DOM initialization failed:', error);
   console.error('Stack trace:', error.stack);
 }
 
@@ -997,7 +997,7 @@ try {
 /* ----------------------------------------
  * 8 · Completion Log
  * ------------------------------------- */
-console.log('🎯 LinkExploder content script fully loaded and ready!');
+console.log('🎯 Likleaner content script fully loaded and ready!');
 
 /* ----------------------------------------
  * 9 · Message Handlers for Popup

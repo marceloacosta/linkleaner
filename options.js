@@ -1,4 +1,4 @@
-// options.js - Handle LinkExploder options page functionality
+// options.js - Handle Likleaner options page functionality
 
 console.log('🔧 LinkeBlock options.js loading...');
 
@@ -127,48 +127,48 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Set up all event listeners
 function setupEventListeners() {
-  console.log('LinkExploder: Setting up event listeners...');
+  console.log('Likleaner: Setting up event listeners...');
   
   // Save button
   const saveButton = document.getElementById('saveButton');
   if (saveButton) {
-    console.log('LinkExploder: Found save button, adding click listener');
+    console.log('Likleaner: Found save button, adding click listener');
     saveButton.addEventListener('click', function() {
-      console.log('LinkExploder: Save button clicked');
+      console.log('Likleaner: Save button clicked');
       saveOptions();
     });
   } else {
-    console.error('LinkExploder: Save button not found!');
+    console.error('Likleaner: Save button not found!');
   }
   
   // Test button
   const testButton = document.getElementById('testButton');
   if (testButton) {
-    console.log('LinkExploder: Found test button, adding click listener');
+    console.log('Likleaner: Found test button, adding click listener');
     testButton.addEventListener('click', function() {
-      console.log('LinkExploder: Test button clicked');
+      console.log('Likleaner: Test button clicked');
       testConnection();
     });
   } else {
-    console.error('LinkExploder: Test button not found!');
+    console.error('Likleaner: Test button not found!');
   }
   
   // Toggle visibility link
   const toggleLink = document.getElementById('toggleVisibility');
   if (toggleLink) {
-    console.log('LinkExploder: Found toggle link, adding click listener');
+    console.log('Likleaner: Found toggle link, adding click listener');
     toggleLink.addEventListener('click', function() {
-      console.log('LinkExploder: Toggle visibility clicked');
+      console.log('Likleaner: Toggle visibility clicked');
       toggleVisibility();
     });
   } else {
-    console.error('LinkExploder: Toggle visibility link not found!');
+    console.error('Likleaner: Toggle visibility link not found!');
   }
 }
 
 // Load saved options
 function loadOptions() {
-  console.log('LinkExploder: Loading saved options...');
+  console.log('Likleaner: Loading saved options...');
   
   chrome.storage.sync.get({
     oaiKey: '',
@@ -176,27 +176,27 @@ function loadOptions() {
     minPostLength: 30,
     maxConcurrentClassifications: 3
   }, (items) => {
-    console.log('LinkExploder: Loaded options:', items);
+    console.log('Likleaner: Loaded options:', items);
     
     document.getElementById('apiKey').value = items.oaiKey;
     document.getElementById('debugMode').checked = items.debugMode;
     document.getElementById('minPostLength').value = items.minPostLength;
     document.getElementById('maxConcurrent').value = items.maxConcurrentClassifications;
     
-    console.log('LinkExploder: Options loaded into form');
+    console.log('Likleaner: Options loaded into form');
   });
 }
 
 // Save options
 function saveOptions() {
-  console.log('LinkExploder: Save function called');
+  console.log('Likleaner: Save function called');
   
   const apiKey = document.getElementById('apiKey').value.trim();
   const debugMode = document.getElementById('debugMode').checked;
   const minPostLength = parseInt(document.getElementById('minPostLength').value);
   const maxConcurrent = parseInt(document.getElementById('maxConcurrent').value);
 
-  console.log('LinkExploder: Form values:', { 
+  console.log('Likleaner: Form values:', { 
     apiKeyLength: apiKey.length, 
     debugMode, 
     minPostLength, 
@@ -220,7 +220,7 @@ function saveOptions() {
     return;
   }
 
-  console.log('LinkExploder: Validation passed, saving to storage...');
+  console.log('Likleaner: Validation passed, saving to storage...');
 
   chrome.storage.sync.set({
     oaiKey: apiKey,
@@ -228,7 +228,7 @@ function saveOptions() {
     minPostLength: minPostLength,
     maxConcurrentClassifications: maxConcurrent
   }, () => {
-    console.log('LinkExploder: Settings saved successfully');
+    console.log('Likleaner: Settings saved successfully');
     showStatus('Settings saved successfully! Please refresh LinkedIn to apply changes.', 'success');
     
     // Notify background script of API key change
@@ -243,11 +243,11 @@ function saveOptions() {
 
 // Test API connection
 async function testConnection() {
-  console.log('LinkExploder: Test connection function called');
+  console.log('Likleaner: Test connection function called');
   
   const apiKey = document.getElementById('apiKey').value.trim();
   
-  console.log('LinkExploder: API key length:', apiKey.length);
+  console.log('Likleaner: API key length:', apiKey.length);
   
   if (!apiKey) {
     showStatus('Please enter an API key first', 'error');
@@ -260,7 +260,7 @@ async function testConnection() {
   }
 
   showStatus('Testing API connection...', 'info');
-  console.log('LinkExploder: Making test request to OpenAI API...');
+  console.log('Likleaner: Making test request to OpenAI API...');
 
   try {
     const requestBody = {
@@ -279,7 +279,7 @@ async function testConnection() {
       ]
     };
 
-    console.log('LinkExploder: Request payload:', requestBody);
+    console.log('Likleaner: Request payload:', requestBody);
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -290,12 +290,12 @@ async function testConnection() {
       body: JSON.stringify(requestBody)
     });
 
-    console.log('LinkExploder: Response status:', response.status);
-    console.log('LinkExploder: Response headers:', Object.fromEntries(response.headers.entries()));
+    console.log('Likleaner: Response status:', response.status);
+    console.log('Likleaner: Response headers:', Object.fromEntries(response.headers.entries()));
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('LinkExploder: API error response:', errorText);
+      console.error('Likleaner: API error response:', errorText);
       
       let errorData;
       try {
@@ -308,10 +308,10 @@ async function testConnection() {
     }
 
     const data = await response.json();
-    console.log('LinkExploder: API response data:', data);
+    console.log('Likleaner: API response data:', data);
     
     const classification = data.choices?.[0]?.message?.content?.trim()?.toLowerCase() || 'unknown';
-    console.log('LinkExploder: Extracted classification:', classification);
+    console.log('Likleaner: Extracted classification:', classification);
     
     showStatus(`✅ API connection successful! Test classification: "${classification}" (Expected: hype/cringe)`, 'success');
     
@@ -321,7 +321,7 @@ async function testConnection() {
     }
     
   } catch (error) {
-    console.error('LinkExploder: API test failed with error:', error);
+    console.error('Likleaner: API test failed with error:', error);
     
     if (error.message.includes('401')) {
       showStatus('❌ Invalid API key. Please check your key and try again.', 'error');
@@ -339,19 +339,19 @@ async function testConnection() {
 
 // Toggle API key visibility
 function toggleVisibility() {
-  console.log('LinkExploder: Toggle visibility function called');
+  console.log('Likleaner: Toggle visibility function called');
   
   const apiKeyInput = document.getElementById('apiKey');
   if (!apiKeyInput) {
-    console.error('LinkExploder: API key input not found!');
+    console.error('Likleaner: API key input not found!');
     return;
   }
   
   const currentType = apiKeyInput.type;
-  console.log('LinkExploder: Current input type:', currentType);
+  console.log('Likleaner: Current input type:', currentType);
   
   apiKeyInput.type = currentType === 'password' ? 'text' : 'password';
-  console.log('LinkExploder: Changed input type to:', apiKeyInput.type);
+  console.log('Likleaner: Changed input type to:', apiKeyInput.type);
 }
 
-console.log('🎯 LinkeBlock options.js loaded'); 
+console.log('�� LinkeBlock options.js loaded'); 

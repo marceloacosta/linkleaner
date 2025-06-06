@@ -1,7 +1,7 @@
-// worker.js - Service Worker for LinkExploder (Manifest V3)
+// worker.js - Service Worker for Likleaner (Manifest V3)
 // Classifies LinkedIn post snippets via GPT-4o-mini for better accuracy
 
-console.log('🚀 LinkExploder Service Worker v3.3 starting...');
+console.log('🚀 Likleaner Service Worker v3.3 starting...');
 
 // Enhanced Service Worker for AI-powered LinkedIn post analysis
 // Now generates actual summaries instead of just classifications
@@ -274,4 +274,4 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-console.log('✅ LinkExploder Service Worker v3.3 initialized with AI summary generation'); 
+console.log('✅ Likleaner Service Worker v3.3 initialized with AI summary generation'); 
