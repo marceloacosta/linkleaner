@@ -1,14 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "LinkExploder - AI-Powered Hunter",
-  "version": "3.1",
-  "description": "AI-powered LinkedIn content filter using GPT-3.5-turbo to identify hype, cringe, and motivational posts and replace them with explanatory text",
+  "name": "LinkeBlock",
+  "version": "3.3",
+  "description": "AI-powered LinkedIn post analyzer that generates brutally honest summaries",
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
   "host_permissions": [
-    "*://*.linkedin.com/*",
+    "https://www.linkedin.com/*",
     "https://api.openai.com/*"
   ],
   "background": {
@@ -17,13 +18,18 @@
   "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["*://*.linkedin.com/*"],
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["content.js"],
       "css": ["styles.css"],
-      "js": ["content.js"]
+      "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [{
     "resources": ["explosion.mp3"],
     "matches": ["https://*.linkedin.com/*"]
-  }]
+  }],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "LinkeBlock - AI Post Analyzer"
+  }
 }

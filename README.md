@@ -32,23 +32,131 @@ A Chrome extension that automatically analyzes LinkedIn posts using artificial i
 - Health monitoring with periodic context checks
 - Graceful fallbacks when AI analysis fails
 
-## Technical Architecture
+## How It Works
 
-### Content Detection
-- Uses multiple CSS selectors to identify LinkedIn posts across different layouts
-- Employs MutationObserver to watch for dynamically added content
-- IntersectionObserver triggers analysis only when posts are visible
+### Architecture Overview
 
-### AI Integration
-- Background script handles OpenAI API communication
-- Secure API key management through Chrome extension storage
-- Rate limiting and error handling for API requests
-- Fallback messaging for failed classifications
+The extension operates using a three-component architecture:
+
+1. **Content Script** (`content.js`) - Runs on LinkedIn pages to detect and process posts
+2. **Service Worker** (`worker.js`) - Handles OpenAI API communication in the background
+3. **User Interface** (`popup.html/js`, `options.html/js`) - Provides configuration interface
+
+### Content Script Operation
+
+The content script implements several key mechanisms:
+
+**Post Detection**
+- Uses `MutationObserver` to watch for new posts added to the DOM
+- Employs `IntersectionObserver` to trigger analysis only when posts become visible
+- Supports multiple CSS selectors to handle different LinkedIn post layouts
+- Implements debouncing to prevent excessive processing
+
+**Text Extraction**
+- Extracts post content while filtering out LinkedIn UI elements
+- Removes metadata like timestamps, action buttons, and navigation elements
+- Handles various post formats including text-only, image posts, and shared content
+- Applies minimum character threshold to avoid processing trivial content
+
+**Post Replacement**
+- Preserves original post metadata (author, image, timestamp)
+- Creates custom UI components with summary and original content toggle
+- Implements smooth animations for visual transitions
+- Maintains accessibility features and proper DOM structure
+
+### Service Worker Integration
+
+The service worker (`worker.js`) manages all AI processing:
+
+**API Management**
+- Handles OpenAI GPT-4o-mini API requests with proper authentication
+- Implements retry logic with exponential backoff for failed requests
+- Features circuit breaker pattern to prevent excessive API calls during outages
+- Manages request timeouts and rate limiting
+
+**Error Handling**
+- Distinguishes between different types of API errors (rate limits, server errors, authentication)
+- Provides specific error messages for different failure scenarios
+- Implements automatic recovery mechanisms for transient failures
+- Logs detailed error information for debugging
+
+**Performance Features**
+- Limits concurrent API requests to prevent overwhelming the service
+- Implements request queuing for high-volume scenarios
+- Provides fallback responses when API is unavailable
+- Monitors API usage patterns and adjusts behavior accordingly
+
+### Configuration System
+
+The extension provides multiple configuration interfaces:
+
+**Options Page** (`options.html/js`)
+- Comprehensive settings interface for advanced users
+- API key management with secure storage
+- Performance tuning parameters
+- Debug mode controls and logging options
+
+**Popup Interface** (`popup.html/js`)
+- Quick access to basic settings
+- Extension status monitoring
+- Basic troubleshooting tools
+- Direct links to full options page
+
+## Technical Implementation
+
+### DOM Monitoring
+
+The extension uses efficient DOM monitoring strategies:
+
+```javascript
+// IntersectionObserver for visibility-based processing
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      processPost(entry.target);
+    }
+  });
+}, { threshold: 0.25 });
+
+// MutationObserver for dynamic content detection
+const mutationObserver = new MutationObserver((mutations) => {
+  mutations.forEach(mutation => {
+    mutation.addedNodes.forEach(scanForPosts);
+  });
+});
+```
+
+### API Integration
+
+The service worker handles API communication with comprehensive error handling:
+
+```javascript
+// GPT-4o-mini integration with retry logic
+async function generateSummary(text, retryCount = 0) {
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'gpt-4o-mini',
+      messages: [...],
+      max_tokens: 100,
+      temperature: 0.8
+    })
+  });
+}
+```
 
 ### Context Management
+
+The extension implements robust context validation:
+
 - Validates Chrome extension context before operations
-- Handles extension invalidation scenarios
-- Automatic observer reinitialization when context recovers
+- Handles extension invalidation scenarios gracefully
+- Implements automatic observer reinitialization
+- Provides health monitoring with periodic context checks
 
 ## Installation
 
@@ -76,6 +184,15 @@ const CONFIG = {
 };
 ```
 
+## File Structure
+
+- `content.js` - Main content script handling post detection and replacement
+- `worker.js` - Service worker managing OpenAI API communication and error handling
+- `popup.html/js/css` - Extension popup interface for basic configuration
+- `options.html/js/css` - Comprehensive options page for advanced settings
+- `manifest.json` - Extension configuration and permissions
+- `styles.css` - Shared styling for extension components
+
 ## Debug Functions
 
 The extension includes several debug functions accessible from the browser console:
@@ -84,19 +201,13 @@ The extension includes several debug functions accessible from the browser conso
 - `window.enableLinkExploderDebug()` - Enable debug logging
 - `window.testLinkExploderClassification()` - Test AI summarization with sample text
 
-## File Structure
-
-- `content.js` - Main content script handling post detection and replacement
-- `background.js` - Service worker managing API communication
-- `popup.html/js/css` - Extension configuration interface
-- `manifest.json` - Extension configuration and permissions
-
 ## Privacy and Security
 
 - All post analysis occurs through secure API calls to OpenAI
 - No user data is stored permanently by the extension
 - API keys are stored securely using Chrome extension storage APIs
 - The extension only processes visible LinkedIn content
+- No tracking or analytics are implemented
 
 ## Browser Compatibility
 

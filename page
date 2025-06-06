@@ -1,0 +1,2319 @@
+<ol class="feed-container">
+        <li class="feed-item new-feed mb-1">
+          
+        
+    
+          
+  
+      
+
+    <article class="relative px-2 pb-0 bg-color-background-container
+        papabear:container-lined mamabear:container-lined
+        pt-1.5 main-feed-activity-card
+          
+           papabear:max-w-[550px]" data-activity-urn="urn:li:activity:7336002553978974209" data-featured-activity-urn="urn:li:activity:7336002553978974209" data-attributed-urn="urn:li:share:7334955110998970369" data-id="main-feed-card" data-feed-item-tracking-id="l6YHrkKWnPlwGetHgAtmoQ==" data-populate-video-mrc-metadata="false" data-is-initialized-feed-item="true" data-feed-item-list-position="1" data-feed-item-observed="true">
+<!---->
+      
+              
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <p class="text-sm text-color-text mb-1
+        pb-[10px] border-b-1 border-solid border-color-border-faint mx-main-feed-card-no-gutter px-main-feed-card-no-gutter" data-test-id="main-feed-card__header" data-feed-redirect="">
+        Suggested
+          </p>
+  
+    
+        
+
+      <div class="flex">
+          
+              
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+      <div class="ellipsis-menu absolute right-0 top-0 !mr-1 mt-0.5" data-id="main-feed-card__ellipsis-menu" data-feed-control="control_menu" data-tracking-control-name="control_menu" data-tracking-client-ingraph="" data-feed-action="show-feed-dropdown" data-feed-action-category="EXPAND" data-feed-action-category-flip="DISMISS" data-feed-action-type="expandControl" data-feed-action-type-flip="dismissControl">
+        
+
+    
+
+    <div class="collapsible-dropdown flex items-center relative hyphens-auto">
+          
+            <button class="ellipsis-menu__trigger
+                collapsible-dropdown__button btn-md btn-tertiary cursor-pointer
+                !py-[6px] !px-1 flex items-center rounded-[50%]
+                ellipsis-menu__trigger--small !w-4 !h-4 !min-h-4 justify-center
+                rotate-90" aria-expanded="false" aria-label="Open menu" data-tracking-control-name="control-menu_ellipsis-menu-trigger" tabindex="0">
+              <icon class="ellipsis-menu__trigger-icon m-0 p-0 centered-icon lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" data-supported-dps="16x16" fill="currentColor" focusable="false" class="lazy-loaded" aria-busy="false">
+  <path d="M2 7h2v2H2V7zm5 2h2V7H7v2zm5-2v2h2V7h-2z"></path>
+</svg></icon>
+            </button>
+          
+
+        <ul class="collapsible-dropdown__list hidden container-raised absolute w-auto overflow-y-auto flex-col items-stretch z-1 bottom-auto top-[100%]" role="menu" tabindex="-1">
+          
+              
+            
+  <li class="ellipsis-menu__item text-sm border-0 px-2 py-1.5 text-color-text flex py-[10px]" data-feed-action="control-menu-share-via" data-feed-control="control_menu_share_via" data-tracking-control-name="control_menu_share_via" data-feed-action-type="shareVia" data-feed-action-category="SHARE">
+    
+                
+    
+    
+    
+    
+    
+
+    <button class="font-medium flex items-center ellipsis-menu__item-button text-color-text !bg-color-transparent share-via-trigger text-sm w-full hover:cursor-pointer hover:text-color-link hover:underline" aria-label="Share via" data-tracking-control-name="share-via_share-via" data-share-via-action="" role="menuitem">
+        <icon data-svg-class-name="w-3 h-3 mr-2 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="share-android-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 mr-2 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M20 19a3 3 0 01-6 0 2.6 2.6 0 01.06-.56l-7.13-4.16a3 3 0 110-4.56l7.13-4.16A2.6 2.6 0 0114 5a3 3 0 113 3 2.94 2.94 0 01-1.95-.7l-7.11 4.14a2.64 2.64 0 010 1.12l7.13 4.16a3 3 0 014.23.37A3 3 0 0120 19z"></path>
+</svg></icon>
+          Share via
+      
+      
+    </button>
+    
+
+    
+    <div class="hidden">
+        <button class="modal__outlet " data-tracking-control-name="share-via_share-via-modal_modal_outlet" data-modal="default-outlet" aria-hidden="true" tabindex="-1">
+          
+        </button>
+
+      <div id="share-via" class="modal share-via-modal " data-outlet="default-outlet">
+<!---->        <div class="modal__overlay flex items-center bg-color-background-scrim justify-center fixed bottom-0 left-0 right-0 top-0 opacity-0 invisible pointer-events-none z-[1000] transition-[opacity] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.17s]
+            py-4
+            " aria-hidden="true">
+          <section aria-modal="true" role="dialog" aria-labelledby="share-via-modal-header" tabindex="-1" class="max-h-full modal__wrapper overflow-auto p-0 bg-color-surface max-w-[1128px] min-h-[160px] relative scale-[0.25] shadow-sm shadow-color-border-faint transition-[transform] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.33s] focus:outline-0
+              
+              w-[1128px] mamabear:w-[744px] babybear:w-[360px]
+              
+              rounded-md">
+              
+        <header class="modal__header flex items-center justify-between pl-3">
+              <h2 class="modal__title font-normal leading-open text-color-text text-md py-1.5 w-full">Share to</h2>
+        </header>
+      
+            <div class="modal__main w-full">
+              
+        <ul class="flex flex-col">
+                <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                  <button class="text-left border-0 hover:cursor-pointer opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint" data-tracking-control-name="share-to-copy-to-clipboard" data-tracking-will-navigate="" data-action-copy-to-clipboard="">
+                    <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="document-copy-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M17.5 2H9v5H3v15h12v-5h6V5.5zM13 20H5V9h4v8h4zm6-5h-8V4h5v3h3z"></path>
+</svg></icon>
+                    <span class="inline-block pl-1">Copy to clipboard</span>
+                  </button>
+                </li>
+              <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.linkedin.com%2Fposts%2Fkyle-poyar_pricing-ai-monetization-activity-7336002553978974209-k3PE&amp;title=" target="_blank" class="link opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint" data-tracking-control-name="share-to-facebook" data-tracking-will-navigate="">
+                  <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="facebook-solid" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path fill="none" d="M-.003 0h24v24h-24z"></path>
+  <path d="M19.997 2h-16a2 2 0 00-2 2v16a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.75 8l-.625 3h-2.625v6h-3v-6h-2v-3h2V8.537c0-2.092.584-3.537 3.561-3.537h2.439v3h-2.273c-.477 0-.727.214-.727.727V10h3.25z"></path>
+</svg></icon>
+                  <span class="inline-block pl-1">Facebook</span>
+                </a>
+              </li>
+              <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                <a href="https://www.twitter.com/intent/tweet?url=https%3A%2F%2Fwww.linkedin.com%2Fposts%2Fkyle-poyar_pricing-ai-monetization-activity-7336002553978974209-k3PE&amp;text=" target="_blank" class="opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint !border-0" data-tracking-control-name="share-to-twitter" data-tracking-will-navigate="">
+                  <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="twitter-solid" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M13.9 10.47L21.35 2h-1.76l-6.46 7.35L7.96 2H2l7.81 11.12L2 22h1.76l6.83-7.77L16.04 22H22l-8.1-11.53zm-2.42 2.75l-.79-1.11L4.4 3.3h2.71l5.08 7.11.79 1.11 6.6 9.24h-2.71l-5.39-7.54z"></path>
+</svg></icon>
+                  <span class="inline-block pl-1">Twitter</span>
+                </a>
+              </li>
+        </ul>
+      
+            </div>
+
+<!---->          </section>
+        </div>
+      </div>
+    </div>
+  
+  
+                <code id="i18n_copy_to_clipboard_success" style="display: none"><!--"Copied to clipboard"--></code>
+                <code id="i18n_copy_to_clipboard_error" style="display: none"><!--"Error copying to clipboard, try again"--></code>
+              
+  </li>
+
+<!---->                
+  <li class="ellipsis-menu__item text-sm border-0 px-2 py-1.5 text-color-text flex" data-feed-action="control-menu-semaphore" data-feed-control="control_menu_report" data-tracking-control-name="control_menu_report" data-feed-action-type="expandReporting" data-feed-action-category="EXPAND">
+    
+                    
+
+    
+    
+
+    
+
+    
+
+    <a href="/uas/login?trk=feed-semaphore-sign-in-redirect&amp;guestReportContentType=UGC_POST&amp;_f=guest-reporting" data-tracking-control-name="feed-semaphore-sign-in-redirect" data-tracking-client-ingraph="" data-tracking-will-navigate="" data-item-type="semaphore" data-semaphore-content-type="UGC_POST" data-semaphore-content-urn="urn:li:share:7334955110998970369" data-semaphore-author-profile-id="ADoAAAXw0_0BtSbhkxh-RFCTkFLkI8QooM_nLy4" data-semaphore-author-urn="urn:li:member:99668989" data-semaphore-tracking-prefix="feed-semaphore" data-is-logged-in="true" data-modal="semaphore__toggle" class="semaphore__toggle visited:text-color-text-secondary text-color-text flex items-center w-full" role="menuitem">
+<!---->        
+                        <icon class="text-color-icon h-[24px] w-[24px] mr-2 lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="report-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="lazy-loaded" aria-busy="false">
+  <path d="M17.9 4.38a5.82 5.82 0 01-1.9.31 6.1 6.1 0 01-1.9-.31l-3.2-1.07A6.41 6.41 0 009 3a5.57 5.57 0 00-1.9.31L6 3.67V2H4v20h2v-8l1.1-.37a6.41 6.41 0 011.9-.32 5.82 5.82 0 011.9.31l3.2 1.07a6 6 0 003.8 0L20 14V3.68z"></path>
+</svg></icon>
+                        <span class="inline-block font-medium">Report this post</span>
+                      
+    </a>
+
+      
+    
+    
+    
+
+    
+
+    
+    <div class="hidden">
+        <button class="modal__outlet " data-tracking-control-name="feed-semaphore-modal_modal_outlet" data-modal="default-outlet" aria-hidden="true" tabindex="-1">
+          
+        </button>
+
+      <div id="semaphore-modal" class="modal semaphore-modal max-w-[744px] " data-outlet="default-outlet">
+<!---->        <div class="modal__overlay flex items-center bg-color-background-scrim justify-center fixed bottom-0 left-0 right-0 top-0 opacity-0 invisible pointer-events-none z-[1000] transition-[opacity] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.17s]
+            py-4
+            " aria-hidden="true">
+          <section aria-modal="true" role="dialog" aria-labelledby="semaphore-modal-modal-header" tabindex="-1" class="max-h-full modal__wrapper overflow-auto p-0 bg-color-surface max-w-[1128px] min-h-[160px] relative scale-[0.25] shadow-sm shadow-color-border-faint transition-[transform] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.33s] focus:outline-0
+               modal__wrapper--with-footer flex flex-col
+              w-[1128px] mamabear:w-[744px] babybear:w-[360px]
+               max-w-[min(744px,100%-24px)]
+              rounded-md">
+              <header class="modal__header flex items-center justify-between py-1.5 px-3
+                  ">
+                  <h2 id="semaphore-modal-modal-header" class="modal__title font-normal leading-open text-color-text text-lg">Report</h2>
+                  <button class="modal__dismiss modal__dismiss--with-icon btn-tertiary h-[40px] w-[40px] p-0 rounded-full indent-0
+                      " aria-label="Dismiss" data-tracking-control-name="feed-semaphore-modal_modal_dismiss" type="button">
+                      <icon class="modal__dismiss-icon relative top-[2px] lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" class="artdeco-icon lazy-loaded" focusable="false" aria-busy="false">
+  <path d="M20,5.32L13.32,12,20,18.68,18.66,20,12,13.33,5.34,20,4,18.68,10.68,12,4,5.32,5.32,4,12,10.69,18.68,4Z" fill="currentColor"></path>
+</svg></icon>
+                  </button>
+<!---->              </header>
+            <div class="modal__main w-full flex-1">
+              
+        <h2 class="semaphore-modal__title text-md font-medium mb-1 ml-2 mt-2 text-color-text" tabindex="-1">
+          Report<!-- semaphore title goes here -->
+        </h2>
+        <div class="semaphore-modal__content text-color-text"></div>
+      
+            </div>
+
+                <footer class="modal__footer flex justify-end py-1.5 px-3 border-t-1 border-solid border-color-border-faint">
+                  
+        <button class="btn-md btn-secondary" data-semaphore-action="back" data-tracking-control-name="semaphore-back">Back</button>
+        <button class="btn-md btn-primary ml-1" data-semaphore-action="submit" data-tracking-control-name="semaphore-submit" disabled="true">Submit</button>
+      
+                </footer>
+          </section>
+        </div>
+      </div>
+    </div>
+  
+  
+      
+    <template id="semaphore-container-template">
+      <ul class="semaphore-options-container mb-2">
+        <!-- list of semaphore options -->
+      </ul>
+    </template>
+  
+      
+    <template id="semaphore-block-template">
+      <li class="px-2 py-1" data-semaphore-item="action">
+        <span class="text-sm text-color-text-low-emphasis whitespace-pre-line" data-attr="block-content"></span>
+        <input class="hidden scale-150" data-tracking-control-name="feed-semaphore" name="semaphore-action" checked="" value="" data-semaphore-input="" type="radio">
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-section-template">
+      <li class="px-2 py-1" data-semaphore-item="section">
+        <button class="w-full text-color-text" data-tracking-control-name="feed-semaphore" data-semaphore-input="">
+          <span class="text-md text-left inline-block w-[calc(100%-24px)]" data-attr="title"></span>
+          <icon class="float-right w-[24px] h-[24px] opacity-60" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/bib7g6ntpj66fbkg8zzh0psp2"></icon>
+        </button>
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-openpage-template">
+      <li class="px-2 py-1 border-t-1 border-solid border-color-border-faint" data-semaphore-item="openpage">
+        <span class="text-md font-medium block my-1" data-attr="body"></span>
+        <button data-tracking-control-name="feed-semaphore" data-semaphore-input="">
+          <span class="text-md text-color-text" data-attr="title"></span>
+        </button>
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-action-template">
+      <li class="px-2 py-1" data-semaphore-item="action" data-semaphore-type="">
+        <span class="text-md font-medium inline-block my-1" data-attr="body"></span>
+        <button class="w-full text-color-text" data-tracking-control-name="feed-semaphore" data-semaphore-input="">
+          <span class="text-md text-left inline-block w-[calc(100%-24px)]" data-attr="title"></span>
+          <icon class="float-right w-[24px] h-[24px] opacity-60" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/bib7g6ntpj66fbkg8zzh0psp2"></icon>
+        </button>
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-action-radio-template">
+      <li class="px-2 py-1" data-semaphore-item="action">
+        <div class="flex items-start justify-start relative">
+          <input class="relative mr-1 z-[1] appearance-none w-[18px] h-[18px]" data-tracking-control-name="feed-semaphore" name="semaphore-action" value="" data-semaphore-input="" id="semaphore-action-radio" type="radio">
+          <label class="text-sm text-color-text leading-[1.7] flex-1 hyphens-auto input-label-text" for="semaphore-action-radio" data-semaphore-label="">
+            <span class="text-md ml-1" data-attr="title"></span>
+            <div class="text-sm ml-1 text-left opacity-60" data-attr="body"></div>
+          </label>
+        </div>
+
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-openlink-template">
+      <li class="px-2 py-1" data-semaphore-item="openlink">
+        <a class="text-color-text hover:no-underline visited:text-color-text" data-semaphore-input="" data-tracking-control-name="feed-semaphore" href="" target="_blank" data-tracking-will-navigate="">
+          <span class="text-md text-color-text font-normal inline-block" data-attr="title"></span>
+          <span class="text-sm text-color-text font-normal inline-block w-[calc(100%-24px)] opacity-60" data-attr="body"></span>
+          <icon class="float-right w-[24px] h-[24px] opacity-60" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/481psuouj1lu3q2laho6vqwhn"></icon>
+        </a>
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-result-template">
+      <p class="semaphore-options-container__item pl-2 pb-2" data-semaphore-item="result">
+        <span class="text-sm font-normal text-color-text-secondary" data-attr="thanks-text-body"></span>
+        <a class="text-sm font-semibold text-color-link" href="https://www.linkedin.com/help/linkedin/answer/37822" target="_blank" data-attr="thanks-help-center-link" data-tracking-control-name="feed-semaphore-help-center" data-tracking-will-navigate="" data-semaphore-input=""></a>
+      </p>
+    </template>
+  
+  
+                  
+  </li>
+
+              
+  <li class="ellipsis-menu__item text-sm border-0 px-2 py-1.5 text-color-text flex" data-feed-action="control-menu-imf" data-feed-control="control_menu_improve_feed" data-tracking-control-name="control_menu_improve_feed" data-feed-action-type="viewDiscovery" data-feed-action-category="VIEW">
+    
+                  <a class="hover:text-color-text hover:no-underline visited:text-color-text-secondary font-medium text-color-text flex items-center w-full" href="/feed/follow" role="menuitem">
+                    <icon class="text-color-icon h-[24px] w-[24px] mr-2 lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="settings-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="lazy-loaded" aria-busy="false">
+  <path d="M9.18 2l-4.3 2.52L6.22 8l-.52.91-3.7.55v5l3.64.54.54.93-1.34 3.53L9.14 22l2.29-2.9h1.09l2.3 2.9 4.32-2.52L17.79 16l.53-.93 3.68-.53v-5L18.32 9l-.51-.9 1.36-3.51L14.86 2l-2.33 3h-1zM12 9a3 3 0 11-3 3 3 3 0 013-3z"></path>
+</svg></icon>
+                    <span class="inline-block font-medium">Improve my feed</span>
+                  </a>
+                
+  </li>
+
+<!---->      
+
+<!----><!---->          
+        </ul>
+
+<!---->    </div>
+  
+
+      </div>
+  
+    
+    
+    
+    
+    
+
+    <template id="post-removed-card-template">
+      <div class="post-removed-card-template__container pt-1.5 px-2 pb-0 bg-color-background-container max-w-[550px]">
+        <div class="flex items-center justify-between">
+          <header class="text-color-text text-sm font-medium leading-open" role="status">You unfollowed Kyle Poyar</header>
+          <button class="post-removed-card-template__undo-follow-button font-medium btn-sm btn-tertiary-emphasis p-1" data-feed-action="control-menu-undo-unfollow" data-feed-action-type="undoUnfollow" data-feed-action-category="undo" data-feed-control="control_undo" data-tracking-control-name="control_undo">
+            Undo
+          </button>
+        </div>
+        <div class="text-wrapper text-sm">
+          <span class="text-color-text-secondary" role="status">Post removed from your feed and will update on the next feed refresh</span>
+        </div>
+        <a href="/feed/follow" class="post-removed-card-template__imf-link btn-sm btn-primary inline-block my-2">
+          Improve my feed
+        </a>
+      </div>
+    </template>
+  
+    
+    
+
+    <template id="post-reported-card-template">
+      <p class="post-reported-card text-sm font-medium text-color-text-secondary p-2 bg-color-background-container">Thanks for letting us know! You’ll no longer see this post in your feed</p>
+    </template>
+  
+<!---->  
+        
+        <div class="base-main-feed-card__entity-lockup">
+          
+            
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div class="flex items-center font-sans mb-1" data-test-id="main-feed-activity-card__entity-lockup" data-feed-redirect="">
+          <a href="https://www.linkedin.com/in/kyle-poyar?trk=feed_main-feed-card_feed-actor-image" class="relative" data-tracking-control-name="feed_main-feed-card_feed-actor-image" data-tracking-will-navigate="" data-feed-action-category="VIEW" data-feed-action-type="viewMember" data-feed-control="actor_picture">
+            
+      <img class="inline-block relative rounded-[50%] w-6 h-6 lazy-loaded" data-ghost-classes="bg-color-entity-ghost-background" data-ghost-url="https://static.licdn.com/aero-v1/sc/h/9c8pery4andzj6ohjkjp54ma2" alt="View profile for Kyle Poyar" aria-busy="false" src="https://media.licdn.com/dms/image/v2/D4E03AQFcDRGsS6cvbQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1705093842749?e=2147483647&amp;v=beta&amp;t=n_0PsLVvSm8jGt7LI0rXZDFvVuA6WANnAQjX79Iz2ww">
+      
+<!---->          </a>
+      <div class="flex flex-col self-start min-w-0
+          ml-1
+          mr-2">
+        <div class="text-color-text truncate">
+            <a class="text-sm link-styled no-underline leading-open px-0.25 outline-offset-[-1px]" href="https://www.linkedin.com/in/kyle-poyar?trk=feed_main-feed-card_feed-actor-name" data-tracking-control-name="feed_main-feed-card_feed-actor-name" aria-label="View profile for Kyle Poyar" data-tracking-will-navigate="" data-feed-action-category="VIEW" data-feed-action-type="viewMember" data-feed-control="actor">
+              Kyle Poyar
+            </a>
+<!---->            <span aria-hidden="true" class="text-color-text-low-emphasis before:middot before:!mx-[0]"></span>
+            <span class="text-sm text-color-text-low-emphasis">
+              2nd
+            </span>
+        </div>
+
+            <p class="!text-xs text-color-text-low-emphasis leading-[1.33333] px-0.25 m-0 truncate">
+<!---->                Co-Founder &amp; Operating Partner | Growth Unhinged
+            </p>
+
+              <span class="!text-xs text-color-text-low-emphasis leading-[1.33333] px-0.25 flex">
+                  <time class="flex-none">
+                    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+      1d
+  
+<!---->                  </time>
+<!---->              </span>
+                </div>
+
+        
+<!---->
+        
+    
+    
+    
+
+    <div class="follow-button ml-auto inline-block" data-entity-urn="urn:li:member:99668989">
+      
+  <button class="follow-button__follow
+      
+       btn-sm btn-tertiary-emphasis whitespace-nowrap focus:outline" data-tracking-control-name="feed_main-feed-card_entity-actor-follow-button-follow-button" data-feed-action="followEntity" data-feed-control="actor_follow_toggle" data-feed-action-category="FOLLOW" data-feed-action-type="followMember">
+        <icon aria-hidden="true" class="follow-button__follow-icon align-sub inline-block h-2 lazy-loaded" data-svg-class-name="w-2 h-2" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="add-small" aria-hidden="true" role="none" data-supported-dps="16x16" fill="currentColor" focusable="false" class="w-2 h-2 lazy-loaded" aria-busy="false">
+  <path d="M14 9H9v5H7V9H2V7h5V2h2v5h5z"></path>
+</svg></icon>
+    <span class="follow-button__follow_text">Follow</span>
+  </button>
+
+      
+  <button class="follow-button__following
+      hidden
+       btn-sm btn-tertiary-emphasis whitespace-nowrap focus:outline" data-tracking-control-name="feed_main-feed-card_entity-actor-follow-button-unfollow-button" data-feed-action="followEntity" data-feed-control="actor_follow_toggle" data-feed-action-category="UNFOLLOW" data-feed-action-type="unfollowMember">
+<!---->    <span class="follow-button__following_text">Following</span>
+  </button>
+
+    </div>
+  
+  
+  
+    </div>
+  
+        
+        </div>
+<!---->      </div>
+
+      
+            
+            
+  <div class="attributed-text-segment-list__container relative mt-1 mb-1.5 babybear:mt-0 babybear:mb-0.5">
+    <p class="attributed-text-segment-list__content text-color-text !text-sm whitespace-pre-wrap break-words
+        attributed-text-segment-list__content-truncated" dir="ltr" data-feed-control="commentary_text" data-feed-action-type="viewLink" data-test-id="main-feed-activity-card__commentary" data-feed-redirect="">I thought there’d be a consensus on how to monetize AI by now. I was (mostly) wrong. 
+
+With your help, I've spent the past three months investigating what's actually happening in SaaS &amp; AI monetization -- not just what's making headlines. And I've collected data from more than 240 software companies.
+
+I'm so excited to finally release the findings. See for yourself here: <a class="link" href="https://www.linkedin.com/safety/go?url=https%3A%2F%2Flnkd.in%2FePsQJT6X%3Ftrk%3Dfeed_main-feed-card-text" target="_blank" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_link" data-feed-action-category="VIEW" data-feed-action-type="viewLink">https://lnkd.in/ePsQJT6X</a>
+
+Six takeaways from the new <a class="link" href="https://www.linkedin.com/company/tremontvp?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_mention" data-feed-action-category="VIEW" data-feed-action-type="viewCompany">Tremont</a> | <a class="link" href="https://www.linkedin.com/company/growth-unhinged?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_mention" data-feed-action-category="VIEW" data-feed-action-type="viewCompany">Growth Unhinged</a> State of B2B Monetization report:
+
+1. Seats &amp; flat-rate pricing are increasingly under threat.
+
+The rise of AI, and AI agents in particular, means value gets decoupled from customers needing to buy more seats. And the costs of delivering AI means software companies need a mechanism to protect themselves if &amp; when AI usage spikes.
+
+2. As AI continues to gain traction, hybrid has become the ‘it’ pricing model.
+
+Seats and flat-rate pricing are being replaced by hybrid pricing, i.e. combinations of subscriptions and usage. Hybrid pricing is up from 27% to 41% adoption (!) in the last 12 months.
+
+Software and AI are becoming inseparable. More than half of survey respondents said they include AI capabilities as part of their core software product offering.
+
+3. There are a seemingly infinite number of ways to structure hybrid pricing. Choose wisely (or support multiple models).
+
+Software founders used to tell me their pricing was inspired by Salesforce or maybe Slack. Now they tell me they were inspired by Clay. Clay's hybrid model has multiple routes to expand customers while keeping pricing (relatively) simple: more features (subscription packages) and more usage (credits).
+
+4. Outcome-based pricing is seen as the 'holy grail'. It's still out of reach for 95% of the market.
+
+A mere 5% said their pricing model is outcome-based right now. But 25% said they expect to have outcome-based pricing by 2028. 
+
+5. The shift toward pricing transparency seemed inevitable. This isn’t playing out.
+
+My two cents: many software companies, especially early-stage and AI companies, don't have pricing totally figured out. And as soon as they publish pricing, it gets way harder to adjust.
+
+6. Pricing models keep evolving. Most of the market is unprepared to keep up.
+
+Be careful to avoid pricing ‘no-man’s land’ -- this happens between $5-20M ARR when ownership often falls through the cracks.
+
+---
+
+Hope you enjoy the report. THANK YOU for your support 🙏 
+ - Kyle
+
+PS, the full report is available at the link above. No need to comment “pricing” for it, but you’re welcome to if you want 😭
+
+<a class="link" href="https://www.linkedin.com/feed/hashtag/pricing?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_hashtag" data-feed-action-category="VIEW" data-feed-action-type="viewHashtagFeed">#pricing</a> <a class="link" href="https://www.linkedin.com/feed/hashtag/ai?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_hashtag" data-feed-action-category="VIEW" data-feed-action-type="viewHashtagFeed">#ai</a> <a class="link" href="https://www.linkedin.com/feed/hashtag/monetization?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_hashtag" data-feed-action-category="VIEW" data-feed-action-type="viewHashtagFeed">#monetization</a></p>
+          
+            
+                  
+    
+
+    <button class="attributed-text-segment-list__btn-truncation absolute right-0 bottom-0 pl-1 bg-color-background-container text-color-text-secondary text-sm font-medium babybear:font-bold cursor-pointer hover:text-color-link-hover hover:underline" data-feed-action="see-more-post" data-feed-action-category="EXPAND" data-feed-action-type="expandCommentaryText" data-feed-control="commentary_expand" aria-hidden="true" tabindex="0">
+      …more
+    </button>
+  
+              
+          
+  </div>
+
+
+
+        
+
+        
+            
+      
+    
+    
+    
+
+      <ul class="grid grid-cols-6 grid-rows-[60%_40%] w-main-feed-card-media feed-images-content list-none pl-0
+          
+          " data-test-id="feed-images-content">
+              <li class="bg-color-background-container-tint text-[0px]
+                  col-span-full row-span-full 
+                  
+                  
+                  " data-test-id="feed-images-content__list-item" data-position="0" style="">
+                  <button class="w-full h-full text-[0px]" data-tracking-control-name="view_image" data-feed-action="view-image" data-feed-action-type="viewImage" data-feed-action-category="view" data-feed-control="update_image">
+                    <img class="w-full object-cover object-center h-full babybear:max-h-[400px] lazy-loaded" data-ghost-url="https://static.licdn.com/aero-v1/sc/h/921ynb2z53z33mhm3061qvjag" alt="The most disruptive AI pricing models, updated June 2025" aria-busy="false" src="https://media.licdn.com/dms/image/v2/D4E22AQENkoLBPNaxPg/feedshare-shrink_800/B4EZcr.zm0HQAk-/0/1748789574789?e=1752105600&amp;v=beta&amp;t=npwZXjCnrpg6hXJfxTNI_Pm4wqcJlHuEhPRzWoofH0s">
+                  </button>
+<!----><!---->              </li>
+      </ul>
+        
+    
+    
+    
+    
+
+    
+
+    <div class="image-viewer-modal-wrapper " id="feed-image-viewer-modal-wrapper">
+      
+
+    
+    <div class="">
+<!---->
+      <div id="feed-image-viewer-modal" class="modal image-viewer-modal " data-outlet="feed-image-viewer-modal">
+<!---->        <div class="modal__overlay flex items-center bg-color-background-scrim justify-center fixed bottom-0 left-0 right-0 top-0 opacity-0 invisible pointer-events-none z-[1000] transition-[opacity] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.17s]
+            modal__overlay--full-page p-0
+            " aria-hidden="true">
+          <section aria-modal="true" role="dialog" aria-labelledby="feed-image-viewer-modal-modal-header" tabindex="-1" class="max-h-full modal__wrapper overflow-auto p-0 bg-color-surface max-w-[1128px] min-h-[160px] relative scale-[0.25] shadow-sm shadow-color-border-faint transition-[transform] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.33s] focus:outline-0
+              
+              w-[1128px] mamabear:w-[744px] babybear:w-[360px]
+               flex items-center relative !bg-color-background-canvas-dark !overflow-visible
+              !w-full h-full">
+              
+          <button class="modal__dismiss btn-tertiary h-[40px] w-[40px] p-0 rounded-full indent-0
+              dialog-modal__dismiss shrink-0 !text-color-icon-on-dark absolute top-[4px] left-[4px] z-1" aria-label="Dismiss" data-tracking-control-name="feed-image-viewer-modal_dismiss">
+            <icon class="modal__dismiss-icon lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" class="artdeco-icon lazy-loaded" focusable="false" aria-busy="false">
+  <path d="M20,5.32L13.32,12,20,18.68,18.66,20,12,13.33,5.34,20,4,18.68,10.68,12,4,5.32,5.32,4,12,10.69,18.68,4Z" fill="currentColor"></path>
+</svg></icon>
+          </button>
+        
+            <div class="modal__main w-full">
+              
+          
+<!---->
+
+    
+    
+    
+    
+    
+    
+    
+
+    <section class="slide-list relative  slide-list--mobile py-0.5 px-2 image-container" data-image-viewer-action="image-section">
+        <header class="slide-list__header mb-1.5">
+<!---->        </header>
+
+
+<!---->
+        <div class="relative overflow-hidden slide-list__container " aria-live="polite" tabindex="0">
+              <ul class="slide-list__list items-stretch flex list-none transition-all duration-slow ease-standard flex !items-center" style="transform: translate3d(0px, 0px, 0px);">
+                
+                <li class="slide-list__item mr-2 rtl:ml-2
+                    relative w-[100vw] shrink-0
+                    ">
+<!---->                  <img class="main-image block max-w-[100vw] max-h-[100vh] m-auto lazy-loaded" alt="Image" data-image-viewer-action="main-image" aria-busy="false" src="https://media.licdn.com/dms/image/v2/D4E22AQENkoLBPNaxPg/feedshare-shrink_800/B4EZcr.zm0HQAk-/0/1748789574789?e=1752105600&amp;v=beta&amp;t=npwZXjCnrpg6hXJfxTNI_Pm4wqcJlHuEhPRzWoofH0s">
+                </li>
+            
+              </ul>
+        </div>
+
+<!---->
+
+<!---->
+      <code id="i18n_slide_list_current_slide_aria_label" style="display: none"><!--"Current Item"--></code>
+    </section>
+  
+              <section class="detail-section bg-color-scrim overflow-y-auto w-full max-h-[250px] min-h-[100px] absolute text-color-text-on-dark
+                  bottom-[86px]" data-image-viewer-action="detail-section" tabindex="0">
+                
+        <div class="content-wrapper p-2 max-h-[250px] min-h-[100px] overflow-y-auto">
+          
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div class="flex items-center font-sans">
+<!---->      <div class="flex flex-col self-start min-w-0
+          
+          mr-2">
+        <div class="text-color-text truncate">
+            <a class="text-sm link-styled no-underline leading-open px-0.25 outline-offset-[-1px]" href="https://www.linkedin.com/in/kyle-poyar?trk=feed_main-feed-card_feed-actor-name" data-tracking-control-name="feed_main-feed-card_feed-actor-name" aria-label="View profile for Kyle Poyar" data-tracking-will-navigate="" data-feed-action-category="VIEW" data-feed-action-type="viewMember" data-feed-control="actor">
+              Kyle Poyar
+            </a>
+<!---->            <span aria-hidden="true" class="text-white detail-section__degree before:middot before:!mx-[0]"></span>
+            <span class="text-sm text-white detail-section__degree">
+              2nd
+            </span>
+        </div>
+
+            <p class="!text-xs text-color-text-low-emphasis leading-[1.33333] px-0.25 m-0 truncate">
+<!---->                Co-Founder &amp; Operating Partner | Growth Unhinged
+            </p>
+
+<!---->      </div>
+
+<!---->    </div>
+  
+
+          
+            
+  <div class="attributed-text-segment-list__container relative mt-1 mb-1.5 babybear:mt-0 babybear:mb-0.5">
+    <p class="attributed-text-segment-list__content text-color-text !text-sm whitespace-pre-wrap break-words
+        attributed-text-segment-list__content-truncated detail-section-feed-content" dir="ltr" data-feed-control="commentary_text" data-feed-action-type="viewLink">I thought there’d be a consensus on how to monetize AI by now. I was (mostly) wrong. 
+
+With your help, I've spent the past three months investigating what's actually happening in SaaS &amp; AI monetization -- not just what's making headlines. And I've collected data from more than 240 software companies.
+
+I'm so excited to finally release the findings. See for yourself here: <a class="link" href="https://www.linkedin.com/safety/go?url=https%3A%2F%2Flnkd.in%2FePsQJT6X%3Ftrk%3Dfeed_main-feed-card-text" target="_blank" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_link" data-feed-action-category="VIEW" data-feed-action-type="viewLink">https://lnkd.in/ePsQJT6X</a>
+
+Six takeaways from the new <a class="link" href="https://www.linkedin.com/company/tremontvp?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_mention" data-feed-action-category="VIEW" data-feed-action-type="viewCompany">Tremont</a> | <a class="link" href="https://www.linkedin.com/company/growth-unhinged?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_mention" data-feed-action-category="VIEW" data-feed-action-type="viewCompany">Growth Unhinged</a> State of B2B Monetization report:
+
+1. Seats &amp; flat-rate pricing are increasingly under threat.
+
+The rise of AI, and AI agents in particular, means value gets decoupled from customers needing to buy more seats. And the costs of delivering AI means software companies need a mechanism to protect themselves if &amp; when AI usage spikes.
+
+2. As AI continues to gain traction, hybrid has become the ‘it’ pricing model.
+
+Seats and flat-rate pricing are being replaced by hybrid pricing, i.e. combinations of subscriptions and usage. Hybrid pricing is up from 27% to 41% adoption (!) in the last 12 months.
+
+Software and AI are becoming inseparable. More than half of survey respondents said they include AI capabilities as part of their core software product offering.
+
+3. There are a seemingly infinite number of ways to structure hybrid pricing. Choose wisely (or support multiple models).
+
+Software founders used to tell me their pricing was inspired by Salesforce or maybe Slack. Now they tell me they were inspired by Clay. Clay's hybrid model has multiple routes to expand customers while keeping pricing (relatively) simple: more features (subscription packages) and more usage (credits).
+
+4. Outcome-based pricing is seen as the 'holy grail'. It's still out of reach for 95% of the market.
+
+A mere 5% said their pricing model is outcome-based right now. But 25% said they expect to have outcome-based pricing by 2028. 
+
+5. The shift toward pricing transparency seemed inevitable. This isn’t playing out.
+
+My two cents: many software companies, especially early-stage and AI companies, don't have pricing totally figured out. And as soon as they publish pricing, it gets way harder to adjust.
+
+6. Pricing models keep evolving. Most of the market is unprepared to keep up.
+
+Be careful to avoid pricing ‘no-man’s land’ -- this happens between $5-20M ARR when ownership often falls through the cracks.
+
+---
+
+Hope you enjoy the report. THANK YOU for your support 🙏 
+ - Kyle
+
+PS, the full report is available at the link above. No need to comment “pricing” for it, but you’re welcome to if you want 😭
+
+<a class="link" href="https://www.linkedin.com/feed/hashtag/pricing?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_hashtag" data-feed-action-category="VIEW" data-feed-action-type="viewHashtagFeed">#pricing</a> <a class="link" href="https://www.linkedin.com/feed/hashtag/ai?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_hashtag" data-feed-action-category="VIEW" data-feed-action-type="viewHashtagFeed">#ai</a> <a class="link" href="https://www.linkedin.com/feed/hashtag/monetization?trk=feed_main-feed-card-text" target="_self" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_hashtag" data-feed-action-category="VIEW" data-feed-action-type="viewHashtagFeed">#monetization</a></p>
+          <button class="attributed-text-segment-list__btn-truncation absolute right-0 bottom-0 pl-1 bg-color-background-container text-color-text-secondary text-sm font-medium babybear:font-bold cursor-pointer hover:text-color-link-hover hover:underline" aria-hidden="true" tabindex="0">
+            …see more
+          </button>
+  </div>
+
+
+        </div>
+        
+            
+          
+                  
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <code id="i18n_reaction_singular" style="display: none"><!--"%numReactions% Reaction"--></code>
+    <code id="i18n_reactions_plural" style="display: none"><!--"%numReactions% Reactions"--></code>
+
+      <div class="flex items-center font-sans text-sm babybear:text-xs py-1 px-2 fixed w-full bg-color-scrim h-[38px]
+                      bottom-[48px]" data-feed-redirect="" data-test-id="main-feed-activity-card__social-actions">
+            
+      <a href="https://www.linkedin.com/feed/update/activity:7336002553978974209/reactions?trk=feed_main-feed-card_social-actions-reactions" target="_self" data-tracking-control-name="feed_main-feed-card_social-actions-reactions" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis grow my-1" aria-label="865 Reactions" data-feed-action-category="VIEW" data-feed-action-type="viewLikers" data-feed-control="likes_count" data-separate-ctas="true" data-test-id="social-actions__reactions" data-id="social-actions__reactions" data-num-reactions="865" data-singular="%numReactions%" data-plural="%numReactions%" data-entity-urn="urn:li:activity:7336002553978974209" tabindex="0">
+        
+                    <img alt="" data-reaction-type="LIKE" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/bn39hirwzjqj18ej1fkz55671" class="lazy-loaded">
+                    <img alt="" data-reaction-type="INTEREST" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/a0e8rff6djeoq8iympcysuqfu" class="lazy-loaded">
+                    <img alt="" data-reaction-type="EMPATHY" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/asiqslyf4ooq7ggllg4fyo4o2" class="lazy-loaded">
+
+              <span aria-hidden="true" class="font-normal ml-0.5" data-test-id="social-actions__reaction-count">
+                    865
+              </span>
+            
+      </a>
+  
+                  <code id="social-actions__reaction-image-APPRECIATION" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/cyfai5zw4nrqhyyhl0p7so58v"--></code>
+<!----><!---->                  <code id="social-actions__reaction-image-EMPATHY" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/asiqslyf4ooq7ggllg4fyo4o2"--></code>
+                  <code id="social-actions__reaction-image-ENTERTAINMENT" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/22ifp2etz8kb9tgjqn65s9ics"--></code>
+<!---->                  <code id="social-actions__reaction-image-INTEREST" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/a0e8rff6djeoq8iympcysuqfu"--></code>
+                  <code id="social-actions__reaction-image-LIKE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/bn39hirwzjqj18ej1fkz55671"--></code>
+                  <code id="social-actions__reaction-image-MAYBE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/cryzkreqrh52ja5bc6njlrupa"--></code>
+                  <code id="social-actions__reaction-image-PRAISE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/2tzoeodxy0zug4455msr0oq0v"--></code>
+<!----><!---->            
+      <a href="https://www.linkedin.com/feed/update/activity:7336002553978974209?trk=feed_main-feed-card_social-actions-comments" target="_self" data-tracking-control-name="feed_main-feed-card_social-actions-comments" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis
+                
+                my-1" data-separate-ctas="true" data-test-id="social-actions__comments" data-feed-action-type="expandMoreComments" data-id="social-actions__comments" data-num-comments="109" data-singular="%numComments% Comment" data-plural="%numComments% Comments" data-entity-urn="urn:li:activity:7336002553978974209">
+        
+                109 Comments
+            
+      </a>
+  
+            <a href="https://www.linkedin.com/feed/update/activity:7336002553978974209?trk=feed_main-feed-card_social-actions-reposts" target="_self" aria-hidden="false" tabindex="0" data-tracking-control-name="feed_main-feed-card_social-actions-reposts" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis
+                before:middot
+                my-1" data-test-id="social-actions__reposts" data-id="social-actions__reposts" data-num-reposts="43" data-singular="%numReposts% Repost" data-plural="%numReposts% Reposts" data-entity-urn="urn:li:activity:7336002553978974209">
+                43 Reposts
+            </a>
+      </div>
+  
+  
+                    
+    
+    
+    
+    
+    
+
+      
+    <div class="social-action-bar border-t-1 border-solid border-color-border-faint min-h-[40px] items-center mt-1 babybear:mt-0 flex babybear:justify-around !border-color-border-on-dark bg-color-background-canvas-dark fixed bottom-0 m-0 h-[48px] w-full
+                        ">
+      <!-- Reaction Menu -->
+      
+          
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+    <code id="i18n_reaction_selection_state" style="display: none"><!--"%reactionType% %selectionState%"--></code>
+
+    <div class="reactions-menu flex flex-row relative items-center justify-center select-none [-webkit-user-select:none] pointer-events-auto basis-full
+              babybear:pr-0.5 babybear:justify-start">
+        <button class="reactions-menu__trigger social-action-bar__button relative h-6 cursor-pointer w-full basis-full
+              babybear:pr-0.5 babybear:justify-start" data-tracking-control-name="feed_main-feed-card_like-cta" data-parent-urn="urn:li:activity:7336002553978974209" data-is-logged-in="" data-target-link="https://www.linkedin.com/feed/update/activity:7336002553978974209" data-tracking-will-navigate="" aria-live="polite" data-feed-action="react" data-feed-action-type="likeUpdate" data-feed-action-category="REACT" data-feed-control="like_toggle" data-tracking-client-ingraph="" role="button" type="button">
+          
+
+<!---->    <div class="like-button-default flex flex-row items-center ">
+      <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="thumbs-up-outline-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false">
+  <path d="M19.46 11l-3.91-3.91a7 7 0 01-1.69-2.74l-.49-1.47A2.76 2.76 0 0010.76 1 2.75 2.75 0 008 3.74v1.12a9.19 9.19 0 00.46 2.85L8.89 9H4.12A2.12 2.12 0 002 11.12a2.16 2.16 0 00.92 1.76A2.11 2.11 0 002 14.62a2.14 2.14 0 001.28 2 2 2 0 00-.28 1 2.12 2.12 0 002 2.12v.14A2.12 2.12 0 007.12 22h7.49a8.08 8.08 0 003.58-.84l.31-.16H21V11zM19 19h-1l-.73.37a6.14 6.14 0 01-2.69.63H7.72a1 1 0 01-1-.72l-.25-.87-.85-.41A1 1 0 015 17l.17-1-.76-.74A1 1 0 014.27 14l.66-1.09-.73-1.1a.49.49 0 01.08-.7.48.48 0 01.34-.11h7.05l-1.31-3.92A7 7 0 0110 4.86V3.75a.77.77 0 01.75-.75.75.75 0 01.71.51L12 5a9 9 0 002.13 3.5l4.5 4.5H19z"></path>
+</svg></icon>
+      <span class="social-action-bar__button-text">Like</span>
+    </div>
+
+        </button>
+        <button class="reactions-menu__trigger--a11y flex-row items-center h-[40px] rotate-180 relative top-1 overflow-hidden w-0 p-0" data-tracking-control-name="feed_main-feed-card_like-cta-a11y-trigger" data-tracking-client-ingraph="" aria-label="Open reactions menu" role="button" aria-expanded="false" type="button">
+          <icon class="w-3 h-3 text-color-text lazy-loaded" data-svg-class-name="relative top-0.5 text-sm font-bold text-color-text" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="caret-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="relative top-0.5 text-sm font-bold text-color-text lazy-loaded" aria-busy="false">
+  <path d="M12 16L5 9h14z" fill-rule="evenodd"></path>
+</svg></icon>
+        </button>
+          <div class="w-auto h-[48px] select-none babybear:h-[72px] p-0.5 left-3 container-raised !rounded-[10px] absolute flex justify-center bg-color-background-container bottom-[100%] babybear:bottom-[120%] top-auto reactions-menu-list z-10 hidden basis-full
+              babybear:pr-0.5 babybear:justify-start" data-id="reactions-menu">
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_LIKE" data-tracking-client-ingraph="" data-reaction-type="LIKE" tabindex="0" aria-pressed="false" id="selected-reaction-icon--LIKE" data-feed-action="react" data-feed-action-type="likeUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Like" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/3tsxb73co15a9ze36f0y0vmng">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Like</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_PRAISE" data-tracking-client-ingraph="" data-reaction-type="PRAISE" tabindex="0" aria-pressed="false" id="selected-reaction-icon--PRAISE" data-feed-action="react" data-feed-action-type="praiseUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Celebrate" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/5tec0l9hykk5gezv56e7coyow">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Celebrate</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_APPRECIATION" data-tracking-client-ingraph="" data-reaction-type="APPRECIATION" tabindex="0" aria-pressed="false" id="selected-reaction-icon--APPRECIATION" data-feed-action="react" data-feed-action-type="appreciationUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Support" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/7savup3gmhirulv2h5v8snx2x">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Support</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_EMPATHY" data-tracking-client-ingraph="" data-reaction-type="EMPATHY" tabindex="0" aria-pressed="false" id="selected-reaction-icon--EMPATHY" data-feed-action="react" data-feed-action-type="empathyUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Love" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/f4lj1wks3jt476fe5defirzg9">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Love</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_INTEREST" data-tracking-client-ingraph="" data-reaction-type="INTEREST" tabindex="0" aria-pressed="false" id="selected-reaction-icon--INTEREST" data-feed-action="react" data-feed-action-type="interestUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Insightful" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/br7ludovnq3n7137fvqsqwljx">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Insightful</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_ENTERTAINMENT" data-tracking-client-ingraph="" data-reaction-type="ENTERTAINMENT" tabindex="0" aria-pressed="false" id="selected-reaction-icon--ENTERTAINMENT" data-feed-action="react" data-feed-action-type="entertainmentUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Funny" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/6ga7ypv66xprsgreohwklur3y">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Funny</span>
+  </button>
+
+          </div>
+    </div>
+      <template id="selected-reaction">
+        <div>
+            
+  <div class="selected-reaction--LIKE flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Like" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/3tsxb73co15a9ze36f0y0vmng">
+    <span class="social-action-bar__button-text">Like</span>
+  </div>
+
+            
+  <div class="selected-reaction--PRAISE flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Celebrate" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/5tec0l9hykk5gezv56e7coyow">
+    <span class="social-action-bar__button-text">Celebrate</span>
+  </div>
+
+            
+  <div class="selected-reaction--APPRECIATION flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Support" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/7savup3gmhirulv2h5v8snx2x">
+    <span class="social-action-bar__button-text">Support</span>
+  </div>
+
+            
+  <div class="selected-reaction--EMPATHY flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Love" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/f4lj1wks3jt476fe5defirzg9">
+    <span class="social-action-bar__button-text">Love</span>
+  </div>
+
+            
+  <div class="selected-reaction--INTEREST flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Insightful" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/br7ludovnq3n7137fvqsqwljx">
+    <span class="social-action-bar__button-text">Insightful</span>
+  </div>
+
+            
+  <div class="selected-reaction--ENTERTAINMENT flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Funny" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/6ga7ypv66xprsgreohwklur3y">
+    <span class="social-action-bar__button-text">Funny</span>
+  </div>
+
+        </div>
+      </template>
+  
+  
+        
+      <!-- Comment Button -->
+      
+            
+  <a class="social-action-bar__button !rounded-none basis-full
+                babybear:basis-0 
+                babybear:pl-0.5 babybear:pr-0.5
+                " href="https://www.linkedin.com/feed/update/activity:7336002553978974209?trk=feed_main-feed-card_comment-cta" aria-label="Comment" data-tracking-control-name="feed_main-feed-card_comment-cta" data-tracking-will-navigate="" data-feed-action="comment" data-feed-action-type="expandCommentBox" data-feed-action-category="EXPAND" data-feed-control="comment_box">
+    <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false"><path d="M7 9h10v1H7V9zm0 4h7v-1H7v1zm16-2c0 2.2-1 4.3-2.8 5.6L12 22v-4H8c-3.9 0-7-3.1-7-7s3.1-7 7-7h8c3.9 0 7 3.1 7 7zm-2 0c0-2.8-2.2-5-5-5H8c-2.8 0-5 2.2-5 5s2.2 5 5 5h6v2.3l5-3.3c1.3-.9 2-2.4 2-4z" fill="currentColor"></path></svg></icon>
+    <span class="social-action-bar__button-text" aria-hidden="true">
+      Comment
+    </span>
+  </a>
+
+        
+        <!-- Share Button -->
+        
+                  
+  <button class="social-action-bar__button basis-full !rounded-none babybear:pl-0.5 babybear:justify-end" data-tracking-control-name="feed_main-feed-card_open-reshare-menu" data-tracking-client-ingraph="" data-reshare-desc="Create a new post with Kyle’s post attached" data-repost-desc="Instantly bring Kyle’s post to others’ feed" data-feed-action="share" data-feed-action-type="openShareMenu" data-feed-action-category="EXPAND" data-feed-control="reshare" data-send-privately-url="/messaging/compose/?body=https://www.linkedin.com/posts/kyle-poyar_pricing-ai-monetization-activity-7336002553978974209-k3PE">
+    <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false"><path d="M18.4 5H16l3.9 6H8c-3.4 0-6 2.8-6 5.9 0 .6.1 1.2.3 1.8L3 21h2.1l-.9-2.8c-.1-.4-.2-.8-.2-1.2 0-2.1 1.6-4 3.9-4h12L16 19h2.4l4.6-7-4.6-7z" fill="currentColor"></path></svg></icon>
+    <span class="social-action-bar__button-text">
+      Share
+    </span>
+  </button>
+
+        
+      <!-- Send Privately Button -->
+      
+<!---->        
+    </div>
+  
+  
+              
+        
+          
+      
+              </section>
+        
+            </div>
+
+<!---->          </section>
+        </div>
+      </div>
+    </div>
+  
+    </div>
+  
+  
+  
+  
+                  
+
+      
+          
+<!---->    
+        
+
+      
+          
+      
+
+    
+
+    
+
+    
+
+<!---->  
+    
+        
+
+      
+            
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <code id="i18n_reaction_singular" style="display: none"><!--"%numReactions% Reaction"--></code>
+    <code id="i18n_reactions_plural" style="display: none"><!--"%numReactions% Reactions"--></code>
+
+      <div class="flex items-center font-sans text-sm babybear:text-xs main-feed-activity-card__social-actions" data-feed-redirect="">
+            
+      <a href="https://www.linkedin.com/feed/update/activity:7336002553978974209?trk=feed_main-feed-card_social-actions-reactions" target="_self" data-tracking-control-name="feed_main-feed-card_social-actions-reactions" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis grow my-1" aria-label="865 Reactions" data-separate-ctas="true" data-test-id="social-actions__reactions" data-id="social-actions__reactions" data-num-reactions="865" data-singular="%numReactions%" data-plural="%numReactions%" data-entity-urn="urn:li:activity:7336002553978974209" tabindex="0">
+        
+                    <img alt="" data-reaction-type="LIKE" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/bn39hirwzjqj18ej1fkz55671" class="lazy-loaded">
+                    <img alt="" data-reaction-type="INTEREST" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/a0e8rff6djeoq8iympcysuqfu" class="lazy-loaded">
+                    <img alt="" data-reaction-type="EMPATHY" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/asiqslyf4ooq7ggllg4fyo4o2" class="lazy-loaded">
+
+              <span aria-hidden="true" class="font-normal ml-0.5" data-test-id="social-actions__reaction-count">
+                    865
+              </span>
+            
+      </a>
+  
+                  <code id="social-actions__reaction-image-APPRECIATION" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/cyfai5zw4nrqhyyhl0p7so58v"--></code>
+<!----><!---->                  <code id="social-actions__reaction-image-EMPATHY" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/asiqslyf4ooq7ggllg4fyo4o2"--></code>
+                  <code id="social-actions__reaction-image-ENTERTAINMENT" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/22ifp2etz8kb9tgjqn65s9ics"--></code>
+<!---->                  <code id="social-actions__reaction-image-INTEREST" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/a0e8rff6djeoq8iympcysuqfu"--></code>
+                  <code id="social-actions__reaction-image-LIKE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/bn39hirwzjqj18ej1fkz55671"--></code>
+                  <code id="social-actions__reaction-image-MAYBE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/cryzkreqrh52ja5bc6njlrupa"--></code>
+                  <code id="social-actions__reaction-image-PRAISE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/2tzoeodxy0zug4455msr0oq0v"--></code>
+<!----><!---->            
+      <a href="https://www.linkedin.com/feed/update/activity:7336002553978974209?trk=feed_main-feed-card_social-actions-comments" target="_self" data-tracking-control-name="feed_main-feed-card_social-actions-comments" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis
+                
+                my-1" data-separate-ctas="true" data-test-id="social-actions__comments" data-id="social-actions__comments" data-num-comments="109" data-singular="%numComments% Comment" data-plural="%numComments% Comments" data-entity-urn="urn:li:activity:7336002553978974209">
+        
+                109 Comments
+            
+      </a>
+  
+            <a href="https://www.linkedin.com/feed/update/activity:7336002553978974209?trk=feed_main-feed-card_social-actions-reposts" target="_self" aria-hidden="false" tabindex="0" data-tracking-control-name="feed_main-feed-card_social-actions-reposts" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis
+                before:middot
+                my-1" data-test-id="social-actions__reposts" data-id="social-actions__reposts" data-num-reposts="43" data-singular="%numReposts% Repost" data-plural="%numReposts% Reposts" data-entity-urn="urn:li:activity:7336002553978974209">
+                43 Reposts
+            </a>
+      </div>
+  
+  
+        
+
+      
+                
+    
+    
+    
+    
+    
+
+      
+    <div class="social-action-bar border-t-1 border-solid border-color-border-faint min-h-[40px] items-center mt-1 babybear:mt-0 flex babybear:justify-around mx-main-feed-card-no-gutter
+                    border-b-1
+                    ">
+      <!-- Reaction Menu -->
+      
+          
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+    <code id="i18n_reaction_selection_state" style="display: none"><!--"%reactionType% %selectionState%"--></code>
+
+    <div class="reactions-menu flex flex-row relative items-center justify-center select-none [-webkit-user-select:none] pointer-events-auto basis-full
+              babybear:pr-0.5 babybear:justify-start">
+        <button class="reactions-menu__trigger social-action-bar__button relative h-6 cursor-pointer w-full basis-full
+              babybear:pr-0.5 babybear:justify-start" data-tracking-control-name="feed_main-feed-card_like-cta" data-parent-urn="urn:li:activity:7336002553978974209" data-is-logged-in="" data-target-link="https://www.linkedin.com/feed/update/activity:7336002553978974209" data-tracking-will-navigate="" aria-live="polite" data-feed-action="react" data-feed-action-type="likeUpdate" data-feed-action-category="REACT" data-feed-control="like_toggle" data-tracking-client-ingraph="" role="button" type="button">
+          
+
+<!---->    <div class="like-button-default flex flex-row items-center ">
+      <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="thumbs-up-outline-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false">
+  <path d="M19.46 11l-3.91-3.91a7 7 0 01-1.69-2.74l-.49-1.47A2.76 2.76 0 0010.76 1 2.75 2.75 0 008 3.74v1.12a9.19 9.19 0 00.46 2.85L8.89 9H4.12A2.12 2.12 0 002 11.12a2.16 2.16 0 00.92 1.76A2.11 2.11 0 002 14.62a2.14 2.14 0 001.28 2 2 2 0 00-.28 1 2.12 2.12 0 002 2.12v.14A2.12 2.12 0 007.12 22h7.49a8.08 8.08 0 003.58-.84l.31-.16H21V11zM19 19h-1l-.73.37a6.14 6.14 0 01-2.69.63H7.72a1 1 0 01-1-.72l-.25-.87-.85-.41A1 1 0 015 17l.17-1-.76-.74A1 1 0 014.27 14l.66-1.09-.73-1.1a.49.49 0 01.08-.7.48.48 0 01.34-.11h7.05l-1.31-3.92A7 7 0 0110 4.86V3.75a.77.77 0 01.75-.75.75.75 0 01.71.51L12 5a9 9 0 002.13 3.5l4.5 4.5H19z"></path>
+</svg></icon>
+      <span class="social-action-bar__button-text">Like</span>
+    </div>
+
+        </button>
+        <button class="reactions-menu__trigger--a11y flex-row items-center h-[40px] rotate-180 relative top-1 overflow-hidden w-0 p-0" data-tracking-control-name="feed_main-feed-card_like-cta-a11y-trigger" data-tracking-client-ingraph="" aria-label="Open reactions menu" role="button" aria-expanded="false" type="button">
+          <icon class="w-3 h-3 text-color-text lazy-loaded" data-svg-class-name="relative top-0.5 text-sm font-bold text-color-text" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="caret-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="relative top-0.5 text-sm font-bold text-color-text lazy-loaded" aria-busy="false">
+  <path d="M12 16L5 9h14z" fill-rule="evenodd"></path>
+</svg></icon>
+        </button>
+          <div class="w-auto h-[48px] select-none babybear:h-[72px] p-0.5 left-3 container-raised !rounded-[10px] absolute flex justify-center bg-color-background-container bottom-[100%] babybear:bottom-[120%] top-auto reactions-menu-list z-10 hidden basis-full
+              babybear:pr-0.5 babybear:justify-start" data-id="reactions-menu">
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_LIKE" data-tracking-client-ingraph="" data-reaction-type="LIKE" tabindex="0" aria-pressed="false" id="selected-reaction-icon--LIKE" data-feed-action="react" data-feed-action-type="likeUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Like" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/3tsxb73co15a9ze36f0y0vmng">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Like</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_PRAISE" data-tracking-client-ingraph="" data-reaction-type="PRAISE" tabindex="0" aria-pressed="false" id="selected-reaction-icon--PRAISE" data-feed-action="react" data-feed-action-type="praiseUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Celebrate" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/5tec0l9hykk5gezv56e7coyow">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Celebrate</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_APPRECIATION" data-tracking-client-ingraph="" data-reaction-type="APPRECIATION" tabindex="0" aria-pressed="false" id="selected-reaction-icon--APPRECIATION" data-feed-action="react" data-feed-action-type="appreciationUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Support" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/7savup3gmhirulv2h5v8snx2x">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Support</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_EMPATHY" data-tracking-client-ingraph="" data-reaction-type="EMPATHY" tabindex="0" aria-pressed="false" id="selected-reaction-icon--EMPATHY" data-feed-action="react" data-feed-action-type="empathyUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Love" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/f4lj1wks3jt476fe5defirzg9">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Love</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_INTEREST" data-tracking-client-ingraph="" data-reaction-type="INTEREST" tabindex="0" aria-pressed="false" id="selected-reaction-icon--INTEREST" data-feed-action="react" data-feed-action-type="interestUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Insightful" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/br7ludovnq3n7137fvqsqwljx">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Insightful</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_ENTERTAINMENT" data-tracking-client-ingraph="" data-reaction-type="ENTERTAINMENT" tabindex="0" aria-pressed="false" id="selected-reaction-icon--ENTERTAINMENT" data-feed-action="react" data-feed-action-type="entertainmentUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Funny" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/6ga7ypv66xprsgreohwklur3y">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Funny</span>
+  </button>
+
+          </div>
+    </div>
+      <template id="selected-reaction">
+        <div>
+            
+  <div class="selected-reaction--LIKE flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Like" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/3tsxb73co15a9ze36f0y0vmng">
+    <span class="social-action-bar__button-text">Like</span>
+  </div>
+
+            
+  <div class="selected-reaction--PRAISE flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Celebrate" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/5tec0l9hykk5gezv56e7coyow">
+    <span class="social-action-bar__button-text">Celebrate</span>
+  </div>
+
+            
+  <div class="selected-reaction--APPRECIATION flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Support" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/7savup3gmhirulv2h5v8snx2x">
+    <span class="social-action-bar__button-text">Support</span>
+  </div>
+
+            
+  <div class="selected-reaction--EMPATHY flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Love" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/f4lj1wks3jt476fe5defirzg9">
+    <span class="social-action-bar__button-text">Love</span>
+  </div>
+
+            
+  <div class="selected-reaction--INTEREST flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Insightful" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/br7ludovnq3n7137fvqsqwljx">
+    <span class="social-action-bar__button-text">Insightful</span>
+  </div>
+
+            
+  <div class="selected-reaction--ENTERTAINMENT flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Funny" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/6ga7ypv66xprsgreohwklur3y">
+    <span class="social-action-bar__button-text">Funny</span>
+  </div>
+
+        </div>
+      </template>
+  
+  
+        
+      <!-- Comment Button -->
+      
+            
+  <a class="social-action-bar__button !rounded-none basis-full
+                babybear:basis-0 
+                babybear:pl-0.5 babybear:pr-0.5
+                " href="https://www.linkedin.com/feed/update/activity:7336002553978974209?trk=feed_main-feed-card_comment-cta" aria-label="Comment" data-tracking-control-name="feed_main-feed-card_comment-cta" data-tracking-will-navigate="" data-feed-action="comment" data-feed-action-type="expandCommentBox" data-feed-action-category="EXPAND" data-feed-control="comment_box">
+    <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false"><path d="M7 9h10v1H7V9zm0 4h7v-1H7v1zm16-2c0 2.2-1 4.3-2.8 5.6L12 22v-4H8c-3.9 0-7-3.1-7-7s3.1-7 7-7h8c3.9 0 7 3.1 7 7zm-2 0c0-2.8-2.2-5-5-5H8c-2.8 0-5 2.2-5 5s2.2 5 5 5h6v2.3l5-3.3c1.3-.9 2-2.4 2-4z" fill="currentColor"></path></svg></icon>
+    <span class="social-action-bar__button-text" aria-hidden="true">
+      Comment
+    </span>
+  </a>
+
+        
+        <!-- Share Button -->
+        
+                  
+  <button class="social-action-bar__button basis-full !rounded-none babybear:pl-0.5 babybear:justify-end" data-tracking-control-name="feed_main-feed-card_open-reshare-menu" data-tracking-client-ingraph="" data-reshare-desc="Create a new post with Kyle’s post attached" data-repost-desc="Instantly bring Kyle’s post to others’ feed" data-feed-action="share" data-feed-action-type="openShareMenu" data-feed-action-category="EXPAND" data-feed-control="reshare" data-send-privately-url="/messaging/compose/?body=https://www.linkedin.com/posts/kyle-poyar_pricing-ai-monetization-activity-7336002553978974209-k3PE">
+    <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false"><path d="M18.4 5H16l3.9 6H8c-3.4 0-6 2.8-6 5.9 0 .6.1 1.2.3 1.8L3 21h2.1l-.9-2.8c-.1-.4-.2-.8-.2-1.2 0-2.1 1.6-4 3.9-4h12L16 19h2.4l4.6-7-4.6-7z" fill="currentColor"></path></svg></icon>
+    <span class="social-action-bar__button-text">
+      Share
+    </span>
+  </button>
+
+        
+      <!-- Send Privately Button -->
+      
+<!---->        
+    </div>
+  
+  
+        
+
+      
+<!---->        
+
+      
+              
+      
+    
+        
+    </article>
+  
+      
+  
+
+        
+
+  
+<!---->            
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+<!----><!---->  
+        </li>
+        <li class="feed-item new-feed mb-1">
+          
+        
+    
+          
+  
+      
+
+    <article class="relative px-2 pb-0 bg-color-background-container
+        papabear:container-lined mamabear:container-lined
+        pt-1.5 main-feed-activity-card
+          
+           papabear:max-w-[550px]" data-activity-urn="urn:li:activity:7323500809147625472" data-featured-activity-urn="urn:li:activity:7323500809147625472" data-attributed-urn="urn:li:share:7323500790319349762" data-id="main-feed-card" data-is-sponsored="" data-feed-item-tracking-id="h0yPm/1BQyyFW2xQMAwP5w==" data-sponsored-tracking-url="www.linkedin.com/csp/sct?v=3&amp;trk=CwEAAAGXQqyJH01DEmHBIssOuHta7vr-CgPdBPXB9IPxxD0ODYxrA_2Dn4yuCpHsa5eVFwj0sVNF2QqlTY4ThC_xJsFaV1Z4faXLNHHF_elu6p3NeJ2DEzLF3D9N_hSnF9VsKf8tb0t9fRazpYqK4g9YWrbhMF8pddeUA4xZloWaiAepcYoiQ2brk9KLiKblGSN2_yXX5-YaZ0AMfZydmOcWs1WhgzMabdyRQrMsNiv5Q-kHHeIgT1MNtLD6vakS7vMm2Bmcem3gPnk-sIDV6mQqu1lhBMdlpBednH1SbvB3F_V1Jvhilnis8Yxpg7EcBjnIhEQF0YgN5P4W8PgRiTbzlMn4STqpJdxQmAGW_X7vPVQ1zKZ2JnURaSLH23tgCgecymxyHF9vSra76FRwGCGAdyAgAAhZu5AlzydeW5ZETVn_iYJQAMbnEWTUuTv-Pg94uHQ_ZZKwND6XTdBmvg6z0Tbs1rripmS9cf5CEr3CttLEf8yTbbeS468P3WakBFTrAut93SGj-Lunrh9eU03u0GxEM7OI5gLM1bs4E3VlplYlBhzUL2B4X_y1Xh9DgnC8j4j9v08-sUGMkXshQBQUWOe-0SqcAiqMB_AhmfBbZUfBVpJexVymRmpqLCnk_qlcvNjgXGyIiG1e8NA9vQxZkwiDzUQZykkOPqWjOZc1rQDn-KxGnJoEIUycYLrOySAlzNg7cQlj37DoQ9laynE0k2WmvEb9KpU5vms_LPs5GKoKsMXSnoD0p15PgAB1OTpmpG8pIoFXujqXwO_npPE924beB5fAPs-AYENO4Y7i8jrSVFb7-PlCnPmrrDe9MDfDMEGcv12MIqA_39guWPRJ8L3Fsgfg_mIWOQ9Aul0fD9Q_EvfVI5xegAL9jTcnflzeTwqH-ZeyjR7wReOXCAQDe6dt9AaR6WfiCeo4bLPPk1ojI062auEUVrKAIa0p9R8_fRXl6Nbz-nThkpmTQ0x8nE0lvPLODtrYO6Vcj4n-nh4yh_5zfvjlVhmmC0xA3Pko3KWrNxK4yY5UEVObksD05g7pqUyjqoySF_R9k2llPyVIxjqqKZzNhNZ3bJwcI7LK4IyTiE0Ot0v-x0lk2AZv6MZRY9FX9E1-LgauEV1dvX22imE7i0YC6shv7FktSWMOM5KFUTIAJtnOHniN99RtWL0KLiyOXThWxrZUZKHP_GiKWNsUE6L_boz3VFkn8cUajq8HGfpxDlkjxtHdKJzyNzdrKofoCF0JbeK1kTzQQG3yOGkDnu9g7Bxh7eyewXxvpiivmQcRnJjflk1atwFm4kxjqpDhKDCJitTEQTDIiCq9eCS2m_m04UmQPN0RZom-CsCcHcCd46TVEj2dtywIMRplNbzp_oe3N5OhIslk4OpBBDe2daAR7cjeCgWGQ-_m15aLBg1b00AZRExXbjM0an2Zp4qW-w6N3EpXRx_D7tOve1IV-6HF9YKGXhUcNUXt_nU-1__cnnn860uNFTgz74lQCPPvcdI1_FVExc7sq3ct1azD0ceL3BazTK0YAgWSU97fupivgs7QyotyHK74j0QHmB0bBmr406rZOy5sOCWBAzx2V-F42T8SDCW3T7_b09A2PLAv6OURHMkSm65kJz_r-0IWEiy2DOIuWdrCZ_UMNWi0KClF45CLhdp4YWc-HQ" data-populate-video-mrc-metadata="false" data-is-initialized-feed-item="true" data-sponsored-click-sequence-number="0" data-sponsored-sequence-number="0" data-feed-item-list-position="2" data-feed-item-observed="true">
+<!---->
+      
+<!---->        
+
+      <div class="flex">
+<!---->        <div class="base-main-feed-card__entity-lockup">
+          
+            
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div class="flex items-center font-sans mb-1" data-test-id="main-feed-activity-card__entity-lockup" data-feed-redirect="">
+          <a href="https://www.linkedin.com/company/microsoft?trk=feed_main-feed-card_feed-actor-image" class="relative" data-tracking-control-name="feed_main-feed-card_feed-actor-image" data-tracking-will-navigate="" data-feed-action-category="VIEW" data-feed-action-type="viewCompany" data-feed-control="actor_picture">
+            
+      <img class="inline-block relative w-6 h-6 lazy-loaded" data-ghost-classes="bg-color-entity-ghost-background" data-ghost-url="https://static.licdn.com/aero-v1/sc/h/cs8pjfgyw96g44ln9r7tct85f" alt="View organization page for Microsoft" aria-busy="false" src="https://media.licdn.com/dms/image/v2/D560BAQH32RJQCl3dDQ/company-logo_100_100/B56ZYQ0mrGGoAU-/0/1744038948046/microsoft_logo?e=1754524800&amp;v=beta&amp;t=ekV0Y5IMXzk-ZWXUcvw4yYiZJiLtZ-NUuXkIMZew_y4">
+      
+<!---->          </a>
+      <div class="flex flex-col self-start min-w-0
+          ml-1
+          mr-2">
+        <div class="text-color-text truncate">
+            <a class="text-sm link-styled no-underline leading-open px-0.25 outline-offset-[-1px]" href="https://www.linkedin.com/company/microsoft?trk=feed_main-feed-card_feed-actor-name" data-tracking-control-name="feed_main-feed-card_feed-actor-name" aria-label="View organization page for Microsoft" data-tracking-will-navigate="" data-feed-action-category="VIEW" data-feed-action-type="viewCompany" data-feed-control="actor">
+              Microsoft
+            </a>
+<!----><!---->        </div>
+
+            <p class="!text-xs text-color-text-low-emphasis leading-[1.33333] px-0.25 m-0 truncate">
+<!---->                25,555,359 followers
+            </p>
+
+            <span class="!text-xs text-color-text-low-emphasis leading-[1.33333] px-0.25">Promoted</span>
+      </div>
+
+<!---->    </div>
+  
+        
+        </div>
+          
+              
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+      <div class="ellipsis-menu absolute right-0 top-0 !mr-1 mt-0.5" data-id="main-feed-card__ellipsis-menu" data-feed-control="control_menu" data-tracking-control-name="control_menu" data-tracking-client-ingraph="" data-feed-action="show-feed-dropdown" data-feed-action-category="EXPAND" data-feed-action-category-flip="DISMISS" data-feed-action-type="expandControl" data-feed-action-type-flip="dismissControl">
+        
+
+    
+
+    <div class="collapsible-dropdown flex items-center relative hyphens-auto">
+          
+            <button class="ellipsis-menu__trigger
+                collapsible-dropdown__button btn-md btn-tertiary cursor-pointer
+                !py-[6px] !px-1 flex items-center rounded-[50%]
+                ellipsis-menu__trigger--small !w-4 !h-4 !min-h-4 justify-center
+                rotate-90" aria-expanded="false" aria-label="Open menu" data-tracking-control-name="control-menu_ellipsis-menu-trigger" tabindex="0">
+              <icon class="ellipsis-menu__trigger-icon m-0 p-0 centered-icon lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" data-supported-dps="16x16" fill="currentColor" focusable="false" class="lazy-loaded" aria-busy="false">
+  <path d="M2 7h2v2H2V7zm5 2h2V7H7v2zm5-2v2h2V7h-2z"></path>
+</svg></icon>
+            </button>
+          
+
+        <ul class="collapsible-dropdown__list hidden container-raised absolute w-auto overflow-y-auto flex-col items-stretch z-1 bottom-auto top-[100%]" role="menu" tabindex="-1">
+          
+              
+            
+  <li class="ellipsis-menu__item text-sm border-0 px-2 py-1.5 text-color-text flex py-[10px]" data-feed-action="control-menu-share-via" data-feed-control="control_menu_share_via" data-tracking-control-name="control_menu_share_via" data-feed-action-type="shareVia" data-feed-action-category="SHARE">
+    
+                
+    
+    
+    
+    
+    
+
+    <button class="font-medium flex items-center ellipsis-menu__item-button text-color-text !bg-color-transparent share-via-trigger text-sm w-full hover:cursor-pointer hover:text-color-link hover:underline" aria-label="Share via" data-tracking-control-name="share-via_share-via" data-share-via-action="" role="menuitem">
+        <icon data-svg-class-name="w-3 h-3 mr-2 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="share-android-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 mr-2 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M20 19a3 3 0 01-6 0 2.6 2.6 0 01.06-.56l-7.13-4.16a3 3 0 110-4.56l7.13-4.16A2.6 2.6 0 0114 5a3 3 0 113 3 2.94 2.94 0 01-1.95-.7l-7.11 4.14a2.64 2.64 0 010 1.12l7.13 4.16a3 3 0 014.23.37A3 3 0 0120 19z"></path>
+</svg></icon>
+          Share via
+      
+      
+    </button>
+    
+
+    
+    <div class="hidden">
+        <button class="modal__outlet " data-tracking-control-name="share-via_share-via-modal_modal_outlet" data-modal="default-outlet" aria-hidden="true" tabindex="-1">
+          
+        </button>
+
+      <div id="share-via" class="modal share-via-modal " data-outlet="default-outlet">
+<!---->        <div class="modal__overlay flex items-center bg-color-background-scrim justify-center fixed bottom-0 left-0 right-0 top-0 opacity-0 invisible pointer-events-none z-[1000] transition-[opacity] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.17s]
+            py-4
+            " aria-hidden="true">
+          <section aria-modal="true" role="dialog" aria-labelledby="share-via-modal-header" tabindex="-1" class="max-h-full modal__wrapper overflow-auto p-0 bg-color-surface max-w-[1128px] min-h-[160px] relative scale-[0.25] shadow-sm shadow-color-border-faint transition-[transform] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.33s] focus:outline-0
+              
+              w-[1128px] mamabear:w-[744px] babybear:w-[360px]
+              
+              rounded-md">
+              
+        <header class="modal__header flex items-center justify-between pl-3">
+              <h2 class="modal__title font-normal leading-open text-color-text text-md py-1.5 w-full">Share to</h2>
+        </header>
+      
+            <div class="modal__main w-full">
+              
+        <ul class="flex flex-col">
+                <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                  <button class="text-left border-0 hover:cursor-pointer opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint" data-tracking-control-name="share-to-copy-to-clipboard" data-tracking-will-navigate="" data-action-copy-to-clipboard="">
+                    <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="document-copy-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M17.5 2H9v5H3v15h12v-5h6V5.5zM13 20H5V9h4v8h4zm6-5h-8V4h5v3h3z"></path>
+</svg></icon>
+                    <span class="inline-block pl-1">Copy to clipboard</span>
+                  </button>
+                </li>
+              <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.linkedin.com%2Fposts%2Fmicrosoft_buenos-aires-ciudad-c%25C3%25B3mo-la-ia-generativa-activity-7323500809147625472-M_E9&amp;title=" target="_blank" class="link opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint" data-tracking-control-name="share-to-facebook" data-tracking-will-navigate="">
+                  <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="facebook-solid" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path fill="none" d="M-.003 0h24v24h-24z"></path>
+  <path d="M19.997 2h-16a2 2 0 00-2 2v16a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.75 8l-.625 3h-2.625v6h-3v-6h-2v-3h2V8.537c0-2.092.584-3.537 3.561-3.537h2.439v3h-2.273c-.477 0-.727.214-.727.727V10h3.25z"></path>
+</svg></icon>
+                  <span class="inline-block pl-1">Facebook</span>
+                </a>
+              </li>
+              <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                <a href="https://www.twitter.com/intent/tweet?url=https%3A%2F%2Fwww.linkedin.com%2Fposts%2Fmicrosoft_buenos-aires-ciudad-c%25C3%25B3mo-la-ia-generativa-activity-7323500809147625472-M_E9&amp;text=" target="_blank" class="opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint !border-0" data-tracking-control-name="share-to-twitter" data-tracking-will-navigate="">
+                  <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="twitter-solid" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M13.9 10.47L21.35 2h-1.76l-6.46 7.35L7.96 2H2l7.81 11.12L2 22h1.76l6.83-7.77L16.04 22H22l-8.1-11.53zm-2.42 2.75l-.79-1.11L4.4 3.3h2.71l5.08 7.11.79 1.11 6.6 9.24h-2.71l-5.39-7.54z"></path>
+</svg></icon>
+                  <span class="inline-block pl-1">Twitter</span>
+                </a>
+              </li>
+        </ul>
+      
+            </div>
+
+<!---->          </section>
+        </div>
+      </div>
+    </div>
+  
+  
+                <code id="i18n_copy_to_clipboard_success" style="display: none"><!--"Copied to clipboard"--></code>
+                <code id="i18n_copy_to_clipboard_error" style="display: none"><!--"Error copying to clipboard, try again"--></code>
+              
+  </li>
+
+<!---->                
+  <li class="ellipsis-menu__item text-sm border-0 px-2 py-1.5 text-color-text flex" data-feed-action="control-menu-semaphore" data-feed-control="control_menu_report" data-tracking-control-name="control_menu_report" data-feed-action-type="expandReporting" data-feed-action-category="EXPAND">
+    
+                    
+
+    
+    
+
+    
+
+    
+
+    <a href="/uas/login?trk=feed-semaphore-sign-in-redirect&amp;guestReportContentType=SAS_SPONSORED_UPDATE&amp;_f=guest-reporting" data-tracking-control-name="feed-semaphore-sign-in-redirect" data-tracking-client-ingraph="" data-tracking-will-navigate="" data-item-type="semaphore" data-semaphore-content-type="SAS_SPONSORED_UPDATE" data-semaphore-content-urn="urn:li:sponsoredCreative:667767624" data-semaphore-author-profile-id="ACoAAACXTWQB042vXUAwuUh36CQ62MpzIURCD9g" data-semaphore-author-urn="urn:li:sponsoredAccount:508430988" data-semaphore-should-send-x-li-track="true" data-semaphore-should-send-author-urn="true" data-semaphore-tracking-prefix="feed-semaphore" data-is-logged-in="true" data-modal="semaphore__toggle" class="semaphore__toggle visited:text-color-text-secondary text-color-text flex items-center w-full" role="menuitem">
+<!---->        
+                        <icon class="text-color-icon h-[24px] w-[24px] mr-2 lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="report-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="lazy-loaded" aria-busy="false">
+  <path d="M17.9 4.38a5.82 5.82 0 01-1.9.31 6.1 6.1 0 01-1.9-.31l-3.2-1.07A6.41 6.41 0 009 3a5.57 5.57 0 00-1.9.31L6 3.67V2H4v20h2v-8l1.1-.37a6.41 6.41 0 011.9-.32 5.82 5.82 0 011.9.31l3.2 1.07a6 6 0 003.8 0L20 14V3.68z"></path>
+</svg></icon>
+                        <span class="inline-block font-medium">Report this post</span>
+                      
+    </a>
+
+      
+    
+    
+    
+
+    
+
+    
+    <div class="hidden">
+        <button class="modal__outlet " data-tracking-control-name="feed-semaphore-modal_modal_outlet" data-modal="default-outlet" aria-hidden="true" tabindex="-1">
+          
+        </button>
+
+      <div id="semaphore-modal" class="modal semaphore-modal max-w-[744px] " data-outlet="default-outlet">
+<!---->        <div class="modal__overlay flex items-center bg-color-background-scrim justify-center fixed bottom-0 left-0 right-0 top-0 opacity-0 invisible pointer-events-none z-[1000] transition-[opacity] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.17s]
+            py-4
+            " aria-hidden="true">
+          <section aria-modal="true" role="dialog" aria-labelledby="semaphore-modal-modal-header" tabindex="-1" class="max-h-full modal__wrapper overflow-auto p-0 bg-color-surface max-w-[1128px] min-h-[160px] relative scale-[0.25] shadow-sm shadow-color-border-faint transition-[transform] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.33s] focus:outline-0
+               modal__wrapper--with-footer flex flex-col
+              w-[1128px] mamabear:w-[744px] babybear:w-[360px]
+               max-w-[min(744px,100%-24px)]
+              rounded-md">
+              <header class="modal__header flex items-center justify-between py-1.5 px-3
+                  ">
+                  <h2 id="semaphore-modal-modal-header" class="modal__title font-normal leading-open text-color-text text-lg">Report</h2>
+                  <button class="modal__dismiss modal__dismiss--with-icon btn-tertiary h-[40px] w-[40px] p-0 rounded-full indent-0
+                      " aria-label="Dismiss" data-tracking-control-name="feed-semaphore-modal_modal_dismiss" type="button">
+                      <icon class="modal__dismiss-icon relative top-[2px] lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" class="artdeco-icon lazy-loaded" focusable="false" aria-busy="false">
+  <path d="M20,5.32L13.32,12,20,18.68,18.66,20,12,13.33,5.34,20,4,18.68,10.68,12,4,5.32,5.32,4,12,10.69,18.68,4Z" fill="currentColor"></path>
+</svg></icon>
+                  </button>
+<!---->              </header>
+            <div class="modal__main w-full flex-1">
+              
+        <h2 class="semaphore-modal__title text-md font-medium mb-1 ml-2 mt-2 text-color-text" tabindex="-1">
+          Report<!-- semaphore title goes here -->
+        </h2>
+        <div class="semaphore-modal__content text-color-text"></div>
+      
+            </div>
+
+                <footer class="modal__footer flex justify-end py-1.5 px-3 border-t-1 border-solid border-color-border-faint">
+                  
+        <button class="btn-md btn-secondary" data-semaphore-action="back" data-tracking-control-name="semaphore-back">Back</button>
+        <button class="btn-md btn-primary ml-1" data-semaphore-action="submit" data-tracking-control-name="semaphore-submit" disabled="true">Submit</button>
+      
+                </footer>
+          </section>
+        </div>
+      </div>
+    </div>
+  
+  
+      
+    <template id="semaphore-container-template">
+      <ul class="semaphore-options-container mb-2">
+        <!-- list of semaphore options -->
+      </ul>
+    </template>
+  
+      
+    <template id="semaphore-block-template">
+      <li class="px-2 py-1" data-semaphore-item="action">
+        <span class="text-sm text-color-text-low-emphasis whitespace-pre-line" data-attr="block-content"></span>
+        <input class="hidden scale-150" data-tracking-control-name="feed-semaphore" name="semaphore-action" checked="" value="" data-semaphore-input="" type="radio">
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-section-template">
+      <li class="px-2 py-1" data-semaphore-item="section">
+        <button class="w-full text-color-text" data-tracking-control-name="feed-semaphore" data-semaphore-input="">
+          <span class="text-md text-left inline-block w-[calc(100%-24px)]" data-attr="title"></span>
+          <icon class="float-right w-[24px] h-[24px] opacity-60" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/bib7g6ntpj66fbkg8zzh0psp2"></icon>
+        </button>
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-openpage-template">
+      <li class="px-2 py-1 border-t-1 border-solid border-color-border-faint" data-semaphore-item="openpage">
+        <span class="text-md font-medium block my-1" data-attr="body"></span>
+        <button data-tracking-control-name="feed-semaphore" data-semaphore-input="">
+          <span class="text-md text-color-text" data-attr="title"></span>
+        </button>
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-action-template">
+      <li class="px-2 py-1" data-semaphore-item="action" data-semaphore-type="">
+        <span class="text-md font-medium inline-block my-1" data-attr="body"></span>
+        <button class="w-full text-color-text" data-tracking-control-name="feed-semaphore" data-semaphore-input="">
+          <span class="text-md text-left inline-block w-[calc(100%-24px)]" data-attr="title"></span>
+          <icon class="float-right w-[24px] h-[24px] opacity-60" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/bib7g6ntpj66fbkg8zzh0psp2"></icon>
+        </button>
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-action-radio-template">
+      <li class="px-2 py-1" data-semaphore-item="action">
+        <div class="flex items-start justify-start relative">
+          <input class="relative mr-1 z-[1] appearance-none w-[18px] h-[18px]" data-tracking-control-name="feed-semaphore" name="semaphore-action" value="" data-semaphore-input="" id="semaphore-action-radio" type="radio">
+          <label class="text-sm text-color-text leading-[1.7] flex-1 hyphens-auto input-label-text" for="semaphore-action-radio" data-semaphore-label="">
+            <span class="text-md ml-1" data-attr="title"></span>
+            <div class="text-sm ml-1 text-left opacity-60" data-attr="body"></div>
+          </label>
+        </div>
+
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-openlink-template">
+      <li class="px-2 py-1" data-semaphore-item="openlink">
+        <a class="text-color-text hover:no-underline visited:text-color-text" data-semaphore-input="" data-tracking-control-name="feed-semaphore" href="" target="_blank" data-tracking-will-navigate="">
+          <span class="text-md text-color-text font-normal inline-block" data-attr="title"></span>
+          <span class="text-sm text-color-text font-normal inline-block w-[calc(100%-24px)] opacity-60" data-attr="body"></span>
+          <icon class="float-right w-[24px] h-[24px] opacity-60" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/481psuouj1lu3q2laho6vqwhn"></icon>
+        </a>
+      </li>
+    </template>
+  
+      
+    <template id="semaphore-result-template">
+      <p class="semaphore-options-container__item pl-2 pb-2" data-semaphore-item="result">
+        <span class="text-sm font-normal text-color-text-secondary" data-attr="thanks-text-body"></span>
+        <a class="text-sm font-semibold text-color-link" href="https://www.linkedin.com/help/linkedin/answer/37822" target="_blank" data-attr="thanks-help-center-link" data-tracking-control-name="feed-semaphore-help-center" data-tracking-will-navigate="" data-semaphore-input=""></a>
+      </p>
+    </template>
+  
+  
+                  
+  </li>
+
+              
+  <li class="ellipsis-menu__item text-sm border-0 px-2 py-1.5 text-color-text flex" data-feed-action="control-menu-imf" data-feed-control="control_menu_improve_feed" data-tracking-control-name="control_menu_improve_feed" data-feed-action-type="viewDiscovery" data-feed-action-category="VIEW">
+    
+                  <a class="hover:text-color-text hover:no-underline visited:text-color-text-secondary font-medium text-color-text flex items-center w-full" href="/feed/follow" role="menuitem">
+                    <icon class="text-color-icon h-[24px] w-[24px] mr-2 lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="settings-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="lazy-loaded" aria-busy="false">
+  <path d="M9.18 2l-4.3 2.52L6.22 8l-.52.91-3.7.55v5l3.64.54.54.93-1.34 3.53L9.14 22l2.29-2.9h1.09l2.3 2.9 4.32-2.52L17.79 16l.53-.93 3.68-.53v-5L18.32 9l-.51-.9 1.36-3.51L14.86 2l-2.33 3h-1zM12 9a3 3 0 11-3 3 3 3 0 013-3z"></path>
+</svg></icon>
+                    <span class="inline-block font-medium">Improve my feed</span>
+                  </a>
+                
+  </li>
+
+              
+  <li class="ellipsis-menu__item text-sm border-0 px-2 py-1.5 text-color-text flex" data-feed-action="ad-choice" data-feed-control="control_menu_ad_choice" data-tracking-control-name="control_menu_ad_choice" data-feed-action-type="adChoice" data-feed-action-category="view" data-thread-urn="urn:li:activity:7323500809147625472">
+    
+                  <a class="ellipsis-menu__item-button flex items-center text-color-text !bg-color-transparent no-focus-ring text-sm w-full" href="/mwlite/feed/adServing/urn:li:sponsoredCreative:667767624/1749170292897?accountId=508430988&amp;trk=control-menu_ad-choice-cta" data-tracking-control-name="control-menu_ad-choice-cta" role="menuitem">
+                    <icon class="text-color-icon h-[24px] w-[24px] mr-2 lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="signal-notice-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="lazy-loaded" aria-busy="false">
+  <path d="M18 3H6a3 3 0 00-3 3v12a3 3 0 003 3h12a3 3 0 003-3V6a3 3 0 00-3-3zm-4 15h-1a3 3 0 01-3-3 3.22 3.22 0 01.1-.75L11.2 10h2.07L12 14.75A1 1 0 0013 16h1zm-1-9.75A1.25 1.25 0 1114.25 7 1.25 1.25 0 0113 8.25z"></path>
+</svg></icon>
+                    <span class="inline-block font-medium truncate">Why am I seeing this ad?</span>
+                  </a>
+                
+  </li>
+
+      
+
+<!----><!---->          
+        </ul>
+
+<!---->    </div>
+  
+
+      </div>
+  
+    
+    
+    
+    
+    
+
+    <template id="post-removed-card-template">
+      <div class="post-removed-card-template__container pt-1.5 px-2 pb-0 bg-color-background-container max-w-[550px]">
+        <div class="flex items-center justify-between">
+          <header class="text-color-text text-sm font-medium leading-open" role="status">You unfollowed Microsoft</header>
+          <button class="post-removed-card-template__undo-follow-button font-medium btn-sm btn-tertiary-emphasis p-1" data-feed-action="control-menu-undo-unfollow" data-feed-action-type="undoUnfollow" data-feed-action-category="undo" data-feed-control="control_undo" data-tracking-control-name="control_undo">
+            Undo
+          </button>
+        </div>
+        <div class="text-wrapper text-sm">
+          <span class="text-color-text-secondary" role="status">Post removed from your feed and will update on the next feed refresh</span>
+        </div>
+        <a href="/feed/follow" class="post-removed-card-template__imf-link btn-sm btn-primary inline-block my-2">
+          Improve my feed
+        </a>
+      </div>
+    </template>
+  
+    
+    
+
+    <template id="post-reported-card-template">
+      <p class="post-reported-card text-sm font-medium text-color-text-secondary p-2 bg-color-background-container">Thanks for letting us know! You’ll no longer see this post in your feed</p>
+    </template>
+  
+<!---->  
+        
+      </div>
+
+      
+            
+            
+  <div class="attributed-text-segment-list__container relative mt-1 mb-1.5 babybear:mt-0 babybear:mb-0.5">
+    <p class="attributed-text-segment-list__content text-color-text !text-sm whitespace-pre-wrap break-words
+        attributed-text-segment-list__content-truncated" dir="ltr" data-feed-control="commentary_text" data-feed-action-type="viewLink" data-test-id="main-feed-activity-card__commentary" data-feed-redirect="">El Gobierno de la Ciudad de Buenos Aires logró reducir su carga operativa un 50% mediante una estrategia de transformación digital integral. Como parte de esta iniciativa, implementó un chatbot que aprovecha las capacidades de Azure OpenAI Services, lo que le permite gestionar eficientemente dos millones de interacciones mensuales sin intervención humana. Conoce el caso completo:
+🔗 <a class="link" href="https://www.linkedin.com/safety/go?url=http%3A%2F%2Fmsft.it%2F6049SRc9h%3Ftrk%3Dfeed_main-feed-card-text" target="_blank" data-tracking-control-name="feed_main-feed-card-text" data-tracking-will-navigate="" data-feed-control="commentary_link" data-feed-action-category="VIEW" data-feed-action-type="viewLink">http://msft.it/6049SRc9h</a> </p>
+          
+            
+                  
+    
+
+    <button class="attributed-text-segment-list__btn-truncation absolute right-0 bottom-0 pl-1 bg-color-background-container text-color-text-secondary text-sm font-medium babybear:font-bold cursor-pointer hover:text-color-link-hover hover:underline" data-feed-action="see-more-post" data-feed-action-category="EXPAND" data-feed-action-type="expandCommentaryText" data-feed-control="commentary_expand" aria-hidden="true" tabindex="0">
+      …more
+    </button>
+  
+              
+          
+  </div>
+
+
+
+        
+
+        
+            
+      
+<!---->      
+    
+    
+    
+
+    <div class="">
+      
+      <a href="https://www.microsoft.com/es/customers/story/21550-gobierno-de-la-ciudad-de-buenos-aires-azure-open-ai-service?li_fat_id=0c691624-d19d-4a66-8696-7ffbaa7a9cb6" target="_blank" data-tracking-control-name="feed_main-feed-card_feed-article-content" data-tracking-will-navigate="" class="flex flex-col feed-article-content" data-test-id="article-content" data-feed-control="object" data-feed-action-category="VIEW" data-feed-action-type="viewLink" role="button">
+        
+
+        <img alt="Buenos Aires Ciudad: cómo la IA generativa está revolucionando la vida de millones con Azure OpenAI Services | Microsoft Customer Stories" class="w-main-feed-card-media object-cover lazy-loaded" data-ghost-classes="tw-feed-content-ghost-image" data-ghost-url="https://static.licdn.com/aero-v1/sc/h/42byfw7gh464l64dlwodbbdez" data-feed-control="update_article_image" data-feed-action-category="VIEW" data-feed-action-type="viewLink" aria-busy="false" src="https://media.licdn.com/dms/image/v2/D5610AQF7AHa8a9_EmQ/image-shrink_800/B56ZaJNH5CHgAc-/0/1746058641923?e=1749776400&amp;v=beta&amp;t=FfN88Q8M7m_rVukorkzg_EzdfphNN5R8Prjbqb-0qPw">
+        <section data-feed-control="article_description" data-feed-action-category="VIEW" data-feed-action-type="viewLink" class="flex justify-between article-content__header
+             py-1 px-1.5 -mx-2 border-1 border-solid border-color-border-faint bg-color-background-container-tint">
+          <header>
+              <h2 class="tw-feed-content-title" dir="ltr" data-test-id="article-content__title">
+                Buenos Aires Ciudad: cómo la IA generativa está revolucionando la vida de millones con Azure OpenAI Services | Microsoft Customer Stories
+              </h2>
+
+              <h3 class="tw-feed-content-subtitle" data-test-id="article-content__subtitle">
+                  microsoft.com
+              </h3>
+          </header>
+<!---->        </section>
+      
+      </a>
+  
+<!---->    </div>
+  
+  
+      
+  
+                  
+
+      
+          
+<!---->    
+        
+
+      
+          
+      
+
+    
+
+    
+
+    
+
+<!---->  
+    
+        
+
+      
+            
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <code id="i18n_reaction_singular" style="display: none"><!--"%numReactions% Reaction"--></code>
+    <code id="i18n_reactions_plural" style="display: none"><!--"%numReactions% Reactions"--></code>
+
+      <div class="flex items-center font-sans text-sm babybear:text-xs main-feed-activity-card__social-actions" data-feed-redirect="">
+            
+      <a href="https://www.linkedin.com/feed/update/activity:7323500809147625472?trk=feed_main-feed-card_social-actions-reactions" target="_self" data-tracking-control-name="feed_main-feed-card_social-actions-reactions" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis grow my-1" aria-label="1,035 Reactions" data-feed-action-category="VIEW" data-feed-action-type="viewLikers" data-feed-control="likes_count" data-separate-ctas="true" data-test-id="social-actions__reactions" data-id="social-actions__reactions" data-num-reactions="1035" data-singular="%numReactions%" data-plural="%numReactions%" data-entity-urn="urn:li:activity:7323500809147625472" tabindex="0">
+        
+                    <img alt="" data-reaction-type="LIKE" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/bn39hirwzjqj18ej1fkz55671" class="lazy-loaded">
+                    <img alt="" data-reaction-type="PRAISE" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/2tzoeodxy0zug4455msr0oq0v" class="lazy-loaded">
+                    <img alt="" data-reaction-type="EMPATHY" height="16px" width="16px" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/asiqslyf4ooq7ggllg4fyo4o2" class="lazy-loaded">
+
+              <span aria-hidden="true" class="font-normal ml-0.5" data-test-id="social-actions__reaction-count">
+                    1,035
+              </span>
+            
+      </a>
+  
+                  <code id="social-actions__reaction-image-APPRECIATION" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/cyfai5zw4nrqhyyhl0p7so58v"--></code>
+<!----><!---->                  <code id="social-actions__reaction-image-EMPATHY" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/asiqslyf4ooq7ggllg4fyo4o2"--></code>
+                  <code id="social-actions__reaction-image-ENTERTAINMENT" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/22ifp2etz8kb9tgjqn65s9ics"--></code>
+<!---->                  <code id="social-actions__reaction-image-INTEREST" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/a0e8rff6djeoq8iympcysuqfu"--></code>
+                  <code id="social-actions__reaction-image-LIKE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/bn39hirwzjqj18ej1fkz55671"--></code>
+                  <code id="social-actions__reaction-image-MAYBE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/cryzkreqrh52ja5bc6njlrupa"--></code>
+                  <code id="social-actions__reaction-image-PRAISE" style="display: none"><!--"https://static.licdn.com/aero-v1/sc/h/2tzoeodxy0zug4455msr0oq0v"--></code>
+<!----><!---->            
+      <a href="https://www.linkedin.com/feed/update/activity:7323500809147625472?trk=feed_main-feed-card_social-actions-comments" target="_self" data-tracking-control-name="feed_main-feed-card_social-actions-comments" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis
+                
+                my-1" data-separate-ctas="true" data-test-id="social-actions__comments" data-feed-control="comments_count" data-feed-action-type="expandMoreComments" data-id="social-actions__comments" data-num-comments="46" data-singular="%numComments% Comment" data-plural="%numComments% Comments" data-entity-urn="urn:li:activity:7323500809147625472">
+        
+                46 Comments
+            
+      </a>
+  
+            <a href="https://www.linkedin.com/feed/update/activity:7323500809147625472?trk=feed_main-feed-card_social-actions-reposts" target="_self" aria-hidden="false" tabindex="0" data-tracking-control-name="feed_main-feed-card_social-actions-reposts" data-tracking-will-navigate="" class="flex items-center font-normal text-color-text-low-emphasis no-underline visited:text-color-text-low-emphasis
+                before:middot
+                my-1" data-test-id="social-actions__reposts" data-feed-control="reshare_count" data-feed-action-type="viewShares" data-id="social-actions__reposts" data-num-reposts="80" data-singular="%numReposts% Repost" data-plural="%numReposts% Reposts" data-entity-urn="urn:li:activity:7323500809147625472">
+                80 Reposts
+            </a>
+      </div>
+  
+  
+        
+
+      
+                
+    
+    
+    
+    
+    
+
+      
+    <div class="social-action-bar border-t-1 border-solid border-color-border-faint min-h-[40px] items-center mt-1 babybear:mt-0 flex babybear:justify-around mx-main-feed-card-no-gutter
+                    border-b-1
+                    ">
+      <!-- Reaction Menu -->
+      
+          
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+    <code id="i18n_reaction_selection_state" style="display: none"><!--"%reactionType% %selectionState%"--></code>
+
+    <div class="reactions-menu flex flex-row relative items-center justify-center select-none [-webkit-user-select:none] pointer-events-auto basis-full
+              babybear:pr-0.5 babybear:justify-start">
+        <button class="reactions-menu__trigger social-action-bar__button relative h-6 cursor-pointer w-full basis-full
+              babybear:pr-0.5 babybear:justify-start" data-tracking-control-name="feed_main-feed-card_like-cta" data-parent-urn="urn:li:activity:7323500809147625472" data-is-logged-in="" data-target-link="https://www.linkedin.com/feed/update/activity:7323500809147625472" data-tracking-will-navigate="" aria-live="polite" data-feed-action="react" data-feed-action-type="likeUpdate" data-feed-action-category="REACT" data-feed-control="like_toggle" data-tracking-client-ingraph="" role="button" type="button">
+          
+
+<!---->    <div class="like-button-default flex flex-row items-center ">
+      <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="thumbs-up-outline-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false">
+  <path d="M19.46 11l-3.91-3.91a7 7 0 01-1.69-2.74l-.49-1.47A2.76 2.76 0 0010.76 1 2.75 2.75 0 008 3.74v1.12a9.19 9.19 0 00.46 2.85L8.89 9H4.12A2.12 2.12 0 002 11.12a2.16 2.16 0 00.92 1.76A2.11 2.11 0 002 14.62a2.14 2.14 0 001.28 2 2 2 0 00-.28 1 2.12 2.12 0 002 2.12v.14A2.12 2.12 0 007.12 22h7.49a8.08 8.08 0 003.58-.84l.31-.16H21V11zM19 19h-1l-.73.37a6.14 6.14 0 01-2.69.63H7.72a1 1 0 01-1-.72l-.25-.87-.85-.41A1 1 0 015 17l.17-1-.76-.74A1 1 0 014.27 14l.66-1.09-.73-1.1a.49.49 0 01.08-.7.48.48 0 01.34-.11h7.05l-1.31-3.92A7 7 0 0110 4.86V3.75a.77.77 0 01.75-.75.75.75 0 01.71.51L12 5a9 9 0 002.13 3.5l4.5 4.5H19z"></path>
+</svg></icon>
+      <span class="social-action-bar__button-text">Like</span>
+    </div>
+
+        </button>
+        <button class="reactions-menu__trigger--a11y flex-row items-center h-[40px] rotate-180 relative top-1 overflow-hidden w-0 p-0" data-tracking-control-name="feed_main-feed-card_like-cta-a11y-trigger" data-tracking-client-ingraph="" aria-label="Open reactions menu" role="button" aria-expanded="false" type="button">
+          <icon class="w-3 h-3 text-color-text lazy-loaded" data-svg-class-name="relative top-0.5 text-sm font-bold text-color-text" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="caret-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="relative top-0.5 text-sm font-bold text-color-text lazy-loaded" aria-busy="false">
+  <path d="M12 16L5 9h14z" fill-rule="evenodd"></path>
+</svg></icon>
+        </button>
+          <div class="w-auto h-[48px] select-none babybear:h-[72px] p-0.5 left-3 container-raised !rounded-[10px] absolute flex justify-center bg-color-background-container bottom-[100%] babybear:bottom-[120%] top-auto reactions-menu-list z-10 hidden basis-full
+              babybear:pr-0.5 babybear:justify-start" data-id="reactions-menu">
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_LIKE" data-tracking-client-ingraph="" data-reaction-type="LIKE" tabindex="0" aria-pressed="false" id="selected-reaction-icon--LIKE" data-feed-action="react" data-feed-action-type="likeUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Like" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/3tsxb73co15a9ze36f0y0vmng">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Like</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_PRAISE" data-tracking-client-ingraph="" data-reaction-type="PRAISE" tabindex="0" aria-pressed="false" id="selected-reaction-icon--PRAISE" data-feed-action="react" data-feed-action-type="praiseUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Celebrate" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/5tec0l9hykk5gezv56e7coyow">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Celebrate</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_APPRECIATION" data-tracking-client-ingraph="" data-reaction-type="APPRECIATION" tabindex="0" aria-pressed="false" id="selected-reaction-icon--APPRECIATION" data-feed-action="react" data-feed-action-type="appreciationUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Support" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/7savup3gmhirulv2h5v8snx2x">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Support</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_EMPATHY" data-tracking-client-ingraph="" data-reaction-type="EMPATHY" tabindex="0" aria-pressed="false" id="selected-reaction-icon--EMPATHY" data-feed-action="react" data-feed-action-type="empathyUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Love" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/f4lj1wks3jt476fe5defirzg9">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Love</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_INTEREST" data-tracking-client-ingraph="" data-reaction-type="INTEREST" tabindex="0" aria-pressed="false" id="selected-reaction-icon--INTEREST" data-feed-action="react" data-feed-action-type="interestUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Insightful" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/br7ludovnq3n7137fvqsqwljx">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Insightful</span>
+  </button>
+
+              
+  <button class="group relative flex px-[4px] h-[120px] w-[36px] babybear:w-6 justify-start papabear:h-6 papabear:inline-block m-0.5 babybear:mx-0 !bg-color-background-none border-none cursor-pointer" data-tracking-control-name="feed_main-feed-card_ENTERTAINMENT" data-tracking-client-ingraph="" data-reaction-type="ENTERTAINMENT" tabindex="0" aria-pressed="false" id="selected-reaction-icon--ENTERTAINMENT" data-feed-action="react" data-feed-action-type="entertainmentUpdate" data-feed-action-category="react" data-feed-control="select_reaction">
+    <img class="inline-block align-middle relative babybear:top-0.5 mamabear:-top-0.5 -top-1 group-focus:scale-150 group-focus:-translate-y-25% !transition-all duration-fast w-[36px] h-[36px] babybear:w-6 babybear:h-6 lazy-loaded" alt="Funny" aria-busy="false" src="https://static.licdn.com/aero-v1/sc/h/6ga7ypv66xprsgreohwklur3y">
+    <span class="group-focus:opacity-100 group-focus:visible
+        
+        transition-opacity duration-fast absolute -translate-x-25% babybear:-translate-x-50% left-50% inline-block rounded-[15px] text-color-text-on-dark bg-color-background-canvas-dark py-0.5 px-1 whitespace-nowrap -top-[45px] opacity-0 invisible">Funny</span>
+  </button>
+
+          </div>
+    </div>
+      <template id="selected-reaction">
+        <div>
+            
+  <div class="selected-reaction--LIKE flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Like" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/3tsxb73co15a9ze36f0y0vmng">
+    <span class="social-action-bar__button-text">Like</span>
+  </div>
+
+            
+  <div class="selected-reaction--PRAISE flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Celebrate" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/5tec0l9hykk5gezv56e7coyow">
+    <span class="social-action-bar__button-text">Celebrate</span>
+  </div>
+
+            
+  <div class="selected-reaction--APPRECIATION flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Support" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/7savup3gmhirulv2h5v8snx2x">
+    <span class="social-action-bar__button-text">Support</span>
+  </div>
+
+            
+  <div class="selected-reaction--EMPATHY flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Love" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/f4lj1wks3jt476fe5defirzg9">
+    <span class="social-action-bar__button-text">Love</span>
+  </div>
+
+            
+  <div class="selected-reaction--INTEREST flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Insightful" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/br7ludovnq3n7137fvqsqwljx">
+    <span class="social-action-bar__button-text">Insightful</span>
+  </div>
+
+            
+  <div class="selected-reaction--ENTERTAINMENT flex flex-row items-center">
+    <img class="inline-block align-middle relative w-3 h-3 mr-1 babybear:mr-0 mb-0.5" alt="Funny" aria-hidden="true" data-delayed-url="https://static.licdn.com/aero-v1/sc/h/6ga7ypv66xprsgreohwklur3y">
+    <span class="social-action-bar__button-text">Funny</span>
+  </div>
+
+        </div>
+      </template>
+  
+  
+        
+      <!-- Comment Button -->
+      
+            
+  <a class="social-action-bar__button !rounded-none basis-full
+                babybear:basis-0 
+                babybear:pl-0.5 babybear:pr-0.5
+                " href="https://www.linkedin.com/feed/update/activity:7323500809147625472?trk=feed_main-feed-card_comment-cta" aria-label="Comment" data-tracking-control-name="feed_main-feed-card_comment-cta" data-tracking-will-navigate="" data-feed-action="comment" data-feed-action-type="expandCommentBox" data-feed-action-category="EXPAND" data-feed-control="comment_box">
+    <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false"><path d="M7 9h10v1H7V9zm0 4h7v-1H7v1zm16-2c0 2.2-1 4.3-2.8 5.6L12 22v-4H8c-3.9 0-7-3.1-7-7s3.1-7 7-7h8c3.9 0 7 3.1 7 7zm-2 0c0-2.8-2.2-5-5-5H8c-2.8 0-5 2.2-5 5s2.2 5 5 5h6v2.3l5-3.3c1.3-.9 2-2.4 2-4z" fill="currentColor"></path></svg></icon>
+    <span class="social-action-bar__button-text" aria-hidden="true">
+      Comment
+    </span>
+  </a>
+
+        
+        <!-- Share Button -->
+        
+                  
+  <button class="social-action-bar__button basis-full !rounded-none babybear:pl-0.5 babybear:justify-end" data-tracking-control-name="feed_main-feed-card_open-reshare-menu" data-tracking-client-ingraph="" data-reshare-desc="Create a new post with Microsoft’s post attached" data-repost-desc="Instantly bring Microsoft’s post to others’ feed" data-feed-action="share" data-feed-action-type="openShareMenu" data-feed-action-category="EXPAND" data-feed-control="reshare" data-send-privately-url="/messaging/compose/?body=https://www.linkedin.com/posts/microsoft_buenos-aires-ciudad-c%C3%B3mo-la-ia-generativa-activity-7323500809147625472-M_E9">
+    <icon class="social-action-bar__icon lazy-loaded" data-svg-class-name="social-action-bar__icon--svg" aria-hidden="true" aria-busy="false">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" focusable="false" class="social-action-bar__icon--svg lazy-loaded" aria-busy="false"><path d="M18.4 5H16l3.9 6H8c-3.4 0-6 2.8-6 5.9 0 .6.1 1.2.3 1.8L3 21h2.1l-.9-2.8c-.1-.4-.2-.8-.2-1.2 0-2.1 1.6-4 3.9-4h12L16 19h2.4l4.6-7-4.6-7z" fill="currentColor"></path></svg></icon>
+    <span class="social-action-bar__button-text">
+      Share
+    </span>
+  </button>
+
+        
+      <!-- Send Privately Button -->
+      
+<!---->        
+    </div>
+  
+  
+        
+
+      
+<!---->        
+
+      
+              
+      
+    
+        
+    </article>
+  
+      
+  
+
+        
+
+  
+<!---->            
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+<!----><!---->  
+        </li>
+      
+    
+  
+
+    
+        <li class="feed-item new-feed mb-1">
+          
+        
+    
+          
+  
+      
+
+    <article data-feed-item-tracking-id="X1hq7jeK3wYH/x7Jx05WYQ==" data-id="main-feed-card" data-attributed-urn="urn:li:share:7334504385755992064" data-featured-activity-urn="urn:li:activity:7334504386649317376" data-activity-urn="urn:li:activity:7335200942692196352" class="relative px-2 pb-0 bg-color-background-container
+        papabear:container-lined mamabear:container-lined
+        pt-1.5 main-feed-activity-card
+          
+           papabear:max-w-[550px]" data-is-initialized-feed-item="true" data-feed-item-list-position="3">
+<!---->
+      
+              
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+    <p data-feed-redirect="" class="!text-sm text-color-text mb-1
+        pb-[10px] border-b-1 border-solid border-color-border-faint main-feed-activity-card__header mx-main-feed-card-no-gutter px-main-feed-card-no-gutter">
+          <a data-feed-action-type="viewMember" data-feed-action-category="VIEW" data-feed-control="update_topbar_actor" target="_self" data-tracking-will-navigate="true" data-tracking-control-name="feed_main-feed-card_feed-reaction-header" class="link-styled" href="https://www.linkedin.com/in/hamed-zitoun-machine-learning-freelance?trk=feed_main-feed-card_feed-reaction-header">Hamed ZITOUN</a> likes this
+    </p>
+  
+                    
+
+      <div class="flex">
+          
+              
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+      <div data-feed-action-type-flip="dismissControl" data-feed-action-type="expandControl" data-feed-action-category-flip="DISMISS" data-feed-action-category="EXPAND" data-feed-action="show-feed-dropdown" data-tracking-control-name="control_menu" data-feed-control="control_menu" data-id="main-feed-card__ellipsis-menu" class="ellipsis-menu absolute right-0 top-0 !mr-1 mt-0.5">
+        
+
+    
+
+    <div class="collapsible-dropdown flex items-center relative hyphens-auto">
+          
+            <button tabindex="0" data-tracking-control-name="control-menu_ellipsis-menu-trigger" aria-label="Open menu" aria-expanded="false" class="ellipsis-menu__trigger
+                collapsible-dropdown__button btn-md btn-tertiary cursor-pointer
+                !py-[6px] !px-1 flex items-center rounded-[50%]
+                ellipsis-menu__trigger--small !w-4 !h-4 !min-h-4 justify-center
+                rotate-90">
+              <icon class="ellipsis-menu__trigger-icon m-0 p-0 centered-icon lazy-loaded" aria-hidden="true" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" data-supported-dps="16x16" fill="currentColor" focusable="false" class="lazy-loaded" aria-busy="false">
+  <path d="M2 7h2v2H2V7zm5 2h2V7H7v2zm5-2v2h2V7h-2z"></path>
+</svg></icon>
+            </button>
+          
+
+        <ul tabindex="-1" role="menu" class="collapsible-dropdown__list hidden container-raised absolute w-auto overflow-y-auto flex-col items-stretch z-1 bottom-auto top-[100%]">
+          
+              
+            
+  <li data-feed-action-category="SHARE" data-feed-action-type="shareVia" data-tracking-control-name="control_menu_share_via" data-feed-control="control_menu_share_via" data-feed-action="control-menu-share-via" class="ellipsis-menu__item text-sm border-0 px-2 py-1.5 text-color-text flex py-[10px]">
+    
+                
+    
+    
+    
+    
+    
+
+    <button role="menuitem" data-share-via-action="" data-tracking-control-name="share-via_share-via" aria-label="Share via" class="font-medium flex items-center ellipsis-menu__item-button text-color-text !bg-color-transparent share-via-trigger text-sm w-full hover:cursor-pointer hover:text-color-link hover:underline">
+        <icon data-svg-class-name="w-3 h-3 mr-2 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="share-android-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 mr-2 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M20 19a3 3 0 01-6 0 2.6 2.6 0 01.06-.56l-7.13-4.16a3 3 0 110-4.56l7.13-4.16A2.6 2.6 0 0114 5a3 3 0 113 3 2.94 2.94 0 01-1.95-.7l-7.11 4.14a2.64 2.64 0 010 1.12l7.13 4.16a3 3 0 014.23.37A3 3 0 0120 19z"></path>
+</svg></icon>
+          Share via
+      
+      
+    </button>
+    
+
+    
+    <div class="hidden">
+        <button tabindex="-1" aria-hidden="true" data-modal="default-outlet" data-tracking-control-name="share-via_share-via-modal_modal_outlet" class="modal__outlet">
+          
+        </button>
+
+      <div data-outlet="default-outlet" class="modal share-via-modal" id="share-via">
+<!---->        <div aria-hidden="true" class="modal__overlay flex items-center bg-color-background-scrim justify-center fixed bottom-0 left-0 right-0 top-0 opacity-0 invisible pointer-events-none z-[1000] transition-[opacity] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.17s]
+            py-4">
+          <section class="max-h-full modal__wrapper overflow-auto p-0 bg-color-surface max-w-[1128px] min-h-[160px] relative scale-[0.25] shadow-sm shadow-color-border-faint transition-[transform] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] duration-[0.33s] focus:outline-0
+              
+              w-[1128px] mamabear:w-[744px] babybear:w-[360px]
+              
+              rounded-md" tabindex="-1" aria-labelledby="share-via-modal-header" role="dialog" aria-modal="true">
+              
+        <header class="modal__header flex items-center justify-between pl-3">
+              <h2 class="modal__title font-normal leading-open text-color-text text-md py-1.5 w-full">Share to</h2>
+        </header>
+      
+            <div class="modal__main w-full">
+              
+        <ul class="flex flex-col">
+                <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                  <button data-action-copy-to-clipboard="" data-tracking-will-navigate="" data-tracking-control-name="share-to-copy-to-clipboard" class="text-left border-0 hover:cursor-pointer opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint">
+                    <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="document-copy-medium" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M17.5 2H9v5H3v15h12v-5h6V5.5zM13 20H5V9h4v8h4zm6-5h-8V4h5v3h3z"></path>
+</svg></icon>
+                    <span class="inline-block pl-1">Copy to clipboard</span>
+                  </button>
+                </li>
+              <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                <a data-tracking-will-navigate="" data-tracking-control-name="share-to-facebook" class="link opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.linkedin.com%2Fposts%2Flaurentbabikian_r%25C3%25A9veillons-nous-voil%25C3%25A0-ce-quose-poster-de-activity-7334504386649317376-08Kq&amp;title=">
+                  <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="facebook-solid" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path fill="none" d="M-.003 0h24v24h-24z"></path>
+  <path d="M19.997 2h-16a2 2 0 00-2 2v16a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.75 8l-.625 3h-2.625v6h-3v-6h-2v-3h2V8.537c0-2.092.584-3.537 3.561-3.537h2.439v3h-2.273c-.477 0-.727.214-.727.727V10h3.25z"></path>
+</svg></icon>
+                  <span class="inline-block pl-1">Facebook</span>
+                </a>
+              </li>
+              <li class="share-via-action p-1 pr-0 ml-2 flex gap-1">
+                <a data-tracking-will-navigate="" data-tracking-control-name="share-to-twitter" class="opacity-60 pb-1 flex items-center flex-grow text-sm font-semibold !text-color-text border-b-1 border-solid border-color-border-faint !border-0" target="_blank" href="https://www.twitter.com/intent/tweet?url=https%3A%2F%2Fwww.linkedin.com%2Fposts%2Flaurentbabikian_r%25C3%25A9veillons-nous-voil%25C3%25A0-ce-quose-poster-de-activity-7334504386649317376-08Kq&amp;text=">
+                  <icon data-svg-class-name="w-3 h-3 text-color-icon" aria-hidden="true" class="lazy-loaded" aria-busy="false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="twitter-solid" aria-hidden="true" role="none" data-supported-dps="24x24" fill="currentColor" focusable="false" class="w-3 h-3 text-color-icon lazy-loaded" aria-busy="false">
+  <path d="M13.9 10.47L21.35 2h-1.76l-6.46 7.35L7.96 2H2l7.81 11.12L2 22h1.76l6.83-7.77L16.04 22H22l-8.1-11.53zm-2.42 2.75l-.79-1.11L4.4 3.3h2.71l5.08 7.11.79 1.11 6.6 9.24h-2.71l-5.39-7.54z"></path>
+</svg></icon>
+                  <span class="inline-block pl-1">Twitter</span>
+                </a>
+              </li>
+        </ul>
+      
+            </div>
+
+<!---->          </section>
+        </div>
+      </div>
+    </div>
+  
+  
