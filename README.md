@@ -82,6 +82,19 @@ A Chrome extension that automatically analyzes LinkedIn posts using artificial i
 - Make sure you have an active internet connection
 - Refresh the LinkedIn page if the extension isn't working
 
+## Important Cost Warning
+
+**This extension makes multiple API calls to OpenAI and will incur charges to your OpenAI account.**
+
+- Each LinkedIn post that gets analyzed results in one API call to OpenAI GPT-4o-mini
+- Costs accumulate based on your LinkedIn usage and the number of posts processed
+- A typical LinkedIn browsing session may process dozens of posts
+- You are responsible for monitoring and managing your OpenAI usage and costs
+- Consider setting usage limits in your OpenAI account to control expenses
+- The extension does not include any cost controls or usage limits
+
+**Use this extension at your own responsibility and monitor your OpenAI billing regularly.**
+
 ## How It Works
 
 ### Architecture Overview
