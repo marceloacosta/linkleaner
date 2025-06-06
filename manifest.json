@@ -1,15 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "LinkExploder - Multi-Target Hunter",
-  "version": "2.2",
-  "description": "Automatically detects and explodes LinkedIn posts containing trigger keywords like 'changed the game', emojis (💸🛑🚀), and hashtags with spectacular visual effects",
+  "name": "LinkExploder - AI-Powered Hunter",
+  "version": "3.0",
+  "description": "AI-powered LinkedIn post detection using GPT-3.5-turbo to identify and explode hype, cringe, and motivational posts with spectacular visual effects",
   "permissions": [
     "storage",
     "activeTab"
   ],
   "host_permissions": [
-    "*://*.linkedin.com/*"
+    "*://*.linkedin.com/*",
+    "https://api.openai.com/*"
   ],
+  "background": {
+    "service_worker": "worker.js"
+  },
   "content_scripts": [
     {
       "matches": ["*://*.linkedin.com/*"],

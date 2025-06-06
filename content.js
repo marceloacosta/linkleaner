@@ -1,507 +1,31 @@
-// Debounce function to prevent too many calls
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
+// LinkExploder - AI-Powered LinkedIn Post Hunter v3.0
+// Now using GPT-3.5-turbo for intelligent content classification
 
-// Audio preloading and management
-let explosionAudio = null;
-let audioReady = false;
+/* --------- Configuration --------- */
+const CONFIG = {
+  debugMode: true,
+  reducedMode: false,
+  bypassBusyDetection: false,
+  maxConcurrentClassifications: 3,
+  classificationDelay: 200, // ms between classifications
+  minPostLength: 30 // minimum characters for classification
+};
+
+// Extension context validation
 let extensionContextValid = true;
-let audioInitializationAttempted = false; // Prevent repeated initialization attempts
 
 // Check if extension context is still valid
 function checkExtensionContext() {
   try {
-    // Try to access chrome.runtime - this will throw if context is invalidated
     if (chrome && chrome.runtime && chrome.runtime.id) {
       return true;
     }
   } catch (error) {
-    console.warn('LinkExploder: Extension context invalidated, stopping script execution');
+    console.warn('LinkExploder: Extension context invalidated');
     extensionContextValid = false;
-    showContextInvalidatedNotification();
     return false;
   }
   return false;
-}
-
-// Show a user-friendly notification when extension context is invalidated
-function showContextInvalidatedNotification() {
-  // Only show notification once
-  if (document.getElementById('linkexploder-context-notification')) {
-    return;
-  }
-  
-  const notification = document.createElement('div');
-  notification.id = 'linkexploder-context-notification';
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(45deg, #ff4444, #ff8800);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    z-index: 10000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    max-width: 300px;
-    cursor: pointer;
-    animation: slideIn 0.5s ease-out;
-  `;
-  
-  notification.innerHTML = `
-    🎯 LinkExploder: Extension Reloaded<br>
-    <small style="font-weight: normal; opacity: 0.9;">Please refresh this page to resume explosions!</small>
-  `;
-  
-  // Add slide-in animation
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-  `;
-  document.head.appendChild(style);
-  
-  // Remove notification on click or after 10 seconds
-  notification.addEventListener('click', () => {
-    notification.remove();
-    style.remove();
-  });
-  
-  setTimeout(() => {
-    if (notification.parentNode) {
-      notification.remove();
-      style.remove();
-    }
-  }, 10000);
-  
-  document.body.appendChild(notification);
-}
-
-function initializeAudio() {
-  // Prevent repeated initialization attempts
-  if (audioInitializationAttempted || !extensionContextValid) {
-    console.warn('LinkExploder: Audio initialization skipped - already attempted or context invalid');
-    return;
-  }
-  
-  audioInitializationAttempted = true;
-  
-  if (!checkExtensionContext()) {
-    console.warn('LinkExploder: Cannot initialize audio - extension context invalidated');
-    return;
-  }
-  
-  try {
-    // Double-check context before creating audio
-    const audioUrl = chrome.runtime.getURL('explosion.mp3');
-    console.log('LinkExploder: Initializing audio with URL:', audioUrl);
-    
-    explosionAudio = new Audio(audioUrl);
-    explosionAudio.volume = 0.4;
-    explosionAudio.preload = 'auto';
-    
-    explosionAudio.addEventListener('canplaythrough', () => {
-      audioReady = true;
-      console.log('LinkExploder: Explosion audio preloaded and ready');
-    });
-    
-    explosionAudio.addEventListener('error', (e) => {
-      console.warn('LinkExploder: Audio preload failed:', e);
-      audioReady = false;
-      // Don't retry if context is invalid
-      if (!extensionContextValid) {
-        console.warn('LinkExploder: Audio failed due to invalid extension context');
-        return;
-      }
-    });
-    
-    // Try to load the audio
-    explosionAudio.load();
-  } catch (error) {
-    if (error.message.includes('Extension context invalidated') || 
-        error.message.includes('Invalid extension id')) {
-      console.warn('LinkExploder: Extension was reloaded, please refresh the page');
-      extensionContextValid = false;
-      showContextInvalidatedNotification();
-      return;
-    }
-    console.error('LinkExploder: Audio initialization failed:', error);
-    audioReady = false;
-  }
-}
-
-// Initialize audio when extension loads (with context check)
-if (checkExtensionContext()) {
-  initializeAudio();
-}
-
-// Target keywords and emojis that trigger explosions
-const TARGET_KEYWORDS = [
-  "changed the game",
-  "changed the ai game", 
-  "that changed everything",
-  "💸",
-  "🛑", 
-  "🚀"
-];
-
-// Special hashtag detection - now more selective and DISABLED by default
-const HASHTAG_TRIGGER = false; // Set to true to explode posts with hashtags (DISABLED by default)
-const HASHTAG_THRESHOLD = 5; // Minimum number of hashtags to trigger explosion (increased threshold)
-
-// Configuration
-const CONFIG = {
-  maxExplosionsPerScan: 2,  // Limit explosions per scan to be safe
-  enableHashtagDetection: true,  // Enable hashtag detection for spammy posts
-  hashtagThreshold: 5,  // Target posts with MORE than 4 hashtags (5+)
-  debugMode: true,  // Set to false to reduce console spam
-  bypassBusyDetection: false,  // Set to true to ignore LinkedIn busy state
-  reducedMode: false  // Set to true to reduce interference with LinkedIn
-};
-
-// Function to create shooting effect
-function createShootingEffect(startX, startY, endX, endY) {
-  const bullet = document.createElement('div');
-  bullet.className = 'bullet';
-  document.body.appendChild(bullet);
-
-  // Calculate angle for bullet rotation
-  const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
-  bullet.style.transform = `rotate(${angle}deg)`;
-
-  bullet.style.setProperty('--startX', `${startX}px`);
-  bullet.style.setProperty('--startY', `${startY}px`);
-  bullet.style.setProperty('--endX', `${endX}px`);
-  bullet.style.setProperty('--endY', `${endY}px`);
-
-  bullet.style.left = `${startX}px`;
-  bullet.style.top = `${startY}px`;
-
-  bullet.style.animation = 'shoot 0.2s linear forwards';
-
-  setTimeout(() => bullet.remove(), 200);
-}
-
-// Function to create explosion effect
-function createExplosion(element, centerX, centerY, matchedKeyword = '') {
-  console.log('LinkExploder: createExplosion called with:', { element, centerX, centerY, matchedKeyword });
-  
-  if (!element || element.classList.contains('exploded')) {
-    console.log('LinkExploder: Explosion cancelled - element missing or already exploded');
-    return;
-  }
-  
-  // Check if extension context is still valid
-  if (!extensionContextValid || !checkExtensionContext()) {
-    console.warn('LinkExploder: Skipping explosion - extension context invalidated. Please refresh the page.');
-    return;
-  }
-  
-  console.log('LinkExploder: Starting explosion sequence...');
-  
-  // Mark as exploded to prevent multiple explosions
-  element.classList.add('exploded');
-  console.log('LinkExploder: Element marked as exploded');
-  
-  // Play preloaded explosion sound
-  console.log('LinkExploder: Attempting to play audio...', { audioReady, explosionAudio });
-  if (audioReady && explosionAudio && extensionContextValid) {
-    try {
-      // Reset audio to beginning in case it's already played
-      explosionAudio.currentTime = 0;
-      
-      const playPromise = explosionAudio.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          console.log('LinkExploder: Audio played successfully');
-        }).catch((error) => {
-          // Check if this is a context invalidation error
-          if (error.message.includes('context invalidated') || 
-              error.message.includes('Invalid extension id')) {
-            console.warn('LinkExploder: Audio failed - extension context invalidated');
-            extensionContextValid = false;
-            return;
-          }
-          
-          console.warn('LinkExploder: Audio autoplay blocked:', error);
-          console.log('LinkExploder: Audio will play on next user interaction');
-          
-          // Set up one-time click listener for audio
-          const enableAudio = () => {
-            if (explosionAudio && extensionContextValid && checkExtensionContext()) {
-              explosionAudio.play().then(() => {
-                console.log('LinkExploder: Audio enabled after user interaction');
-              }).catch(e => console.warn('LinkExploder: Audio still failed:', e));
-            }
-            document.removeEventListener('click', enableAudio);
-          };
-          
-          document.addEventListener('click', enableAudio, { once: true });
-        });
-      }
-    } catch (audioError) {
-      if (audioError.message.includes('Extension context invalidated') ||
-          audioError.message.includes('Invalid extension id')) {
-        console.warn('LinkExploder: Audio failed - extension reloaded. Please refresh the page.');
-        extensionContextValid = false;
-        showContextInvalidatedNotification();
-        return;
-      }
-      console.error('LinkExploder: Audio playback failed:', audioError);
-    }
-  } else if (extensionContextValid && !audioInitializationAttempted) {
-    console.warn('LinkExploder: Audio not ready yet, retrying initialization...');
-    initializeAudio(); // Retry audio initialization only if not attempted before
-  }
-  
-  console.log('LinkExploder: Creating explosion container...');
-  const explosionContainer = document.createElement('div');
-  explosionContainer.className = 'explosion-container';
-  explosionContainer.style.left = centerX + 'px';
-  explosionContainer.style.top = centerY + 'px';
-  
-  // Create more particles with varied colors based on keyword type
-  let particleCount = 50;
-  let colors = ['#ff4444', '#ffaa00', '#ff8800', '#ffcc00', '#ff0000', '#ffff00'];
-  
-  // Special effects for different keywords
-  if (matchedKeyword.includes('💸')) {
-    colors = ['#00ff00', '#ffff00', '#00cc00', '#ccff00', '#66ff66']; // Green money colors
-    particleCount = 60;
-  } else if (matchedKeyword.includes('🛑')) {
-    colors = ['#ff0000', '#cc0000', '#ff3333', '#990000', '#ff6666']; // Red stop colors
-    particleCount = 40;
-  } else if (matchedKeyword.includes('🚀')) {
-    colors = ['#0066ff', '#00ccff', '#3399ff', '#66b3ff', '#99ccff']; // Blue rocket colors
-    particleCount = 70;
-  } else if (matchedKeyword.includes('#')) {
-    colors = ['#9966ff', '#cc99ff', '#6633cc', '#9933ff', '#b366ff']; // Purple hashtag colors
-    particleCount = 45;
-  }
-  
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    
-    // Randomly assign colors
-    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    particle.style.left = '0px';
-    particle.style.top = '0px';
-    
-    // Create more dynamic movement
-    const angle = (Math.random() * 360) * (Math.PI / 180);
-    const velocity = 150 + Math.random() * 300; // Increased velocity range
-    const tx = Math.cos(angle) * velocity;
-    const ty = Math.sin(angle) * velocity;
-    const rotate = Math.random() * 720; // More rotation
-    const scale = 0.5 + Math.random() * 1.5; // Random sizes
-    
-    particle.style.setProperty('--tx', `${tx}px`);
-    particle.style.setProperty('--ty', `${ty}px`);
-    particle.style.setProperty('--rotate', `${rotate}deg`);
-    particle.style.setProperty('--scale', scale);
-    
-    explosionContainer.appendChild(particle);
-  }
-  
-  // Add a central flash effect
-  const flash = document.createElement('div');
-  flash.className = 'explosion-flash';
-  explosionContainer.appendChild(flash);
-  
-  document.body.appendChild(explosionContainer);
-  
-  // Add fade-explode animation to the post
-  element.classList.add('fade-explode');
-  
-  // Clean up
-  setTimeout(() => {
-    explosionContainer.remove();
-    element.remove();
-  }, 1000); // Increased duration for longer effect
-}
-
-// Function to check if post contains any target keywords or emojis
-function checkForTargetKeywords(postText) {
-  const textLower = postText.toLowerCase();
-  
-  // Check for text keywords
-  for (const keyword of TARGET_KEYWORDS) {
-    if (keyword.length > 1 && textLower.includes(keyword.toLowerCase())) {
-      return keyword;
-    }
-    // Check for emojis (they don't need toLowerCase)
-    if (keyword.length === 1 && postText.includes(keyword)) {
-      return keyword;
-    }
-  }
-  
-  // Check for hashtags if enabled - now much more selective and DISABLED by default
-  if (CONFIG.enableHashtagDetection && postText.includes('#')) {
-    const hashtags = postText.match(/#\w+/g);
-    if (hashtags && hashtags.length >= CONFIG.hashtagThreshold) {
-      if (CONFIG.debugMode) {
-        console.log(`LinkExploder: Found ${hashtags.length} hashtags (threshold: ${CONFIG.hashtagThreshold}):`, hashtags);
-      }
-      return '#hashtag';
-    }
-    
-    // Also check for specific problematic hashtag patterns
-    const problematicHashtags = [
-      '#entrepreneur', '#hustle', '#mindset', '#success', '#motivation',
-      '#linkedininfluencer', '#thoughtleader', '#gamechange', '#disrupt',
-      '#thoughtleadership', '#networking', '#leadership', '#inspiration'
-    ];
-    
-    for (const problematicTag of problematicHashtags) {
-      if (textLower.includes(problematicTag)) {
-        if (CONFIG.debugMode) {
-          console.log(`LinkExploder: Found problematic hashtag: ${problematicTag}`);
-        }
-        return '#hashtag';
-      }
-    }
-  }
-  
-  return null;
-}
-
-// Function to highlight the keyword in posts before exploding them
-function highlightKeywordInPost(post, keyword) {
-  // Skip highlighting for emojis and hashtags (they're already visually distinct)
-  if (keyword.length === 1 || keyword === '#hashtag') {
-    return;
-  }
-  
-  const walker = document.createTreeWalker(
-    post,
-    NodeFilter.SHOW_TEXT,
-    null,
-    false
-  );
-  
-  const textNodes = [];
-  let node;
-  
-  while (node = walker.nextNode()) {
-    textNodes.push(node);
-  }
-  
-  textNodes.forEach(textNode => {
-    const text = textNode.textContent;
-    const regex = new RegExp(`(${keyword})`, 'gi');
-    
-    if (regex.test(text)) {
-      const highlightedText = text.replace(regex, '<span class="keyword-highlight">$1</span>');
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = highlightedText;
-      
-      // Replace the text node with highlighted content
-      const parent = textNode.parentNode;
-      while (wrapper.firstChild) {
-        parent.insertBefore(wrapper.firstChild, textNode);
-      }
-      parent.removeChild(textNode);
-    }
-  });
-}
-
-// Enhanced search function with multiple keyword support
-function searchHighlightAndExplode() {
-  // Check if extension context is still valid
-  if (!extensionContextValid || !checkExtensionContext()) {
-    console.warn('LinkExploder: Stopping search - extension context invalidated. Please refresh the page.');
-    return;
-  }
-  
-  // Safety check - don't run during LinkedIn search or navigation (unless bypassed)
-  if (!CONFIG.bypassBusyDetection && isLinkedInBusy()) {
-    if (CONFIG.debugMode) {
-      console.log('LinkExploder: LinkedIn is busy (search/navigation), skipping scan');
-    }
-    return;
-  }
-  
-  if (CONFIG.debugMode) {
-    console.log('LinkExploder: Starting scan...', {
-      bypassBusy: CONFIG.bypassBusyDetection,
-      reducedMode: CONFIG.reducedMode
-    });
-  }
-  
-  // Much more comprehensive post selectors
-  const allPossiblePosts = document.querySelectorAll([
-    '.feed-shared-update-v2',  // Main feed posts
-    '.occludable-update',      // Occludable posts
-    '[data-urn*="activity"]',  // Any element with activity URN
-    '[data-id*="activity"]',   // Any element with activity ID
-    '.update-components-text', // Text content containers
-    '.feed-shared-text',       // Shared text elements
-    '[role="article"]',        // Articles
-    '.feed-shared-update',     // Alternative feed updates
-    '.share-update-card',      // Share cards
-    '.feed-shared-mini-update-v2', // Mini updates
-    '.feed-shared-article',    // Shared articles
-    '.feed-shared-video',      // Shared videos
-    'div[data-urn]',          // Any div with data-urn
-    '.feed-shared-actor',     // Actor elements that might contain posts
-    '.update-components-actor' // Update actor components
-  ].join(', '));
-  
-  console.log(`LinkExploder: Found ${allPossiblePosts.length} potential elements`);
-  
-  // If we still find nothing, let's try a more general approach
-  if (allPossiblePosts.length === 0) {
-    console.log('LinkExploder: No elements found with specific selectors, trying broader search...');
-    const broadSearch = document.querySelectorAll('div, article, section, main');
-    console.log(`LinkExploder: Found ${broadSearch.length} general elements to filter`);
-    
-    // Filter these for post-like content
-    const filteredPosts = Array.from(broadSearch).filter(element => {
-      return isPostLikeContent(element);
-    });
-    
-    console.log(`LinkExploder: After broad filtering: ${filteredPosts.length} post-like elements`);
-    
-    if (filteredPosts.length > 0) {
-      processFoundPosts(filteredPosts);
-    }
-    return;
-  }
-  
-  // Filter to only actual posts
-  const posts = Array.from(allPossiblePosts).filter(element => {
-    // Skip if already processed
-    if (element.classList.contains('keyword-processed') || 
-        element.classList.contains('exploded') || 
-        element.classList.contains('fade-explode')) {
-      return false;
-    }
-    
-    // More lenient post validation
-    return isValidPost(element) || isPostContainer(element);
-  });
-  
-  console.log(`LinkExploder: After filtering: ${posts.length} actual posts to check`);
-  
-  if (posts.length > 0) {
-    processFoundPosts(posts);
-  }
 }
 
 // Function to check if LinkedIn is busy with search or navigation
@@ -509,534 +33,303 @@ function isLinkedInBusy() {
   // Check if search is active
   const searchInput = document.querySelector('input[placeholder*="Search"], .search-global-typeahead__input');
   if (searchInput && (document.activeElement === searchInput || searchInput.value.trim() !== '')) {
-    if (CONFIG.debugMode) {
-      console.log('LinkExploder: LinkedIn busy - search input active:', searchInput);
-    }
     return true;
   }
   
   // Check if navigation is happening
   const loadingIndicators = document.querySelectorAll('.loader, .loading, [aria-label*="Loading"], .artdeco-loader');
   if (loadingIndicators.length > 0) {
-    if (CONFIG.debugMode) {
-      console.log('LinkExploder: LinkedIn busy - loading indicators found:', loadingIndicators.length, loadingIndicators);
-    }
     return true;
   }
   
   // Check if any modals or overlays are open
   const modals = document.querySelectorAll('.artdeco-modal, .modal, [role="dialog"]');
-  if (modals.length > 0) {
+  return modals.length > 0;
+}
+
+/* --------- Explosion Effects (preserved from original) --------- */
+function createShootingEffect(startX, startY, endX, endY) {
+  const bullet = document.createElement('div');
+  bullet.className = 'bullet';
+  document.body.appendChild(bullet);
+
+  const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+  bullet.style.transform = `rotate(${angle}deg)`;
+  bullet.style.left = `${startX}px`;
+  bullet.style.top = `${startY}px`;
+  bullet.style.animation = 'shoot 0.2s linear forwards';
+
+  setTimeout(() => bullet.remove(), 200);
+}
+
+function createExplosion(element, centerX, centerY, label = 'ai') {
+  if (!element || element.classList.contains('exploded')) return;
+  
+  element.classList.add('exploded');
+  
+  const explosionContainer = document.createElement('div');
+  explosionContainer.className = 'explosion-container';
+  explosionContainer.style.left = centerX + 'px';
+  explosionContainer.style.top = centerY + 'px';
+  
+  // Label-specific explosion colors
+  let colors = ['#ff4444', '#ffaa00', '#ff8800', '#ffcc00', '#ff0000', '#ffff00'];
+  let particleCount = 50;
+  
+  if (label === 'hype') {
+    colors = ['#ff6b6b', '#ff8e53', '#ff6b9d', '#c44569', '#f8b500']; // Hot colors
+    particleCount = 60;
+  } else if (label === 'cringe') {
+    colors = ['#6c5ce7', '#fd79a8', '#fdcb6e', '#e17055', '#00b894']; // Cringe colors
+    particleCount = 45;
+  } else if (label === 'motivational') {
+    colors = ['#0984e3', '#00cec9', '#00b894', '#55a3ff', '#74b9ff']; // Motivational blue/teal
+    particleCount = 55;
+  }
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    
+    const angle = (Math.random() * 360) * (Math.PI / 180);
+    const velocity = 150 + Math.random() * 300;
+    const tx = Math.cos(angle) * velocity;
+    const ty = Math.sin(angle) * velocity;
+    
+    particle.style.setProperty('--tx', `${tx}px`);
+    particle.style.setProperty('--ty', `${ty}px`);
+    
+    explosionContainer.appendChild(particle);
+  }
+  
+  document.body.appendChild(explosionContainer);
+  element.classList.add('fade-explode');
+  
+  setTimeout(() => {
+    explosionContainer.remove();
+    element.remove();
+  }, 1000);
+}
+
+/* --------- AI Classification System --------- */
+// Session cache for classifications to avoid redundant API calls
+const classificationCache = new Map();
+
+// Generate a simple hash for caching
+function hashText(text) {
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    const char = text.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  return hash.toString();
+}
+
+// AI-powered classification function
+function classifyAndExplode(post) {
+  if (post.classList.contains('le-checked') || 
+      post.classList.contains('exploded') || 
+      post.classList.contains('fade-explode')) {
+    return;
+  }
+  
+  post.classList.add('le-checked');
+  
+  // Get post text and create hash for caching
+  const postText = post.textContent.trim();
+  if (!postText || postText.length < CONFIG.minPostLength) {
+    return; // Skip posts that are too short
+  }
+  
+  const textHash = hashText(postText);
+  
+  // Check cache first
+  if (classificationCache.has(textHash)) {
+    const cachedLabel = classificationCache.get(textHash);
     if (CONFIG.debugMode) {
-      console.log('LinkExploder: LinkedIn busy - modals found:', modals.length, modals);
+      console.log(`LinkExploder: Using cached classification: "${cachedLabel}"`);
     }
-    return true;
+    
+    if (['hype', 'cringe', 'motivational'].includes(cachedLabel)) {
+      triggerExplosion(post, cachedLabel);
+    }
+    return;
+  }
+  
+  // Add visual indicator that post is being analyzed
+  post.classList.add('le-analyzing');
+  
+  if (CONFIG.debugMode) {
+    console.log('LinkExploder: Sending post for AI classification...', postText.slice(0, 100));
+  }
+  
+  // Send to background worker for classification
+  chrome.runtime.sendMessage(
+    { type: 'classify', text: postText },
+    response => {
+      // Remove analyzing indicator
+      post.classList.remove('le-analyzing');
+      
+      if (chrome.runtime.lastError) {
+        console.error('LinkExploder: Classification failed:', chrome.runtime.lastError);
+        return;
+      }
+      
+      const label = response || 'other';
+      
+      // Cache the result
+      classificationCache.set(textHash, label);
+      
+      if (CONFIG.debugMode) {
+        console.log(`LinkExploder: AI classification result: "${label}" for post:`, postText.slice(0, 100));
+      }
+      
+      // Explode if classified as problematic content
+      if (['hype', 'cringe', 'motivational'].includes(label)) {
+        triggerExplosion(post, label);
+      }
+    }
+  );
+}
+
+// Trigger explosion with label-specific effects
+function triggerExplosion(post, label) {
+  if (post.classList.contains('exploded') || post.classList.contains('fade-explode')) {
+    return;
   }
   
   if (CONFIG.debugMode) {
-    console.log('LinkExploder: LinkedIn not busy - proceeding with scan');
+    console.log(`LinkExploder: Triggering explosion for "${label}" post`);
   }
-  return false;
+  
+  // Add label-specific class for different explosion themes
+  post.classList.add(`le-${label}`);
+  
+  // Get post dimensions for explosion center
+  const rect = post.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  
+  // Only explode if the post is visible on screen
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    // Create shooting effect from bottom right corner to post center
+    setTimeout(() => {
+      createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
+    }, 100);
+    
+    // Add explosion after shooting
+    setTimeout(() => {
+      createExplosion(post, centerX, centerY, label);
+    }, 300);
+  }
 }
 
-// Function to detect post-like content more broadly
-function isPostLikeContent(element) {
-  const text = element.textContent?.trim() || '';
+/* --------- AI-powered intersection observer --------- */
+const io = new IntersectionObserver(entries => {
+  let processed = 0;
   
-  // Must have substantial text content
-  if (text.length < 50) return false;
-  
-  // Must contain some of our target keywords or common post indicators
-  const hasTargetKeyword = TARGET_KEYWORDS.some(keyword => 
-    text.toLowerCase().includes(keyword.toLowerCase())
-  );
-  
-  // Look for post-like indicators
-  const hasPostIndicators = text.includes('like') || text.includes('comment') || text.includes('share') ||
-                           text.includes('ago') || text.includes('hour') || text.includes('day') ||
-                           text.includes('week') || text.includes('month');
-  
-  // Must have reasonable dimensions
-  const rect = element.getBoundingClientRect();
-  const hasReasonableSize = rect.width > 200 && rect.height > 50;
-  
-  return (hasTargetKeyword || hasPostIndicators) && hasReasonableSize;
-}
+  for (const entry of entries) {
+    if (!entry.isIntersecting || processed >= CONFIG.maxConcurrentClassifications) continue;
+    
+    const post = entry.target;
+    
+    // Skip if already processed or being processed
+    if (post.classList.contains('le-checked') || 
+        post.classList.contains('le-analyzing') ||
+        post.classList.contains('exploded')) {
+      continue;
+    }
+    
+    // Check if post has sufficient content
+    const postText = post.textContent?.trim() || '';
+    if (postText.length < CONFIG.minPostLength) continue;
+    
+    processed++;
+    
+    // Use AI classification instead of keyword matching
+    classifyAndExplode(post);
+  }
+}, { threshold: 0.5 });
 
-// Function to process found posts
-function processFoundPosts(posts) {
-  // Debug: Log some examples of what we found
-  if (CONFIG.debugMode && posts.length > 0) {
-    console.log('LinkExploder: Sample posts found:', posts.slice(0, 3));
-    posts.slice(0, 3).forEach((post, i) => {
-      console.log(`Post ${i + 1} classes:`, post.className);
-      console.log(`Post ${i + 1} attributes:`, {
-        'data-urn': post.getAttribute('data-urn'),
-        'data-id': post.getAttribute('data-id'),
-        id: post.id
-      });
-      console.log(`Post ${i + 1} text sample:`, post.textContent.slice(0, 100));
+/* --------- Monitor for new posts --------- */
+const mo = new MutationObserver(mutations => {
+  for (const mutation of mutations) {
+    mutation.addedNodes.forEach(node => {
+      if (node.nodeType !== 1 || !node.textContent) return;
+      
+      // Look for post elements
+      if (node.matches?.('[data-urn*="activity"]') || 
+          node.matches?.('.feed-shared-update-v2') ||
+          node.matches?.('.occludable-update')) {
+        io.observe(node);
+      }
+      
+      // Also check child elements for posts
+      const posts = node.querySelectorAll?.(
+        '[data-urn*="activity"], .feed-shared-update-v2, .occludable-update'
+      );
+      posts?.forEach(post => io.observe(post));
     });
   }
-  
-  // Safety mechanism - limit explosions per scan
-  const MAX_EXPLOSIONS_PER_SCAN = CONFIG.maxExplosionsPerScan;
-  let explosionCount = 0;
-  
-  posts.forEach((post, index) => {
-    // Stop if we've reached the explosion limit
-    if (explosionCount >= MAX_EXPLOSIONS_PER_SCAN) {
-      console.log(`LinkExploder: Reached explosion limit (${MAX_EXPLOSIONS_PER_SCAN}) for this scan`);
-      return;
-    }
-    
-    // Skip if already processed
-    if (post.classList.contains('exploded') || 
-        post.classList.contains('fade-explode') || 
-        post.classList.contains('keyword-processed')) {
-      return;
-    }
-    
-    // Get all text content from the post
-    const postText = post.textContent;
-    
-    // Check if the post contains any target keywords
-    const matchedKeyword = checkForTargetKeywords(postText);
-    
-    if (matchedKeyword) {
-      explosionCount++; // Increment explosion counter
-      console.log(`LinkExploder: Found post ${index + 1} containing "${matchedKeyword}" (explosion ${explosionCount}/${MAX_EXPLOSIONS_PER_SCAN}):`, post);
-      
-      // Mark as processed immediately to prevent reprocessing
-      post.classList.add('keyword-processed');
-      
-      // Add special class for keyword type
-      if (matchedKeyword.includes('💸')) {
-        post.classList.add('money-target');
-      } else if (matchedKeyword.includes('🛑')) {
-        post.classList.add('stop-target');
-      } else if (matchedKeyword.includes('🚀')) {
-        post.classList.add('rocket-target');
-      } else if (matchedKeyword === '#hashtag') {
-        post.classList.add('hashtag-target');
-      }
-      
-      // Highlight the keyword first (if it's text, not emoji)
-      try {
-        highlightKeywordInPost(post, matchedKeyword);
-      } catch (error) {
-        console.warn('LinkExploder: Highlighting failed:', error);
-      }
-      
-      // Get post dimensions for explosion center
-      const rect = post.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      
-      // Only explode if the post is visible on screen
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        console.log(`LinkExploder: Post ${explosionCount} is visible, scheduling explosion...`);
-        console.log(`- Post rect:`, rect);
-        console.log(`- Center coordinates: (${centerX}, ${centerY})`);
-        
-        // Create shooting effect from bottom right corner to post center
-        setTimeout(() => {
-          console.log(`LinkExploder: Firing bullet for post ${explosionCount}`);
-          try {
-            createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
-          } catch (error) {
-            console.error('LinkExploder: Shooting effect failed:', error);
-          }
-        }, 500 + (index * 100)); // Stagger explosions to avoid overwhelming
-        
-        // Add explosion after highlighting and shooting
-        setTimeout(() => {
-          console.log(`LinkExploder: Triggering explosion for post ${explosionCount}`);
-          try {
-            createExplosion(post, centerX, centerY, matchedKeyword);
-          } catch (error) {
-            console.error('LinkExploder: Explosion failed:', error);
-          }
-        }, 750 + (index * 100)); // Stagger explosions
-      } else {
-        console.log(`LinkExploder: Post ${explosionCount} not visible, skipping explosion`);
-        console.log(`- Post rect:`, rect);
-        console.log(`- Window height:`, window.innerHeight);
-      }
-    }
-  });
-}
+});
 
-// Function to validate if an element is actually a post
-function isValidPost(element) {
-  // More lenient check - look for post-like characteristics
-  const hasPostContent = element.querySelector('.update-components-text, .feed-shared-text, .attributed-text-segment-list__content, .feed-shared-inline-show-more-text');
-  const hasAuthor = element.querySelector('.update-components-actor, .feed-shared-actor, .feed-shared-actor__name');
-  const hasMinimumHeight = element.offsetHeight > 30; // Reduced height requirement
-  const hasActivityData = element.hasAttribute('data-urn') || element.hasAttribute('data-id') || element.closest('[data-urn]');
-  
-  // More flexible validation
-  return (hasPostContent && hasMinimumHeight) || 
-         (hasAuthor && hasMinimumHeight) || 
-         (hasActivityData && hasMinimumHeight);
-}
+// Start observing feed containers
+const FEED_SELECTORS = '#main, div.core-rail, .scaffold-finite-scroll, .feed-container';
+document.querySelectorAll(FEED_SELECTORS).forEach(container => {
+  mo.observe(container, { childList: true, subtree: true });
+});
 
-// Additional function to check if element is a post container
-function isPostContainer(element) {
-  // Check if this element contains post-like content
-  const hasText = element.textContent && element.textContent.trim().length > 20;
-  const hasLikeButton = element.querySelector('[aria-label*="like"], [aria-label*="Like"], .react-button, .like-button');
-  const hasShareButton = element.querySelector('[aria-label*="share"], [aria-label*="Share"], .share-button');
-  const hasCommentButton = element.querySelector('[aria-label*="comment"], [aria-label*="Comment"], .comment-button');
-  const hasEngagementButtons = hasLikeButton || hasShareButton || hasCommentButton;
-  
-  // If it has text and engagement buttons, it's likely a post
-  return hasText && hasEngagementButtons;
-}
-
-// Function to continuously monitor for new posts (with rate limiting)
-const monitorPosts = debounce(() => {
-  if (extensionContextValid && !isLinkedInBusy()) {
-    searchHighlightAndExplode();
-  }
-}, 500); // Increased debounce time to reduce interference
-
-// Initial search when page loads
+// Also observe existing posts on page load
 setTimeout(() => {
-  if (!checkExtensionContext()) {
-    console.warn('LinkExploder: Extension context invalidated during startup');
-    return;
-  }
-  
-  console.log('LinkExploder: Starting multi-keyword search...');
-  console.log('Target keywords:', TARGET_KEYWORDS);
-  console.log('Hashtag trigger enabled:', HASHTAG_TRIGGER);
-  searchHighlightAndExplode();
-}, 2000);
+  document.querySelectorAll('[data-urn*="activity"], .feed-shared-update-v2, .occludable-update')
+    .forEach(post => io.observe(post));
+}, 1000);
 
-// Monitor for new content with debounce
-const observer = new MutationObserver(debounce((mutations) => {
-  if (!extensionContextValid) {
-    console.warn('LinkExploder: Stopping mutation observer - extension context invalidated');
-    observer.disconnect();
-    return;
-  }
-  
-  // In reduced mode, be much more selective about when to scan
-  if (CONFIG.reducedMode) {
-    // Only scan if we detect new feed content specifically
-    let hasFeedChanges = false;
-    for (const mutation of mutations) {
-      if (mutation.addedNodes.length) {
-        for (const node of mutation.addedNodes) {
-          if (node.nodeType === Node.ELEMENT_NODE && 
-              (node.classList?.contains('feed-shared-update-v2') || 
-               node.querySelector?.('.feed-shared-update-v2'))) {
-            hasFeedChanges = true;
-            break;
-          }
-        }
-      }
-      if (hasFeedChanges) break;
-    }
-    
-    if (hasFeedChanges) {
-      if (CONFIG.debugMode) {
-        console.log('LinkExploder: Feed changes detected in reduced mode, scanning...');
-      }
-      monitorPosts();
-    }
-    return;
-  }
-  
-  // Normal mode - scan on any new nodes
-  let hasNewNodes = false;
-  for (const mutation of mutations) {
-    if (mutation.addedNodes.length) {
-      hasNewNodes = true;
-      break;
-    }
-  }
-  if (hasNewNodes) {
-    monitorPosts();
-  }
-}, CONFIG.reducedMode ? 1000 : 300)); // Slower debounce in reduced mode
-
-if (extensionContextValid && checkExtensionContext()) {
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
+/* --------- Helper Functions --------- */
+// API key management function
+window.setLinkExploderApiKey = function(apiKey) {
+  chrome.storage.sync.set({ oaiKey: apiKey }, () => {
+    console.log('✅ LinkExploder: OpenAI API key saved successfully');
+    console.log('🔄 Please refresh the page to start AI-powered detection');
   });
+};
 
-  // Also run periodic checks every few seconds for dynamic content (reduced frequency)
-  const periodicCheck = setInterval(() => {
-    if (!extensionContextValid || !checkExtensionContext()) {
-      console.warn('LinkExploder: Stopping periodic checks - extension context invalidated');
-      clearInterval(periodicCheck);
-      return;
-    }
-    
-    // Only run if LinkedIn isn't busy (unless bypassed)
-    if (CONFIG.bypassBusyDetection || !isLinkedInBusy()) {
-      monitorPosts();
-    }
-  }, CONFIG.reducedMode ? 10000 : 5000); // Less frequent in reduced mode (10s vs 5s)
-}
-
-console.log('LinkExploder: Extension loaded with multi-keyword support!');
-console.log('Watching for:', TARGET_KEYWORDS, '+ hashtags (5+ threshold)');
-
-console.log('LinkExploder: Type configureLinkExploder({hashtagThreshold: 3}) to change settings');
-console.log('LinkExploder: Type testLinkExploderAudio() to test audio manually');
-console.log('LinkExploder: Type explodeThrobbingPost() to manually explode detected posts');
-console.log('LinkExploder: Type debugLinkedInPosts() to inspect page structure');
-console.log('LinkExploder: Type debugLinkedInBusy() to debug LinkedIn busy state');
-console.log('LinkExploder: Type stopLinkExploder() for EMERGENCY STOP');
-console.log('LinkExploder: Type configureLinkExploder({bypassBusyDetection: true}) to bypass busy detection');
-console.log('LinkExploder: Type configureLinkExploder({reducedMode: true}) to enable reduced interference mode');
-
-// Configuration functions for users
+// Configuration function
 window.configureLinkExploder = function(options = {}) {
-  if (options.hashtagThreshold !== undefined) {
-    CONFIG.hashtagThreshold = options.hashtagThreshold;
-    console.log(`LinkExploder: Hashtag threshold set to ${CONFIG.hashtagThreshold}`);
-  }
-  
-  if (options.enableHashtags !== undefined) {
-    CONFIG.enableHashtagDetection = options.enableHashtags;
-    console.log(`LinkExploder: Hashtag detection ${CONFIG.enableHashtagDetection ? 'enabled' : 'disabled'}`);
-  }
-  
-  if (options.maxExplosions !== undefined) {
-    CONFIG.maxExplosionsPerScan = options.maxExplosions;
-    console.log(`LinkExploder: Max explosions per scan set to ${CONFIG.maxExplosionsPerScan}`);
-  }
-  
-  if (options.debugMode !== undefined) {
-    CONFIG.debugMode = options.debugMode;
-    console.log(`LinkExploder: Debug mode ${CONFIG.debugMode ? 'enabled' : 'disabled'}`);
-  }
-  
-  if (options.bypassBusyDetection !== undefined) {
-    CONFIG.bypassBusyDetection = options.bypassBusyDetection;
-    console.log(`LinkExploder: Bypass busy detection ${CONFIG.bypassBusyDetection ? 'enabled' : 'disabled'}`);
-  }
-  
-  if (options.reducedMode !== undefined) {
-    CONFIG.reducedMode = options.reducedMode;
-    console.log(`LinkExploder: Reduced mode ${CONFIG.reducedMode ? 'enabled' : 'disabled'}`);
-  }
-  
+  Object.keys(options).forEach(key => {
+    if (CONFIG.hasOwnProperty(key)) {
+      CONFIG[key] = options[key];
+      console.log(`LinkExploder: ${key} set to`, options[key]);
+    }
+  });
   console.log('Current configuration:', CONFIG);
 };
 
-// Manual audio test function for debugging
-window.testLinkExploderAudio = function() {
-  console.log('LinkExploder Audio Test:');
-  
-  // First check extension context
-  const contextValid = checkExtensionContext();
-  console.log('- Extension Context Valid:', contextValid);
-  
-  if (!contextValid) {
-    console.log('❌ Extension context invalidated. Please refresh the page and reload the extension.');
-    console.log('- To fix: Close this tab, reload the extension in chrome://extensions, then reopen LinkedIn');
+// Manual classification test
+window.testClassification = function(text) {
+  if (!text) {
+    console.log('Usage: testClassification("your post text here")');
     return;
   }
   
-  console.log('- Extension Context Valid:', extensionContextValid);
-  console.log('- Audio Ready:', audioReady);
-  console.log('- Audio Object:', explosionAudio);
-  console.log('- Audio Initialization Attempted:', audioInitializationAttempted);
-  
-  if (explosionAudio) {
-    console.log('- Audio Source:', explosionAudio.src);
-    console.log('- Audio Volume:', explosionAudio.volume);
-    console.log('- Audio Ready State:', explosionAudio.readyState);
-  }
-  
-  if (audioReady && explosionAudio && extensionContextValid) {
-    explosionAudio.currentTime = 0;
-    explosionAudio.play().then(() => {
-      console.log('✅ Audio test successful!');
-    }).catch(error => {
-      console.log('❌ Audio test failed:', error);
-      if (error.message.includes('context invalidated') || 
-          error.message.includes('Invalid extension id')) {
-        console.log('💡 This error means the extension was reloaded. Please refresh the page.');
-      }
-    });
-  } else if (!audioInitializationAttempted && extensionContextValid) {
-    console.log('❌ Audio not ready. Attempting to initialize...');
-    initializeAudio();
-    setTimeout(() => {
-      if (audioReady && explosionAudio && extensionContextValid) {
-        explosionAudio.play().then(() => {
-          console.log('✅ Audio test successful after initialization!');
-        }).catch(error => {
-          console.log('❌ Audio test still failed:', error);
-        });
-      } else {
-        console.log('❌ Audio initialization failed or context became invalid');
-      }
-    }, 1000);
-  } else {
-    console.log('❌ Audio cannot be tested:');
-    console.log('  - Audio ready:', audioReady);
-    console.log('  - Audio object exists:', !!explosionAudio);
-    console.log('  - Extension context valid:', extensionContextValid);
-    console.log('  - Initialization attempted:', audioInitializationAttempted);
-    
-    if (!extensionContextValid) {
-      console.log('💡 Extension context is invalid. Please refresh the page.');
+  chrome.runtime.sendMessage(
+    { type: 'classify', text: text },
+    response => {
+      console.log(`Classification result: "${response}" for text: "${text.slice(0, 50)}..."`);
     }
-  }
+  );
 };
 
-// Manual explosion test function for debugging throbbing posts
-window.explodeThrobbingPost = function() {
-  console.log('LinkExploder: Looking for throbbing posts to explode...');
-  
-  const throbbingPosts = document.querySelectorAll('.keyword-processed:not(.exploded)');
-  console.log(`Found ${throbbingPosts.length} throbbing posts`);
-  
-  if (throbbingPosts.length === 0) {
-    console.log('No throbbing posts found. Posts must have been processed already or none detected.');
-    return;
-  }
-  
-  throbbingPosts.forEach((post, index) => {
-    console.log(`Manually exploding throbbing post ${index + 1}:`, post);
-    
-    const rect = post.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    // Determine keyword type from classes
-    let matchedKeyword = 'manual';
-    if (post.classList.contains('money-target')) matchedKeyword = '💸';
-    else if (post.classList.contains('stop-target')) matchedKeyword = '🛑';
-    else if (post.classList.contains('rocket-target')) matchedKeyword = '🚀';
-    else if (post.classList.contains('hashtag-target')) matchedKeyword = '#hashtag';
-    
-    // Fire immediately
-    createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
-    
-    setTimeout(() => {
-      createExplosion(post, centerX, centerY, matchedKeyword);
-    }, 200);
-  });
+// Clear classification cache
+window.clearLinkExploderCache = function() {
+  classificationCache.clear();
+  console.log('✅ LinkExploder: Classification cache cleared');
 };
 
-// Debug function to inspect what's actually on the page
-window.debugLinkedInPosts = function() {
-  console.log('LinkExploder: Debugging LinkedIn page structure...');
-  
-  // Check various post selectors
-  const selectors = [
-    '.feed-shared-update-v2',
-    '.occludable-update', 
-    '[data-urn*="activity"]',
-    '[data-id*="activity"]',
-    '.update-components-text',
-    '.feed-shared-text',
-    '[role="article"]',
-    '.feed-shared-update',
-    '.share-update-card'
-  ];
-  
-  selectors.forEach(selector => {
-    const elements = document.querySelectorAll(selector);
-    console.log(`Selector "${selector}": ${elements.length} elements found`);
-    if (elements.length > 0) {
-      console.log('Sample element:', elements[0]);
-      console.log('Sample classes:', elements[0].className);
-      console.log('Sample text (first 100 chars):', elements[0].textContent.slice(0, 100));
-    }
-  });
-  
-  // Check for posts containing our keywords
-  console.log('\nSearching for posts with target keywords...');
-  TARGET_KEYWORDS.forEach(keyword => {
-    const matching = Array.from(document.querySelectorAll('*')).filter(el => 
-      el.textContent && el.textContent.toLowerCase().includes(keyword.toLowerCase())
-    );
-    if (matching.length > 0) {
-      console.log(`Found ${matching.length} elements containing "${keyword}"`);
-      console.log('Sample:', matching[0]);
-    }
-  });
-};
-
-// Debug function to check what's making LinkedIn appear busy
-window.debugLinkedInBusy = function() {
-  console.log('LinkExploder: Debugging LinkedIn busy state...');
-  
-  // Check search inputs
-  const searchInputs = document.querySelectorAll('input[placeholder*="Search"], .search-global-typeahead__input');
-  console.log(`Found ${searchInputs.length} search inputs:`, searchInputs);
-  
-  searchInputs.forEach((input, i) => {
-    console.log(`Search input ${i + 1}:`, {
-      element: input,
-      isActive: document.activeElement === input,
-      value: input.value,
-      placeholder: input.placeholder
-    });
-  });
-  
-  // Check loading indicators
-  const loadingSelectors = ['.loader', '.loading', '[aria-label*="Loading"]', '.artdeco-loader'];
-  loadingSelectors.forEach(selector => {
-    const elements = document.querySelectorAll(selector);
-    if (elements.length > 0) {
-      console.log(`Loading selector "${selector}": ${elements.length} elements found`, elements);
-    }
-  });
-  
-  // Check modals
-  const modalSelectors = ['.artdeco-modal', '.modal', '[role="dialog"]'];
-  modalSelectors.forEach(selector => {
-    const elements = document.querySelectorAll(selector);
-    if (elements.length > 0) {
-      console.log(`Modal selector "${selector}": ${elements.length} elements found`, elements);
-    }
-  });
-  
-  // Overall busy state
-  const isBusy = isLinkedInBusy();
-  console.log('Overall LinkedIn busy state:', isBusy);
-  
-  // Force a scan regardless of busy state
-  console.log('Forcing a scan to test post detection...');
-  searchHighlightAndExplode();
-};
-
-// Emergency stop function to disable extension completely
-window.stopLinkExploder = function() {
-  console.log('🛑 LinkExploder: EMERGENCY STOP - Disabling all functionality');
-  
-  // Mark context as invalid to stop all operations
-  extensionContextValid = false;
-  
-  // Disconnect observer
-  if (observer) {
-    observer.disconnect();
-    console.log('LinkExploder: Mutation observer disconnected');
-  }
-  
-  // Clear any running intervals
-  if (periodicCheck) {
-    clearInterval(periodicCheck);
-    console.log('LinkExploder: Periodic checks stopped');
-  }
-  
-  // Stop audio
-  if (explosionAudio) {
-    explosionAudio.pause();
-    explosionAudio = null;
-    console.log('LinkExploder: Audio stopped');
-  }
-  
-  console.log('✅ LinkExploder: Extension completely disabled. Refresh page to re-enable.');
-};
+console.log('🤖 LinkExploder v3.0: AI-Powered LinkedIn Post Hunter loaded!');
+console.log('🔧 Type setLinkExploderApiKey("your-api-key") to set your OpenAI API key');
+console.log('⚙️ Type configureLinkExploder({debugMode: false}) to adjust settings');
+console.log('🧪 Type testClassification("post text") to test the AI classifier');
+console.log('🗑️ Type clearLinkExploderCache() to clear the classification cache'); 
