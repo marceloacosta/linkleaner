@@ -1,128 +1,135 @@
-# 🎯 LinkExploder - Multi-Target Hunter
+# LinkExploder - AI-Powered LinkedIn Post Analyzer
 
-A Chrome extension that automatically detects LinkedIn posts containing specific trigger keywords, emojis, and hashtags, then creates spectacular explosion effects with unique visual themes for each target type!
+A Chrome extension that automatically analyzes LinkedIn posts using artificial intelligence and replaces them with concise summaries, helping users quickly understand post content without reading through lengthy text.
 
-## 🚀 Features
+## Features
 
-- **Multi-Keyword Detection**: Scans for multiple trigger phrases and keywords
-- **Emoji Targeting**: Detects money (💸), stop (🛑), and rocket (🚀) emojis
-- **Hashtag Hunter**: Automatically targets any post containing hashtags (#)
-- **Dynamic Visual Themes**: Each keyword type has unique explosion colors and effects
-- **Smart Targeting Indicators**: Different emojis mark different target types
-- **Enhanced Explosion Effects**: Color-coded particle systems based on target type
-- **Real-time Monitoring**: Continuously scans for new posts as they load
+### AI-Powered Analysis
+- Uses OpenAI GPT-4o-mini to analyze and summarize LinkedIn posts
+- Generates intelligent summaries that capture the key points of each post
+- Processes posts automatically as they appear in your LinkedIn feed
 
-## 🎮 Target List
+### Smart Post Detection
+- Monitors LinkedIn feed using IntersectionObserver for efficient performance
+- Automatically detects new posts as they load
+- Supports various LinkedIn post formats and layouts
 
-### Text Keywords
-- **"changed the game"** - Classic game-changer posts
-- **"changed the ai game"** - AI revolution posts  
-- **"that changed everything"** - Transformation stories
+### Enhanced User Experience
+- Replaces original posts with clean, summarized versions
+- Preserves essential post metadata (author name, profile image, timestamp)
+- Click-to-expand functionality to view original post content when needed
+- Smooth animations and transitions for better visual experience
 
-### Emojis
-- **💸** - Money/financial posts (Green explosion theme)
-- **🛑** - Stop/warning posts (Red explosion theme)
-- **🚀** - Rocket/growth posts (Blue explosion theme)
+### Performance Optimization
+- Concurrent request limiting to prevent API overuse
+- Text caching to avoid re-analyzing identical content
+- Debounced DOM operations for optimal performance
+- Memory-efficient cleanup of observers and event listeners
 
-### Special Triggers
-- **# (Hashtags)** - Any post containing hashtags (Purple explosion theme)
+### Robust Error Handling
+- Extension context validation to prevent runtime errors
+- Automatic recovery from context invalidation
+- Health monitoring with periodic context checks
+- Graceful fallbacks when AI analysis fails
 
-## 🎨 Visual Themes
+## Technical Architecture
 
-### 💰 Money Targets (💸)
-- **Indicator**: 💰 (spinning gold coin)
-- **Colors**: Green explosion with money-themed particles
-- **Particle Count**: 60 (extra abundance!)
-- **Border**: Glowing green
+### Content Detection
+- Uses multiple CSS selectors to identify LinkedIn posts across different layouts
+- Employs MutationObserver to watch for dynamically added content
+- IntersectionObserver triggers analysis only when posts are visible
 
-### ⚠️ Stop Targets (🛑)
-- **Indicator**: ⚠️ (warning symbol)
-- **Colors**: Red explosion with warning-themed particles
-- **Particle Count**: 40 (sharp and direct)
-- **Border**: Glowing red
+### AI Integration
+- Background script handles OpenAI API communication
+- Secure API key management through Chrome extension storage
+- Rate limiting and error handling for API requests
+- Fallback messaging for failed classifications
 
-### 🌟 Rocket Targets (🚀)
-- **Indicator**: 🌟 (bouncing star)
-- **Colors**: Blue explosion with space-themed particles
-- **Particle Count**: 70 (explosive growth!)
-- **Border**: Glowing blue
+### Context Management
+- Validates Chrome extension context before operations
+- Handles extension invalidation scenarios
+- Automatic observer reinitialization when context recovers
 
-### #️⃣ Hashtag Targets (#)
-- **Indicator**: #️⃣ (hashtag symbol)
-- **Colors**: Purple explosion with social-themed particles
-- **Particle Count**: 45 (balanced reach)
-- **Border**: Glowing purple
+## Installation
 
-## 🎯 How It Works
+1. Clone or download this repository
+2. Open Chrome and navigate to chrome://extensions/
+3. Enable "Developer mode" in the top right corner
+4. Click "Load unpacked" and select the extension directory
+5. Configure your OpenAI API key in the extension popup
+6. Visit LinkedIn to start using the extension
 
-1. Extension loads and monitors LinkedIn feed continuously
-2. Scans all post text for trigger keywords, emojis, and hashtags
-3. When a target is found:
-   - Applies appropriate targeting indicator and border color
-   - Highlights text keywords with animated glow
-   - Shows visual targeting indicator (💰⚠️🌟#️⃣)
-   - Fires themed bullet from corner to post center
-   - Creates explosion with target-specific colors and particle count
-   - Removes post from feed
+## Configuration
 
-## 📦 Installation
+### API Key Setup
+The extension requires an OpenAI API key to function. Configure it through the extension popup interface.
 
-1. Download or clone this repository from [GitHub](https://github.com/marceloacosta/linkleaner.git)
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" in the top right
-4. Click "Load unpacked" and select the extension folder
-5. Navigate to LinkedIn and watch the multi-target mayhem!
-
-## 🔧 Configuration
-
-You can modify the target list by editing the `TARGET_KEYWORDS` array in `content.js`:
+### Adjustable Parameters
+You can modify these settings in the CONFIG object within content.js:
 
 ```javascript
-const TARGET_KEYWORDS = [
-  "changed the game",
-  "changed the ai game", 
-  "that changed everything",
-  "💸",
-  "🛑", 
-  "🚀"
-];
-
-// Toggle hashtag detection
-const HASHTAG_TRIGGER = true;
+const CONFIG = {
+  debugMode: false,           // Enable detailed logging
+  maxConcurrent: 3,          // Maximum simultaneous API requests
+  minChars: 30,              // Minimum post length to analyze
+  ioThreshold: 0.25          // Intersection threshold for post detection
+};
 ```
 
-## 🎨 Technical Features
+## Debug Functions
 
-- **Manifest Version**: 3
-- **Smart Detection**: Case-insensitive text matching, exact emoji matching
-- **Performance Optimized**: Debounced DOM queries and efficient text searching
-- **Memory Management**: Automatic cleanup of visual effects
-- **Color-Coded System**: Unique particle themes for each target type
-- **Enhanced Audio**: Explosion sounds at optimal volume levels
+The extension includes several debug functions accessible from the browser console:
 
-## 📁 Backup System
+- `window.debugLinkExploderContext()` - Display extension context information
+- `window.enableLinkExploderDebug()` - Enable debug logging
+- `window.testLinkExploderClassification()` - Test AI summarization with sample text
 
-All original files are safely backed up in the `backup/` folder and excluded from version control.
+## File Structure
 
-## 🔄 Version History
+- `content.js` - Main content script handling post detection and replacement
+- `background.js` - Service worker managing API communication
+- `popup.html/js/css` - Extension configuration interface
+- `manifest.json` - Extension configuration and permissions
 
-- **v2.1**: Multi-keyword and emoji detection with themed explosions
-- **v2.0**: Single keyword search functionality  
-- **v1.0**: Original profile blocking functionality (backed up)
+## Privacy and Security
 
-## 🎪 Fun Statistics
+- All post analysis occurs through secure API calls to OpenAI
+- No user data is stored permanently by the extension
+- API keys are stored securely using Chrome extension storage APIs
+- The extension only processes visible LinkedIn content
 
-The extension creates different explosion experiences:
-- **💸 Posts**: 60 green particles for maximum money vibes
-- **🛑 Posts**: 40 red particles for sharp warning impact
-- **🚀 Posts**: 70 blue particles for explosive growth energy
-- **#️⃣ Posts**: 45 purple particles for balanced social reach
-- **Text Keywords**: 50 mixed-color particles for classic explosions
+## Browser Compatibility
 
-## 🤝 Contributing
+- Chrome (Manifest V3)
+- Chromium-based browsers with extension support
 
-Feel free to fork this repository and add your own target keywords or visual themes!
+## Requirements
 
-## ⚠️ Disclaimer
+- Valid OpenAI API key
+- Active internet connection for AI analysis
+- LinkedIn access
 
-This extension is for entertainment purposes. Use responsibly and respect LinkedIn's terms of service. The extension processes content locally and does not collect or transmit any user data. 
+## Troubleshooting
+
+### Extension Not Working
+1. Check that the extension context is valid using debug functions
+2. Verify API key configuration in the popup
+3. Refresh the LinkedIn page to reinitialize observers
+
+### Posts Not Being Analyzed
+1. Ensure posts meet minimum character requirements
+2. Check browser console for error messages
+3. Verify extension permissions are granted
+
+### API Errors
+1. Confirm OpenAI API key is valid and has sufficient credits
+2. Check network connectivity
+3. Review rate limiting settings if encountering frequent errors
+
+## Contributing
+
+Contributions are welcome. Please ensure any changes maintain the extension's privacy standards and performance characteristics.
+
+## License
+
+This project is provided as-is for educational and productivity purposes. Users are responsible for compliance with LinkedIn's terms of service and OpenAI's usage policies. 
