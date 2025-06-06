@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "LinkExploder - AI-Powered Hunter",
-  "version": "3.0",
-  "description": "AI-powered LinkedIn post detection using GPT-3.5-turbo to identify and explode hype, cringe, and motivational posts with spectacular visual effects",
+  "version": "3.1",
+  "description": "AI-powered LinkedIn content filter using GPT-3.5-turbo to identify hype, cringe, and motivational posts and replace them with explanatory text",
   "permissions": [
     "storage",
     "activeTab"
@@ -14,6 +14,7 @@
   "background": {
     "service_worker": "worker.js"
   },
+  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": ["*://*.linkedin.com/*"],

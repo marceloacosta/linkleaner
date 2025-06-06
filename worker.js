@@ -17,6 +17,13 @@ let inflight = 0;
 const MAX_CONCURRENT = 2;
 
 chrome.runtime.onMessage.addListener((msg, _src, respond) => {
+  // Handle API key updates from options page
+  if (msg.type === 'updateApiKey') {
+    OAI_KEY = msg.apiKey;
+    console.log('LinkExploder: API key updated from options page');
+    return;
+  }
+  
   if (msg.type !== 'classify') return; // ignore other traffic
 
   // Check for API key

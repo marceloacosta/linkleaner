@@ -47,70 +47,7 @@ function isLinkedInBusy() {
   return modals.length > 0;
 }
 
-/* --------- Explosion Effects (preserved from original) --------- */
-function createShootingEffect(startX, startY, endX, endY) {
-  const bullet = document.createElement('div');
-  bullet.className = 'bullet';
-  document.body.appendChild(bullet);
-
-  const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
-  bullet.style.transform = `rotate(${angle}deg)`;
-  bullet.style.left = `${startX}px`;
-  bullet.style.top = `${startY}px`;
-  bullet.style.animation = 'shoot 0.2s linear forwards';
-
-  setTimeout(() => bullet.remove(), 200);
-}
-
-function createExplosion(element, centerX, centerY, label = 'ai') {
-  if (!element || element.classList.contains('exploded')) return;
-  
-  element.classList.add('exploded');
-  
-  const explosionContainer = document.createElement('div');
-  explosionContainer.className = 'explosion-container';
-  explosionContainer.style.left = centerX + 'px';
-  explosionContainer.style.top = centerY + 'px';
-  
-  // Label-specific explosion colors
-  let colors = ['#ff4444', '#ffaa00', '#ff8800', '#ffcc00', '#ff0000', '#ffff00'];
-  let particleCount = 50;
-  
-  if (label === 'hype') {
-    colors = ['#ff6b6b', '#ff8e53', '#ff6b9d', '#c44569', '#f8b500']; // Hot colors
-    particleCount = 60;
-  } else if (label === 'cringe') {
-    colors = ['#6c5ce7', '#fd79a8', '#fdcb6e', '#e17055', '#00b894']; // Cringe colors
-    particleCount = 45;
-  } else if (label === 'motivational') {
-    colors = ['#0984e3', '#00cec9', '#00b894', '#55a3ff', '#74b9ff']; // Motivational blue/teal
-    particleCount = 55;
-  }
-  
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    
-    const angle = (Math.random() * 360) * (Math.PI / 180);
-    const velocity = 150 + Math.random() * 300;
-    const tx = Math.cos(angle) * velocity;
-    const ty = Math.sin(angle) * velocity;
-    
-    particle.style.setProperty('--tx', `${tx}px`);
-    particle.style.setProperty('--ty', `${ty}px`);
-    
-    explosionContainer.appendChild(particle);
-  }
-  
-  document.body.appendChild(explosionContainer);
-  element.classList.add('fade-explode');
-  
-  setTimeout(() => {
-    explosionContainer.remove();
-    element.remove();
-  }, 1000);
-}
+/* --------- Text Replacement Effects --------- */
 
 /* --------- AI Classification System --------- */
 // Session cache for classifications to avoid redundant API calls
@@ -153,7 +90,7 @@ function classifyAndExplode(post) {
     }
     
     if (['hype', 'cringe', 'motivational'].includes(cachedLabel)) {
-      triggerExplosion(post, cachedLabel);
+      replacePostContent(post, cachedLabel);
     }
     return;
   }
@@ -186,44 +123,102 @@ function classifyAndExplode(post) {
         console.log(`LinkExploder: AI classification result: "${label}" for post:`, postText.slice(0, 100));
       }
       
-      // Explode if classified as problematic content
+      // Replace post if classified as problematic content
       if (['hype', 'cringe', 'motivational'].includes(label)) {
-        triggerExplosion(post, label);
+        replacePostContent(post, label);
       }
     }
   );
 }
 
-// Trigger explosion with label-specific effects
-function triggerExplosion(post, label) {
-  if (post.classList.contains('exploded') || post.classList.contains('fade-explode')) {
+// Trigger text replacement instead of explosion
+function replacePostContent(post, label) {
+  if (post.classList.contains('le-replaced') || post.classList.contains('exploded')) {
     return;
   }
   
+  post.classList.add('le-replaced');
+  
   if (CONFIG.debugMode) {
-    console.log(`LinkExploder: Triggering explosion for "${label}" post`);
+    console.log(`LinkExploder: Replacing "${label}" post with explanation`);
   }
   
-  // Add label-specific class for different explosion themes
-  post.classList.add(`le-${label}`);
+  // Generate replacement text based on label
+  let replacementText = '';
+  let backgroundColor = '#f0f0f0';
+  let textColor = '#666';
   
-  // Get post dimensions for explosion center
-  const rect = post.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
-  
-  // Only explode if the post is visible on screen
-  if (rect.top < window.innerHeight && rect.bottom > 0) {
-    // Create shooting effect from bottom right corner to post center
-    setTimeout(() => {
-      createShootingEffect(window.innerWidth - 50, window.innerHeight - 50, centerX, centerY);
-    }, 100);
-    
-    // Add explosion after shooting
-    setTimeout(() => {
-      createExplosion(post, centerX, centerY, label);
-    }, 300);
+  switch (label) {
+    case 'hype':
+      replacementText = '🎯 EDITED: This was AI hype nonsense.';
+      backgroundColor = '#fff3cd';
+      textColor = '#856404';
+      break;
+    case 'cringe':
+      replacementText = '😬 EDITED: This was peak LinkedIn cringe.';
+      backgroundColor = '#f8d7da';
+      textColor = '#721c24';
+      break;
+    case 'motivational':
+      replacementText = '💪 EDITED: This was motivational spam.';
+      backgroundColor = '#d1ecf1';
+      textColor = '#0c5460';
+      break;
+    default:
+      replacementText = '🤖 EDITED: This post was flagged by AI.';
+      backgroundColor = '#e2e3e5';
+      textColor = '#383d41';
   }
+  
+  // Create replacement content
+  const replacement = document.createElement('div');
+  replacement.className = 'le-replacement';
+  replacement.style.cssText = `
+    padding: 20px;
+    margin: 10px 0;
+    background-color: ${backgroundColor};
+    color: ${textColor};
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    border: 2px solid ${textColor}40;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  `;
+  replacement.textContent = replacementText;
+  
+  // Add hover effect to show original content
+  const originalContent = post.innerHTML;
+  let isShowingOriginal = false;
+  
+  replacement.addEventListener('click', () => {
+    if (isShowingOriginal) {
+      replacement.textContent = replacementText;
+      replacement.style.fontSize = '16px';
+      replacement.style.fontWeight = 'bold';
+      isShowingOriginal = false;
+    } else {
+      replacement.innerHTML = `<small style="opacity: 0.8;">Original post:</small><br><div style="font-weight: normal; font-size: 14px; margin-top: 8px; opacity: 0.9;">${originalContent}</div>`;
+      isShowingOriginal = true;
+    }
+  });
+  
+  // Add label-specific class for styling
+  replacement.classList.add(`le-${label}`);
+  
+  // Replace the post content
+  post.innerHTML = '';
+  post.appendChild(replacement);
+  
+  // Add fade-in animation
+  replacement.style.opacity = '0';
+  replacement.style.transform = 'translateY(-10px)';
+  
+  setTimeout(() => {
+    replacement.style.opacity = '1';
+    replacement.style.transform = 'translateY(0)';
+  }, 100);
 }
 
 /* --------- AI-powered intersection observer --------- */
@@ -238,7 +233,7 @@ const io = new IntersectionObserver(entries => {
     // Skip if already processed or being processed
     if (post.classList.contains('le-checked') || 
         post.classList.contains('le-analyzing') ||
-        post.classList.contains('exploded')) {
+        post.classList.contains('le-replaced')) {
       continue;
     }
     
@@ -288,14 +283,6 @@ setTimeout(() => {
 }, 1000);
 
 /* --------- Helper Functions --------- */
-// API key management function
-window.setLinkExploderApiKey = function(apiKey) {
-  chrome.storage.sync.set({ oaiKey: apiKey }, () => {
-    console.log('✅ LinkExploder: OpenAI API key saved successfully');
-    console.log('🔄 Please refresh the page to start AI-powered detection');
-  });
-};
-
 // Configuration function
 window.configureLinkExploder = function(options = {}) {
   Object.keys(options).forEach(key => {
@@ -328,8 +315,8 @@ window.clearLinkExploderCache = function() {
   console.log('✅ LinkExploder: Classification cache cleared');
 };
 
-console.log('🤖 LinkExploder v3.0: AI-Powered LinkedIn Post Hunter loaded!');
-console.log('🔧 Type setLinkExploderApiKey("your-api-key") to set your OpenAI API key');
-console.log('⚙️ Type configureLinkExploder({debugMode: false}) to adjust settings');
+console.log('🤖 LinkExploder v3.0: AI-Powered LinkedIn Content Replacer loaded!');
+console.log('⚙️ Right-click extension icon → Options to configure your OpenAI API key');
 console.log('🧪 Type testClassification("post text") to test the AI classifier');
+console.log('🔧 Type configureLinkExploder({debugMode: false}) to adjust settings');
 console.log('🗑️ Type clearLinkExploderCache() to clear the classification cache'); 
