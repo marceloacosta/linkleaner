@@ -63,6 +63,8 @@ function saveOptions() {
 async function testConnection() {
   const apiKey = document.getElementById('apiKey').value.trim();
   
+  console.log('LinkExploder: Starting API connection test...');
+  
   if (!apiKey) {
     showStatus('Please enter an API key first', 'error');
     return;
@@ -74,42 +76,68 @@ async function testConnection() {
   }
 
   showStatus('Testing API connection...', 'info');
+  console.log('LinkExploder: Making test request to OpenAI API...');
 
   try {
+    const requestBody = {
+      model: 'gpt-3.5-turbo-0125',
+      temperature: 0,
+      max_tokens: 5,
+      messages: [
+        { 
+          role: 'system',
+          content: 'Classify LinkedIn posts. Return ONLY one word: hype, cringe, motivational, or other.'
+        },
+        { 
+          role: 'user', 
+          content: 'Just disrupted the entire industry with my groundbreaking AI startup! 🚀 Who else is ready to change the game? #hustle #entrepreneur #gamechanging'
+        }
+      ]
+    };
+
+    console.log('LinkExploder: Request payload:', requestBody);
+
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo-0125',
-        temperature: 0,
-        max_tokens: 2,
-        messages: [
-          { 
-            role: 'system',
-            content: 'Return ONE WORD: hype, cringe, motivational, other.'
-          },
-          { 
-            role: 'user', 
-            content: 'This is a test post to verify the API connection.'
-          }
-        ]
-      })
+      body: JSON.stringify(requestBody)
     });
 
+    console.log('LinkExploder: Response status:', response.status);
+    console.log('LinkExploder: Response headers:', Object.fromEntries(response.headers.entries()));
+
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(`API request failed: ${response.status} ${response.statusText}. ${errorData.error?.message || ''}`);
+      const errorText = await response.text();
+      console.error('LinkExploder: API error response:', errorText);
+      
+      let errorData;
+      try {
+        errorData = JSON.parse(errorText);
+      } catch (e) {
+        errorData = { error: { message: errorText } };
+      }
+      
+      throw new Error(`API request failed: ${response.status} ${response.statusText}. ${errorData.error?.message || errorText}`);
     }
 
     const data = await response.json();
-    const classification = data.choices?.[0]?.message?.content.trim().toLowerCase() || 'unknown';
+    console.log('LinkExploder: API response data:', data);
     
-    showStatus(`✅ API connection successful! Test classification: "${classification}"`, 'success');
+    const classification = data.choices?.[0]?.message?.content?.trim()?.toLowerCase() || 'unknown';
+    console.log('LinkExploder: Extracted classification:', classification);
+    
+    showStatus(`✅ API connection successful! Test classification: "${classification}" (Expected: hype/cringe)`, 'success');
+    
+    // Additional validation
+    if (classification === 'other') {
+      showStatus(`⚠️ API connected but classified test post as "other". This might indicate the prompt needs adjustment.`, 'error');
+    }
+    
   } catch (error) {
-    console.error('API test failed:', error);
+    console.error('LinkExploder: API test failed with error:', error);
     
     if (error.message.includes('401')) {
       showStatus('❌ Invalid API key. Please check your key and try again.', 'error');
@@ -117,6 +145,8 @@ async function testConnection() {
       showStatus('❌ Rate limit exceeded. Please wait and try again.', 'error');
     } else if (error.message.includes('quota')) {
       showStatus('❌ API quota exceeded. Please check your OpenAI billing.', 'error');
+    } else if (error.message.includes('network') || error.message.includes('fetch')) {
+      showStatus('❌ Network error. Check your internet connection.', 'error');
     } else {
       showStatus(`❌ API test failed: ${error.message}`, 'error');
     }

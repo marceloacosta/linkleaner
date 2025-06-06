@@ -99,7 +99,9 @@ function classifyAndExplode(post) {
   post.classList.add('le-analyzing');
   
   if (CONFIG.debugMode) {
-    console.log('LinkExploder: Sending post for AI classification...', postText.slice(0, 100));
+    console.log('LinkExploder: Sending post for AI classification...');
+    console.log('Post text (first 200 chars):', postText.slice(0, 200));
+    console.log('Post element:', post);
   }
   
   // Send to background worker for classification
@@ -225,23 +227,49 @@ function replacePostContent(post, label) {
 const io = new IntersectionObserver(entries => {
   let processed = 0;
   
+  if (CONFIG.debugMode && entries.length > 0) {
+    console.log(`LinkExploder: IntersectionObserver triggered with ${entries.length} entries`);
+  }
+  
   for (const entry of entries) {
     if (!entry.isIntersecting || processed >= CONFIG.maxConcurrentClassifications) continue;
     
     const post = entry.target;
     
+    if (CONFIG.debugMode) {
+      console.log('LinkExploder: Checking post:', {
+        element: post,
+        isIntersecting: entry.isIntersecting,
+        classes: post.className,
+        textLength: post.textContent?.length || 0
+      });
+    }
+    
     // Skip if already processed or being processed
     if (post.classList.contains('le-checked') || 
         post.classList.contains('le-analyzing') ||
         post.classList.contains('le-replaced')) {
+      
+      if (CONFIG.debugMode) {
+        console.log('LinkExploder: Skipping already processed post');
+      }
       continue;
     }
     
     // Check if post has sufficient content
     const postText = post.textContent?.trim() || '';
-    if (postText.length < CONFIG.minPostLength) continue;
+    if (postText.length < CONFIG.minPostLength) {
+      if (CONFIG.debugMode) {
+        console.log(`LinkExploder: Skipping short post (${postText.length} chars, min ${CONFIG.minPostLength})`);
+      }
+      continue;
+    }
     
     processed++;
+    
+    if (CONFIG.debugMode) {
+      console.log(`LinkExploder: Processing post ${processed}/${CONFIG.maxConcurrentClassifications}`);
+    }
     
     // Use AI classification instead of keyword matching
     classifyAndExplode(post);
@@ -315,8 +343,52 @@ window.clearLinkExploderCache = function() {
   console.log('✅ LinkExploder: Classification cache cleared');
 };
 
-console.log('🤖 LinkExploder v3.0: AI-Powered LinkedIn Content Replacer loaded!');
+// Manual page scan for debugging
+window.debugLinkExploderPosts = function() {
+  console.log('LinkExploder: Manual page scan...');
+  
+  const selectors = [
+    '[data-urn*="activity"]',
+    '.feed-shared-update-v2', 
+    '.occludable-update'
+  ];
+  
+  let totalFound = 0;
+  
+  selectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    console.log(`Selector "${selector}": ${elements.length} elements found`);
+    totalFound += elements.length;
+    
+    // Show first few examples
+    Array.from(elements).slice(0, 3).forEach((element, i) => {
+      const text = element.textContent?.trim() || '';
+      console.log(`Example ${i + 1}:`, {
+        element: element,
+        textLength: text.length,
+        textPreview: text.slice(0, 100) + '...',
+        classes: element.className
+      });
+    });
+  });
+  
+  console.log(`Total posts found: ${totalFound}`);
+  
+  // Try to observe a few posts manually
+  if (totalFound > 0) {
+    const firstPost = document.querySelector(selectors.join(', '));
+    if (firstPost) {
+      console.log('Trying to classify first post manually...');
+      classifyAndExplode(firstPost);
+    }
+  }
+  
+  return totalFound;
+};
+
+console.log('🤖 LinkExploder v3.1: AI-Powered LinkedIn Content Replacer loaded!');
 console.log('⚙️ Right-click extension icon → Options to configure your OpenAI API key');
 console.log('🧪 Type testClassification("post text") to test the AI classifier');
-console.log('🔧 Type configureLinkExploder({debugMode: false}) to adjust settings');
+console.log('🔧 Type configureLinkExploder({debugMode: true}) to enable detailed logging');
+console.log('🔍 Type debugLinkExploderPosts() to scan current page for posts');
 console.log('🗑️ Type clearLinkExploderCache() to clear the classification cache'); 

@@ -52,15 +52,28 @@ chrome.runtime.onMessage.addListener((msg, _src, respond) => {
     body: JSON.stringify({
       model: MODEL,
       temperature: 0,
-      max_tokens: 2,
+      max_tokens: 5,
       messages: [
         { 
           role: 'system',
-          content: 'Return ONE WORD: hype, cringe, motivational, other.'
+          content: `Classify LinkedIn posts into categories. Return ONLY one word:
+
+"hype" - AI/tech buzzword spam, "game-changing" claims, "disrupting industries"
+"cringe" - Humble bragging, fake modesty, excessive emoji use, "I'm humbled to announce"  
+"motivational" - Generic motivational quotes, hustle culture, "grind never stops"
+"other" - Normal professional posts, job updates, genuine insights
+
+Examples:
+- "Just disrupted the entire AI industry! 🚀 #gamechanging" → hype
+- "I'm humbled to announce my promotion to CEO of myself 💪" → cringe  
+- "The grind never stops! Rise and grind every day! 💯" → motivational
+- "Sharing some insights from our quarterly review meeting" → other
+
+Return only: hype, cringe, motivational, or other`
         },
         { 
           role: 'user', 
-          content: msg.text.slice(0, 256) // Limit to 256 chars for cost efficiency
+          content: msg.text.slice(0, 300) // Increased from 256 to 300 for more context
         }
       ]
     })
